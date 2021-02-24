@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "survey")
+@Table(name = "surveys")
 public class Survey {
 
 	// INSTANCE VARIABLES //
