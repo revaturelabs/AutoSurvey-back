@@ -57,7 +57,7 @@ public class SurveyControllerImpl implements SurveyController {
 	@PutMapping(value = "/surveys/{id}", consumes = "applcation/json")
 	public Survey updateSurvey(@PathVariable("id") int id, @RequestBody Survey change) {
 		try {
-			ss.setId(id);
+			change.setId(id);
 			return ss.updateSurvey(change);
 		} catch (Exception e) {
 			e.printStackTrace();
