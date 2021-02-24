@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,21 +17,23 @@ import com.revature.beans.Response;
 import com.revature.services.ResponseService;
 
 @RestController
+@CrossOrigin
 public class ResponseControllerImpl implements ResponseController {
-
 	@Autowired
 	ResponseService rs;
 
 	@Override
 	@PostMapping(value = "/response", consumes = "application/json", produces = "application/json")
-	public boolean addResponse(@RequestBody Response r) {
+	public Response addResponse(@RequestBody Response r) {
 		// TODO Auto-generated method stub
 		try {
 			return rs.addResponse(r);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return true;
+
+		return null;
+
 	}
 
 	@Override
@@ -80,5 +83,4 @@ public class ResponseControllerImpl implements ResponseController {
 		}
 		return true;
 	}
-
 }

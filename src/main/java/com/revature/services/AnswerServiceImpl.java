@@ -3,12 +3,13 @@ package com.revature.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.beans.Answer;
 import com.revature.repos.AnswerRepo;
 
+@Service
 public class AnswerServiceImpl implements AnswerService {
-
 	@Autowired
 	private AnswerRepo answerRepo;
 
@@ -18,8 +19,10 @@ public class AnswerServiceImpl implements AnswerService {
 			return answerRepo.save(a);
 		} catch(Exception e) {
 			System.out.println("Invalid add answer.");
-			return null;
+			e.printStackTrace();
 		}
+		return null;
+
 	}
 
 	@Override
@@ -28,8 +31,9 @@ public class AnswerServiceImpl implements AnswerService {
 			return answerRepo.findById(id).get();
 		} catch(Exception e) {
 			System.out.println("Invalid get answer by id.");
-			return null;
+			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
@@ -38,8 +42,9 @@ public class AnswerServiceImpl implements AnswerService {
 			return (List<Answer>)answerRepo.findAll();
 		} catch(Exception e) {
 			System.out.println("Invalid get all answers.");
-			return null;
+			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
@@ -48,8 +53,9 @@ public class AnswerServiceImpl implements AnswerService {
 			return answerRepo.save(a);
 		} catch(Exception e) {
 			System.out.println("Invalid update answer.");
-			return null;
+			e.printStackTrace();
 		}
+		return null;
 	}
 
 	@Override
@@ -59,9 +65,8 @@ public class AnswerServiceImpl implements AnswerService {
 			return true;
 		} catch(Exception e) {
 			System.out.println("Invalid delete answer.");
-			return false;
+			e.printStackTrace();
 		}
+		return false;
 	}
-	
-	
 }

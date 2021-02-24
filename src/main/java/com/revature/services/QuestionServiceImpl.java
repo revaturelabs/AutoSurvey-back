@@ -9,7 +9,6 @@ import com.revature.repos.QuestionRepo;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
-
 	@Autowired
 	QuestionRepo qr;
 	
@@ -20,7 +19,7 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public List<Question> getAllQuestions() {
-		return qr.findAll();
+		return (List<Question>) qr.findAll();
 	}
 
 	@Override
@@ -43,5 +42,4 @@ public class QuestionServiceImpl implements QuestionService {
 		qr.delete(qr.findById(id).get());
 		return true;
 	}
-
 }

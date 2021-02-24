@@ -10,46 +10,63 @@ import com.revature.repos.ResponseRepo;
 
 @Service
 public class ResponseServiceImpl implements ResponseService {
-
 	@Autowired
 	ResponseRepo rr;
 
 	@Override
-	public boolean addResponse(Response r) {
-		// TODO Auto-generated method stub
-		return rr.save(r);
+	public Response addResponse(Response r) {
+		try {
+			return rr.save(r);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public Response getResponse(int id) {
-		// TODO Auto-generated method stub
-		return rr.findById(id).get();
+		try {
+			return rr.findById(id).get();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public List<Response> getAllResponse() {
-		// TODO Auto-generated method stub
-		return (List<Response>) rr.findAll();
+		try {
+			return (List<Response>) rr.findAll();
+		} catch (Exception e) {
+
+		}
+		return null;
 	}
 
 	@Override
 	public boolean updateResponse(Response r) {
-		// TODO Auto-generated method stub
-		return rr.save(r);
+		try {
+			if (rr.save(r) != null) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
 	}
-	
+  
 	@Override
 	public boolean deleteResponse(int id) {
 		// TODO Auto-generated method stub
 		try {
 			rr.delete(rr.findById(id).get());
 			return true;
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
-			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-	}
-	
-	
-	
+		return false;
+  }	
 }

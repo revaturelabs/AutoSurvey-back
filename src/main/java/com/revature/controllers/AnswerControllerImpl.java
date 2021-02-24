@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,42 +15,69 @@ import com.revature.beans.Answer;
 import com.revature.services.AnswerService;
 
 @RestController
+@CrossOrigin
 public class AnswerControllerImpl implements AnswerController {
 
 	@Autowired
 	private AnswerService answerService;
-	
-	
-	// None of these methods need a try/catch, it's already handled via AnswerService!
-	
+
+	// None of these methods need a try/catch, it's already handled via
+	// AnswerService!
+
 	@Override
 	@PostMapping(value = "/answers", consumes = "application/json", produces = "application/json")
 	public Answer addAnswer(Answer a) {
-		return answerService.addAnswer(a);
+		try {
+			return answerService.addAnswer(a);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	@GetMapping(value = "/answers/{id}")
 	public Answer getAnswer(int id) {
-		return answerService.getAnswer(id);
-	}
+
+		try {
+			return answerService.getAnswer(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 
 	@Override
 	@GetMapping(value = "/answers")
 	public List<Answer> getAllAnswers() {
-		return answerService.getAllAnswers();
+		try {
+			return answerService.getAllAnswers();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	@PutMapping(value = "/answers/{id}", consumes = "application/json")
 	public Answer updateAnswer(Answer a) {
-		return answerService.updateAnswer(a);
+		try {
+			return answerService.updateAnswer(a);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+
 	}
 
 	@Override
 	@DeleteMapping(value = "/answers/{id}")
 	public boolean deleteAnswer(@PathVariable("id") int id) {
-		return answerService.deleteAnswer(id);
+		try {
+			return answerService.deleteAnswer(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }

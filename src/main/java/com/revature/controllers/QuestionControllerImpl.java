@@ -17,10 +17,10 @@ import com.revature.services.QuestionService;
 @RestController
 @CrossOrigin
 public class QuestionControllerImpl implements QuestionController {
-	
-	@Autowired
+
+  @Autowired
 	QuestionService qs;
-	
+
 	@Override
 	@GetMapping(value = "/question/{id}")
 	public Question getQuestion(@PathVariable("id") int id) {
@@ -31,7 +31,7 @@ public class QuestionControllerImpl implements QuestionController {
 		}
 		return null;
 	}
-	
+
 	@Override
 	@GetMapping(value = "/question", produces = "application/json")
 	public List<Question> getAllQuestions() {
@@ -57,13 +57,24 @@ public class QuestionControllerImpl implements QuestionController {
 	@Override
 	@PostMapping(value = "/question", consumes = "application/json", produces = "application/json")
 	public Question addQuestion(Question q) {
-		return qs.addQuestion(q);
+		try {
+			return qs.addQuestion(q);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+
 	}
 
 	@Override
 	@PutMapping(value = "/question/{id}", consumes = "application/json", produces = "application/json")
 	public Question updateQuestion(Question q) {
-		return qs.updateQuestion(q);
+		try {
+			return qs.updateQuestion(q);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
@@ -76,5 +87,4 @@ public class QuestionControllerImpl implements QuestionController {
 		}
 		return false;
 	}
-
 }

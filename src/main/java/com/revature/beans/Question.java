@@ -1,5 +1,7 @@
 package com.revature.beans;
 
+public class Question {
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -9,17 +11,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name = "questions")
-@Table(name = "questions")
+@Entity
+@Table(name = "QUESTIONS")
 public class Question {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="questions")
+	@Column(updatable = false, name="ID")
 	private int id;
-	@Column(name="content")
+	@Column(length=1024,name="CONTENT")
 	private String content;
-	@Column(name="createdOn")
+	@Column(name="CREATED_ON")
+
 	private Timestamp createdOn;
 	
 	public Question() {
