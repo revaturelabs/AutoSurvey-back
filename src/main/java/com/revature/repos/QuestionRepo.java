@@ -2,6 +2,8 @@ package com.revature.repos;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface QuestionRepo extends CrudRepository<T, ID> {
+import com.revature.beans.Question;
+
+public interface QuestionRepo extends CrudRepository<Question, Integer> {
 
 }
