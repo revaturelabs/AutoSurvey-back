@@ -45,6 +45,7 @@ public class AnswerControllerImpl implements AnswerController {
 			e.printStackTrace();
 		}
 		return null;
+	}
 
 	@Override
 	@GetMapping(value = "/answers")

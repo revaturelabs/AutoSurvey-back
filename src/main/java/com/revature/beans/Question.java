@@ -1,7 +1,5 @@
 package com.revature.beans;
 
-public class Question {
-
 import java.sql.Timestamp;
 
 import javax.persistence.Column;

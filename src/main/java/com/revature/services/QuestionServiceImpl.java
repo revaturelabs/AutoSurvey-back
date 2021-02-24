@@ -11,35 +11,65 @@ import com.revature.repos.QuestionRepo;
 public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	QuestionRepo qr;
-	
+
 	@Override
 	public Question getQuestion(int id) {
-		return qr.findById(id).get();
+		try {
+			return qr.findById(id).get();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public List<Question> getAllQuestions() {
-		return (List<Question>) qr.findAll();
+		try {
+			return (List<Question>) qr.findAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public List<Question> getQuestionsByCreatedOn(Timestamp createdOn) {
-		return qr.findByCreatedOn(createdOn);
+		try {
+			return qr.findByCreatedOn(createdOn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public Question addQuestion(Question q) {
-		return qr.save(q);
+		try {
+			return qr.save(q);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public Question updateQuestion(Question q) {
-		return qr.save(q);
+		try {
+			return qr.save(q);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public boolean deleteQuestion(int id) {
-		qr.delete(qr.findById(id).get());
-		return true;
+		try {
+			qr.delete(qr.findById(id).get());
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
