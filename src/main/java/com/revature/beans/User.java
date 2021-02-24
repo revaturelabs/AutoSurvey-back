@@ -27,7 +27,7 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 	@Column(name = "admin_status")
-	private boolean adminStatus;
+	private boolean admin;
 	
 	// CONSTRUCTORS //
 	// No args
@@ -36,24 +36,24 @@ public class User {
 	}
 
 	// id-less
-	public User(String email, String password, String firstName, String lastName, boolean adminStatus) {
+	public User(String email, String password, String firstName, String lastName, boolean admin) {
 		super();
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.adminStatus = adminStatus;
+		this.admin = admin;
 	}
 
 	// Full args
-	public User(int id, String email, String password, String firstName, String lastName, boolean adminStatus) {
+	public User(int id, String email, String password, String firstName, String lastName, boolean admin) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.adminStatus = adminStatus;
+		this.admin = admin;
 	}
 
 	// -----GETTERS AND SETTERS----- //
@@ -97,12 +97,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public boolean isAdminStatus() {
-		return adminStatus;
+	public boolean isAdmin() {
+		return admin;
 	}
 
-	public void setAdminStatus(boolean adminStatus) {
-		this.adminStatus = adminStatus;
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 
 	
@@ -110,7 +110,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", adminStatus=" + adminStatus + "]";
+				+ ", lastName=" + lastName + ", admin=" + admin + "]";
 	}
 	
 	
