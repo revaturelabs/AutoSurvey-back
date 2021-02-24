@@ -10,17 +10,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Response")
+@Table(name = "RESPONSES")
 public class Response {
 
 	@Id
-	@Column(updatable = false, name = "id")
+	@Column(updatable = false, name = "ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id = 0;
-	
+
 	@Column(name = "VERSION")
 	private String version;
-	
+
 	@Column(name = "CREATED_ON")
 	private Timestamp created_on;
 
@@ -64,6 +64,5 @@ public class Response {
 	public String toString() {
 		return "Response [id=" + id + ", version=" + version + ", created_on=" + created_on + "]";
 	}
-	
-	
+
 }

@@ -10,28 +10,36 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="answer")
+@Table(name="ANSWERS")
 public class Answer {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id", updatable=false)
+	@Column(name="ID", updatable=false)
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name="response_id")
+	@JoinColumn(name="RESPONSE_ID")
 	private Response response;
 	
 	@ManyToOne
-	@JoinColumn(name="question_id")
+	@JoinColumn(name="QUESTION_ID")
 	private Question question;
 	
 	//TODO: Adjust column length
-	@Column(length=1024, name="content")
+	@Column(length=1024, name="CONTENT")
 	private String content;
 	
 	public Answer() {
 		
+	}
+
+	public Answer(int id, Response response, Question question, String content) {
+		super();
+		this.id = id;
+		this.response = response;
+		this.question = question;
+		this.content = content;
 	}
 
 	@Override
