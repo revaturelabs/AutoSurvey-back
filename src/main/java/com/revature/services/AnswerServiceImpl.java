@@ -1,9 +1,5 @@
 package com.revature.services;
 
-<<<<<<< Updated upstream
-public class AnswerServiceImpl implements AnswerService {
-
-=======
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +10,6 @@ import com.revature.repos.AnswerRepo;
 
 @Service
 public class AnswerServiceImpl implements AnswerService {
-
 	@Autowired
 	private AnswerRepo answerRepo;
 
@@ -27,6 +22,7 @@ public class AnswerServiceImpl implements AnswerService {
 			e.printStackTrace();
 		}
 		return null;
+
 	}
 
 	@Override
@@ -73,7 +69,4 @@ public class AnswerServiceImpl implements AnswerService {
 		}
 		return false;
 	}
-	
-	
->>>>>>> Stashed changes
 }

@@ -1,9 +1,5 @@
 package com.revature.controllers;
 
-<<<<<<< Updated upstream
-public class AnswerControllerImpl implements AnswerController {
-
-=======
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,19 +33,18 @@ public class AnswerControllerImpl implements AnswerController {
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 
 	@Override
 	@GetMapping(value = "/answers/{id}")
 	public Answer getAnswer(int id) {
+
 		try {
 			return answerService.getAnswer(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
-	}
 
 	@Override
 	@GetMapping(value = "/answers")
@@ -71,6 +66,7 @@ public class AnswerControllerImpl implements AnswerController {
 			e.printStackTrace();
 		}
 		return null;
+
 	}
 
 	@Override
@@ -84,5 +80,4 @@ public class AnswerControllerImpl implements AnswerController {
 		return false;
 	}
 
->>>>>>> Stashed changes
 }

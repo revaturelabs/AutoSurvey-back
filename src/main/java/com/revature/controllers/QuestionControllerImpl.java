@@ -1,10 +1,24 @@
 package com.revature.controllers;
 
-public class QuestionControllerImpl implements QuestionController {
-<<<<<<< Updated upstream
-=======
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.NoSuchElementException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.revature.beans.Question;
+import com.revature.services.QuestionService;
 
-	@Autowired
+@RestController
+@CrossOrigin
+public class QuestionControllerImpl implements QuestionController {
+
+  @Autowired
 	QuestionService qs;
 
 	@Override
@@ -49,6 +63,7 @@ public class QuestionControllerImpl implements QuestionController {
 			e.printStackTrace();
 		}
 		return null;
+
 	}
 
 	@Override
@@ -72,6 +87,4 @@ public class QuestionControllerImpl implements QuestionController {
 		}
 		return false;
 	}
->>>>>>> Stashed changes
-
 }

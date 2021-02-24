@@ -1,9 +1,5 @@
 package com.revature.controllers;
 
-<<<<<<< Updated upstream
-public class ResponseControllerImpl implements ResponseController {
-
-=======
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -23,7 +19,6 @@ import com.revature.services.ResponseService;
 @RestController
 @CrossOrigin
 public class ResponseControllerImpl implements ResponseController {
-
 	@Autowired
 	ResponseService rs;
 
@@ -36,7 +31,9 @@ public class ResponseControllerImpl implements ResponseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		return null;
+
 	}
 
 	@Override
@@ -86,6 +83,4 @@ public class ResponseControllerImpl implements ResponseController {
 		}
 		return true;
 	}
-
->>>>>>> Stashed changes
 }

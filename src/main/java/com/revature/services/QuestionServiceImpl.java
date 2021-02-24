@@ -1,9 +1,14 @@
 package com.revature.services;
 
-public class QuestionServiceImpl implements QuestionService {
+import java.sql.Timestamp;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.revature.beans.Question;
+import com.revature.repos.QuestionRepo;
 
-<<<<<<< Updated upstream
-=======
+@Service
+public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	QuestionRepo qr;
 	
@@ -37,6 +42,4 @@ public class QuestionServiceImpl implements QuestionService {
 		qr.delete(qr.findById(id).get());
 		return true;
 	}
-
->>>>>>> Stashed changes
 }

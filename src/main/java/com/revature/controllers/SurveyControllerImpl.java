@@ -1,7 +1,5 @@
 package com.revature.controllers;
 
-<<<<<<< Updated upstream
-=======
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -21,7 +19,60 @@ import com.revature.services.SurveyService;
 
 @RestController
 @CrossOrigin
->>>>>>> Stashed changes
 public class SurveyControllerImpl implements SurveyController {
+	
+	@Autowired
+	SurveyService ss;
+
+	@PostMapping(value = "/surveys", consumes = "application/json", produces = "applicaiton/json")
+	public Survey addSurvey(@RequestBody Survey survey) {
+		try {
+			return ss.addSurvey(survey);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@GetMapping(value = "/surveys/{id}")
+	public Survey getSurvey(@PathVariable("id") int id) {
+		try {
+			return ss.getSurvey(id);
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@GetMapping(value = "/surveys", produces = "application/json")
+	public List<Survey> getAllSurveys() {
+		try {
+			return ss.getAllSurveys();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@PutMapping(value = "/surveys/{id}", consumes = "applcation/json")
+	public Survey updateSurvey(@PathVariable("id") int id, @RequestBody Survey change) {
+		try {
+			ss.setId(id);
+			return ss.updateSurvey(change);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@DeleteMapping(value = "/surveys/{id}")
+	public boolean deleteSurvey(@PathVariable("id") int id) {
+		try {
+			return ss.deleteSurvey(id);
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 }

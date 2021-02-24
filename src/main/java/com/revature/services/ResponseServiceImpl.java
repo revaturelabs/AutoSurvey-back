@@ -1,9 +1,15 @@
 package com.revature.services;
 
-public class ResponseServiceImpl implements ResponseService {
+import java.util.List;
 
-<<<<<<< Updated upstream
-=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.revature.beans.Response;
+import com.revature.repos.ResponseRepo;
+
+@Service
+public class ResponseServiceImpl implements ResponseService {
 	@Autowired
 	ResponseRepo rr;
 
@@ -15,7 +21,6 @@ public class ResponseServiceImpl implements ResponseService {
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 
 	@Override
@@ -50,7 +55,7 @@ public class ResponseServiceImpl implements ResponseService {
 
 		return false;
 	}
-
+  
 	@Override
 	public boolean deleteResponse(int id) {
 		// TODO Auto-generated method stub
@@ -63,7 +68,5 @@ public class ResponseServiceImpl implements ResponseService {
 			e.printStackTrace();
 		}
 		return false;
-	}
-
->>>>>>> Stashed changes
+  }	
 }

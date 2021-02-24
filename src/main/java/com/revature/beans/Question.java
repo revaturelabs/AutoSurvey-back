@@ -1,8 +1,7 @@
 package com.revature.beans;
 
-<<<<<<< Updated upstream
 public class Question {
-=======
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -23,6 +22,7 @@ public class Question {
 	@Column(length=1024,name="CONTENT")
 	private String content;
 	@Column(name="CREATED_ON")
+
 	private Timestamp createdOn;
 	
 	public Question() {
@@ -70,6 +70,5 @@ public class Question {
 	public String toString() {
 		return "Question [id=" + id + ", content=" + content + ", createdOn=" + createdOn + "]";
 	}
->>>>>>> Stashed changes
 
 }
