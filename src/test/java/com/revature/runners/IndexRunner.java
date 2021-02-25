@@ -15,7 +15,7 @@ import cucumber.api.junit.Cucumber;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features="src/test/resources",glue="com.revature.steps")
+@CucumberOptions(features = "src/test/resources", glue = "com.revature.steps")
 public class IndexRunner {
 	public static WebDriver driver;
 	public static IndexPage indexPage;
