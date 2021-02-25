@@ -70,7 +70,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;
 	}
-	}
 
 	@Override
 	public User addUser(User u) {

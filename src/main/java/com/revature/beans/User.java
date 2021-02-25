@@ -12,23 +12,23 @@ import javax.persistence.Table;
 public class User {
 
 	// INSTANCE VARIABLES //
-	
+
 	@Id
-	@Column(updatable = false, name = "user_id")
+	@Column(updatable = false, name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(unique = true, name = "email")
+
+	@Column(length = 64, unique = true, name = "EMAIL")
 	private String email;
-	@Column(name = "password")
+	@Column(length = 32, name = "PASSWORD")
 	private String password;
-	@Column(name = "first_name")
+	@Column(length = 32, name = "FIRST_NAME")
 	private String firstName;
-	@Column(name = "last_name")
+	@Column(length = 32, name = "LAST_NAME")
 	private String lastName;
-	@Column(name = "admin_status")
+	@Column(name = "ADMIN_STATUS")
 	private boolean admin;
-	
+
 	// CONSTRUCTORS //
 	// No args
 	public User() {
@@ -105,13 +105,10 @@ public class User {
 		this.admin = admin;
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", admin=" + admin + "]";
 	}
-	
-	
+
 }
