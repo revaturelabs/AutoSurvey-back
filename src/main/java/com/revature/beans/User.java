@@ -15,7 +15,7 @@ public class User {
 
 	@Id
 	@Column(updatable = false, name = "ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 
 	@Column(length = 64, unique = true, name = "EMAIL")
