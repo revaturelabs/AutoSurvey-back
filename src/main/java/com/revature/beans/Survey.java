@@ -15,29 +15,26 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "survey")
+@Table(name = "SURVEYS")
 public class Survey {
 
 	// INSTANCE VARIABLES //
 	@Id
-	@Column(updatable = false, name = "id")
+	@Column(updatable = false, name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name = "version")
+
+	@Column(length = 32, name = "VERSION")
 	private String version;
-	
-	@Column(name = "created_on")
+
+	@Column(name = "CREATED_ON")
 	private Timestamp createdOn;
-	
+
 	// Foreign Key
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "SurveyQuestion",
-			joinColumns = @JoinColumn(name = "survey_id"),
-			inverseJoinColumns = @JoinColumn(name = "question_id"))
+	@JoinTable(name = "SURVEY_QUESTIONS", joinColumns = @JoinColumn(name = "SURVEY_ID"), inverseJoinColumns = @JoinColumn(name = "QUESTION_ID"))
 	private List<Question> questions;
 
-	
 	// ---CONSTRUCTORS--- //
 	// No Args
 	public Survey() {
@@ -61,8 +58,7 @@ public class Survey {
 		this.questions = questions;
 	}
 
-	
-	//-----GETTERS AND SETTERS-----//
+	// -----GETTERS AND SETTERS-----//
 	public int getId() {
 		return id;
 	}
@@ -100,12 +96,5 @@ public class Survey {
 		return "Survey [id=" + id + ", version=" + version + ", createdOn=" + createdOn + ", questions=" + questions
 				+ "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
