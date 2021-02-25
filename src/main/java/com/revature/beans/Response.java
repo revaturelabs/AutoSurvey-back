@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,22 +20,22 @@ public class Response {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id = 0;
 
-	@Column(name = "VERSION")
-	private String version;
+	@Column(name = "SUBMITTED_AT")
+	private Timestamp submittedAt;
+	
+	@ManyToOne
+	@JoinColumn(name = "SURVEY_ID")
+	private Survey surveyId;
 
-	@Column(name = "CREATED_ON")
-	private Timestamp created_on;
+	public Response(int id, Timestamp submittedAt, Survey surveyId) {
+		super();
+		this.id = id;
+		this.submittedAt = submittedAt;
+		this.surveyId = surveyId;
+	}
 
 	public Response() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Response(int id, String version, Timestamp created_on) {
-		super();
-		this.id = id;
-		this.version = version;
-		this.created_on = created_on;
 	}
 
 	public int getId() {
@@ -44,25 +46,27 @@ public class Response {
 		this.id = id;
 	}
 
-	public String getVersion() {
-		return version;
+	public Timestamp getSubmittedAt() {
+		return submittedAt;
 	}
 
-	public void setVersion(String version) {
-		this.version = version;
+	public void setSubmittedAt(Timestamp submittedAt) {
+		this.submittedAt = submittedAt;
 	}
 
-	public Timestamp getCreated_on() {
-		return created_on;
+	public Survey getSurveyId() {
+		return surveyId;
 	}
 
-	public void setCreated_on(Timestamp created_on) {
-		this.created_on = created_on;
+	public void setSurveyId(Survey surveyId) {
+		this.surveyId = surveyId;
 	}
 
 	@Override
 	public String toString() {
-		return "Response [id=" + id + ", version=" + version + ", created_on=" + created_on + "]";
+		return "Response [id=" + id + ", submittedAt=" + submittedAt + ", surveyId=" + surveyId + "]";
 	}
+	
+	
 
 }
