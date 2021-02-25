@@ -9,7 +9,7 @@ public interface UserController {
 	public User addUser(User user);
 	public User getUser(int id);
 	public List<User> getAllUsers();
-	public User updateUser(User user);
+	public User updateUser(int id, User user);
 	public boolean deleteUser(int id);
 
 }

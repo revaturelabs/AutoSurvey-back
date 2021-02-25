@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.beans.Survey;
 import com.revature.beans.User;
 import com.revature.services.UserService;
 
@@ -23,7 +26,7 @@ public class UserControllerImpl implements UserController {
 
 	@Override
 	@PostMapping(value = "/users", consumes = "application/json", produces = "application/json")
-	public User addUser(User user) {
+	public User addUser(@RequestBody User user) {
 		try {
 			return service.addUser(user);
 		} catch (Exception e) {
@@ -34,7 +37,7 @@ public class UserControllerImpl implements UserController {
 
 	@Override
 	@GetMapping(value = "/users/{id}")
-	public User getUser(int id) {
+	public User getUser(@PathVariable int id) {
 		try {
 			return service.getUser(id);
 		} catch (Exception e) {
@@ -54,11 +57,13 @@ public class UserControllerImpl implements UserController {
 		return null;
 	}
 
+	
 	@Override
-	@PutMapping(value = "/users/{id}", consumes = "application/json")
-	public User updateUser(User user) {
+	@PutMapping(value = "/users/{id}", consumes = "applcation/json")
+	public User updateUser(@PathVariable("id") int id, @RequestBody User change) {
 		try {
-			return service.updateUser(user);
+			change.setId(id);
+			return service.updateUser(change);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

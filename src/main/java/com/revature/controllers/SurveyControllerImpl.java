@@ -54,6 +54,7 @@ public class SurveyControllerImpl implements SurveyController {
 		return null;
 	}
 
+	@Override
 	@PutMapping(value = "/surveys/{id}", consumes = "applcation/json")
 	public Survey updateSurvey(@PathVariable("id") int id, @RequestBody Survey change) {
 		try {
