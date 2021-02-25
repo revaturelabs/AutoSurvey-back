@@ -49,7 +49,7 @@ public class ResponseControllerImpl implements ResponseController {
 	}
 
 	@Override
-	@GetMapping(value = "/response", produces = "application/json")
+	@GetMapping(value = "/response/{id}", produces = "application/json")
 	public Response getResponse(@PathVariable("id") int id) {
 		// TODO Auto-generated method stub
 		try {
