@@ -1,26 +1,26 @@
-package com.revature.services;
+package com.revature.controllers;
 
-import java.sql.Timestamp;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
 
-import com.revature.beans.Question;
-import com.revature.repos.QuestionRepo;
+
+
+import com.revature.services.QuestionService;
 
 @AutoConfigureMockMvc
 @SpringBootTest(classes = com.example.demo.QcDataReportAppApplication.class)
-public class QuestionServiceTest {
+public class QuestionControllerTest {
 
 	@MockBean
-	QuestionRepo repo;
+	QuestionService qs;
 	
 	@Autowired
-	QuestionService serv;
+	MockMvc mvc;
 
 	/**
 	 * (Write a succinct description of this method here.  If necessary,
@@ -32,7 +32,7 @@ public class QuestionServiceTest {
 	 * @return (description of the return value)
 	 */
 	@Test
-	void getQuestion() {
+	void getQuestion() throws Exception{
 
 	}
 
@@ -46,7 +46,7 @@ public class QuestionServiceTest {
 	 * @return (description of the return value)
 	 */
 	@Test
-	void getAllQuestions() {
+	void getAllQuestions() throws Exception{
 
 	}
 
@@ -60,7 +60,22 @@ public class QuestionServiceTest {
 	 * @return (description of the return value)
 	 */
 	@Test
-	void getQuestionsByCreatedOn() {
+	void getQuestionsByCreatedOn() throws Exception{
+
+	}
+
+
+	/**
+	 * (Write a succinct description of this method here.  If necessary,
+	 * additional paragraphs should be preceded by <p>, the html tag for
+	 * a new paragraph.)
+	 *
+	 * @param (parameter name) (Describe the first parameter here)
+	 * @param (parameter name) (Do the same for each additional parameter)
+	 * @return (description of the return value)
+	 */
+	@Test	
+	void updateQuestion() throws Exception{
 
 	}
 
@@ -74,35 +89,7 @@ public class QuestionServiceTest {
 	 * @return (description of the return value)
 	 */
 	@Test
-	void addQuestion() {
+	void deleteQuestion() throws Exception{
 
-	}
-
-	/**
-	 * (Write a succinct description of this method here.  If necessary,
-	 * additional paragraphs should be preceded by <p>, the html tag for
-	 * a new paragraph.)
-	 *
-	 * @param (parameter name) (Describe the first parameter here)
-	 * @param (parameter name) (Do the same for each additional parameter)
-	 * @return (description of the return value)
-	 */
-	@Test
-	void updateQuestion() {
-
-	}
-
-	/**
-	 * (Write a succinct description of this method here.  If necessary,
-	 * additional paragraphs should be preceded by <p>, the html tag for
-	 * a new paragraph.)
-	 *
-	 * @param (parameter name) (Describe the first parameter here)
-	 * @param (parameter name) (Do the same for each additional parameter)
-	 * @return (description of the return value)
-	 */
-	@Test
-	void deleteQuestion() {
-		
 	}
 }
