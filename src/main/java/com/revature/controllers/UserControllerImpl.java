@@ -37,7 +37,7 @@ public class UserControllerImpl implements UserController {
 
 	@Override
 	@GetMapping(value = "/users/{id}")
-	public User getUser(@PathVariable int id) {
+	public User getUser(@PathVariable("id") int id) {
 		try {
 			return service.getUser(id);
 		} catch (Exception e) {

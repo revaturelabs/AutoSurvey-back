@@ -48,7 +48,7 @@ public class QuestionControllerImpl implements QuestionController {
 
 	@Override
 	@GetMapping(value = "/questionByCreatedOn/{createdOn}", produces = "application/json")
-	public List<Question> getQuestionsByCreatedOn(@PathVariable("id") Timestamp createdOn) {
+	public List<Question> getQuestionsByCreatedOn(@PathVariable("createdOn") Timestamp createdOn) {
 		try {
 			return qs.getQuestionsByCreatedOn(createdOn);
 		} catch (NoSuchElementException e) {
