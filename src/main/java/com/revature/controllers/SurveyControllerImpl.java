@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.beans.Survey;
 import com.revature.services.SurveyService;
 
-
 @RestController
 @CrossOrigin
 public class SurveyControllerImpl implements SurveyController {
-	
+
 	@Autowired
 	SurveyService ss;
 
@@ -54,7 +53,6 @@ public class SurveyControllerImpl implements SurveyController {
 		return null;
 	}
 
-	@Override
 	@PutMapping(value = "/surveys/{id}", consumes = "applcation/json")
 	public Survey updateSurvey(@PathVariable("id") int id, @RequestBody Survey change) {
 		try {
