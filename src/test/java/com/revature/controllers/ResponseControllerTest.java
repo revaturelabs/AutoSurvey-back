@@ -102,10 +102,8 @@ public class ResponseControllerTest {
 	void updateResponse() throws Exception {
 		Response r = new Response();
 		r.setId(1);
-		
 		Response r2 = new Response();
 		r.setId(1);
-		
 		Mockito.when(serv.updateResponse(r2)).thenReturn(r2);
 		mvc.perform(put("/response/1").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(r))).andExpect(status().isOk());
 	}
