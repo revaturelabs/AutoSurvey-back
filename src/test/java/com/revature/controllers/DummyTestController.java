@@ -35,6 +35,7 @@ import com.revature.services.UserService;
  */
 public class DummyTestController {
 
+	/*TESTING
 	@MockBean
 	UserService serv;
 	
@@ -215,6 +216,8 @@ public class DummyTestController {
 //		ra = mvc.perform(post("/users").requestAttr("user", null).contentType(MediaType.APPLICATION_JSON_VALUE));
 //		ra.andExpect(status().isOk());
 //		ra.andExpect(content().string(""));
+	
+	/*TESTING
 		
 		jsonRequest = om.writeValueAsString(testUser);
 		ra = mvc.perform(post("/users").contentType(MediaType.APPLICATION_JSON).content(jsonRequest));
@@ -267,5 +270,6 @@ public class DummyTestController {
 		
 		
 	}
+	*///TESTING
 
 }

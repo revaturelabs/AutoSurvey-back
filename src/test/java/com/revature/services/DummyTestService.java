@@ -1,5 +1,5 @@
 package com.revature.services;
-
+/*
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -19,6 +19,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.revature.beans.User;
 import com.revature.repositories.UserRepo;
+*/
 
 /*
  * THIS CLASS DOES NOT WORK ONLY TO BE USED AS A REFERENCE ON HOW TO WRITE
@@ -26,10 +27,11 @@ import com.revature.repositories.UserRepo;
  */
 
 
-@AutoConfigureMockMvc
-@SpringBootTest(classes = com.example.demo.Project2WorkoutAppApplication.class)
+//@AutoConfigureMockMvc
+//@SpringBootTest(classes = com.example.demo.Project2WorkoutAppApplication.class)
 public class DummyTestService {
 
+/*
 	@MockBean
 	UserRepo repo;
 	
@@ -163,4 +165,5 @@ public class DummyTestService {
 			testUser = serv.logout(testUser);
 			Assertions.assertNull(testUser);
 		}
+*/
 }
