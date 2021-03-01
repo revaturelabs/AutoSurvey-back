@@ -15,7 +15,7 @@ public interface QuestionController {
 	public Question addQuestion(Question q);
 	
 	//UPDATE
-	public Question updateQuestion(Question q);
+	public Question updateQuestion(int id, Question q);
 	
 	//DELETE
 	public boolean deleteQuestion(int id);

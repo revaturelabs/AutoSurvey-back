@@ -9,6 +9,6 @@ public interface AnswerController {
 	public Answer addAnswer(Answer a);
 	public Answer getAnswer(int id);
 	public List<Answer> getAllAnswers();
-	public Answer updateAnswer(Answer a);
+	public Answer updateAnswer(int id, Answer a);
 	public boolean deleteAnswer(int id);
 }

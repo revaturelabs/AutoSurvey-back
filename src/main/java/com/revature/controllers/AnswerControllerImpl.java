@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Answer;
@@ -26,7 +27,7 @@ public class AnswerControllerImpl implements AnswerController {
 
 	@Override
 	@PostMapping(value = "/answers", consumes = "application/json", produces = "application/json")
-	public Answer addAnswer(Answer a) {
+	public Answer addAnswer(@RequestBody Answer a) {
 		try {
 			return answerService.addAnswer(a);
 		} catch (Exception e) {
@@ -37,7 +38,7 @@ public class AnswerControllerImpl implements AnswerController {
 
 	@Override
 	@GetMapping(value = "/answers/{id}")
-	public Answer getAnswer(int id) {
+	public Answer getAnswer(@PathVariable("id") int id) {
 
 		try {
 			return answerService.getAnswer(id);
@@ -60,7 +61,7 @@ public class AnswerControllerImpl implements AnswerController {
 
 	@Override
 	@PutMapping(value = "/answers/{id}", consumes = "application/json")
-	public Answer updateAnswer(Answer a) {
+	public Answer updateAnswer(@PathVariable("id") int id, @RequestBody Answer a) {
 		try {
 			return answerService.updateAnswer(a);
 		} catch (Exception e) {

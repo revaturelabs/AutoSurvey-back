@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.beans.Survey;
 import com.revature.services.SurveyService;
 
-
 @RestController
 @CrossOrigin
 public class SurveyControllerImpl implements SurveyController {
-	
+
 	@Autowired
 	SurveyService ss;
 
