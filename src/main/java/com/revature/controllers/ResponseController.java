@@ -10,6 +10,6 @@ public interface ResponseController {
 	boolean deleteResponse(int id) ;
 	Response getResponse(int id) ;
 	List<Response> getAllResponse();
-	boolean updateResponse(int id,Response r);
+	Response updateResponse(int id,Response r);
 
 }
