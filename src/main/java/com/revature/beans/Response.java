@@ -7,33 +7,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Response")
+@Table(name = "RESPONSES")
 public class Response {
 
 	@Id
-	@Column(updatable = false, name = "id")
+	@Column(updatable = false, name = "ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id = 0;
+
+	@Column(name = "SUBMITTED_AT")
+	private Timestamp submittedAt;
 	
-	@Column(name = "VERSION")
-	private String version;
-	
-	@Column(name = "CREATED_ON")
-	private Timestamp created_on;
+	@ManyToOne
+	@JoinColumn(name = "SURVEY_ID")
+	private Survey surveyId;
+
+	public Response(int id, Timestamp submittedAt, Survey surveyId) {
+		super();
+		this.id = id;
+		this.submittedAt = submittedAt;
+		this.surveyId = surveyId;
+	}
 
 	public Response() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Response(int id, String version, Timestamp created_on) {
-		super();
-		this.id = id;
-		this.version = version;
-		this.created_on = created_on;
 	}
 
 	public int getId() {
@@ -44,26 +46,61 @@ public class Response {
 		this.id = id;
 	}
 
-	public String getVersion() {
-		return version;
+	public Timestamp getSubmittedAt() {
+		return submittedAt;
 	}
 
-	public void setVersion(String version) {
-		this.version = version;
+	public void setSubmittedAt(Timestamp submittedAt) {
+		this.submittedAt = submittedAt;
 	}
 
-	public Timestamp getCreated_on() {
-		return created_on;
+	public Survey getSurveyId() {
+		return surveyId;
 	}
 
-	public void setCreated_on(Timestamp created_on) {
-		this.created_on = created_on;
+	public void setSurveyId(Survey surveyId) {
+		this.surveyId = surveyId;
 	}
 
 	@Override
 	public String toString() {
-		return "Response [id=" + id + ", version=" + version + ", created_on=" + created_on + "]";
+		return "Response [id=" + id + ", submittedAt=" + submittedAt + ", surveyId=" + surveyId + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((submittedAt == null) ? 0 : submittedAt.hashCode());
+		result = prime * result + ((surveyId == null) ? 0 : surveyId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Response other = (Response) obj;
+		if (id != other.id)
+			return false;
+		if (submittedAt == null) {
+			if (other.submittedAt != null)
+				return false;
+		} else if (!submittedAt.equals(other.submittedAt))
+			return false;
+		if (surveyId == null) {
+			if (other.surveyId != null)
+				return false;
+		} else if (!surveyId.equals(other.surveyId))
+			return false;
+		return true;
 	}
 	
 	
+
 }

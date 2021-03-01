@@ -10,28 +10,36 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="answer")
+@Table(name="ANSWERS")
 public class Answer {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id", updatable=false)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@Column(name="ID", updatable=false)
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name="response_id")
+	@JoinColumn(name="RESPONSE_ID")
 	private Response response;
 	
 	@ManyToOne
-	@JoinColumn(name="question_id")
+	@JoinColumn(name="QUESTION_ID")
 	private Question question;
 	
 	//TODO: Adjust column length
-	@Column(length=1024, name="content")
+	@Column(length=1024, name="CONTENT")
 	private String content;
 	
 	public Answer() {
 		
+	}
+
+	public Answer(int id, Response response, Question question, String content) {
+		super();
+		this.id = id;
+		this.response = response;
+		this.question = question;
+		this.content = content;
 	}
 
 	@Override
@@ -75,6 +83,47 @@ public class Answer {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((content == null) ? 0 : content.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((question == null) ? 0 : question.hashCode());
+		result = prime * result + ((response == null) ? 0 : response.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Answer other = (Answer) obj;
+		if (content == null) {
+			if (other.content != null)
+				return false;
+		} else if (!content.equals(other.content))
+			return false;
+		if (id != other.id)
+			return false;
+		if (question == null) {
+			if (other.question != null)
+				return false;
+		} else if (!question.equals(other.question))
+			return false;
+		if (response == null) {
+			if (other.response != null)
+				return false;
+		} else if (!response.equals(other.response))
+			return false;
+		return true;
+	}
+
+	/*
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
 		result = prime * result + id;
 		return result;
 	}
@@ -92,7 +141,9 @@ public class Answer {
 		if (id != other.id)
 			return false;
 		return true;
-	}
+	}*/
+	
+	
 	
 	
 	
