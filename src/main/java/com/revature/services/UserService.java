@@ -17,6 +17,7 @@ public interface UserService {
 	public List<User> getUsersByFirstName(String firstName);
 	public List<User> getUsersByLastName(String lastName);
 	public List<User> getUsersByAdmin(boolean admin);
+	public User getUserByEmailAndPassword(String email, String password);
 	
 	//CREATE
 	public User addUser(User u);
