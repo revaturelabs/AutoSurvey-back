@@ -59,7 +59,7 @@ public class UserControllerImpl implements UserController {
 
 	
 	@Override
-	@PutMapping(value = "/users/{id}", consumes = "application/json")
+	@PutMapping(value = "/users/{id}", consumes = "applcation/json")
 	public User updateUser(@PathVariable("id") int id, @RequestBody User change) {
 		try {
 			change.setId(id);

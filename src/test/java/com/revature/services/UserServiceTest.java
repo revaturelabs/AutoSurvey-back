@@ -27,10 +27,9 @@ public class UserServiceTest {
 	@MockBean
 	UserRepo repo;
 	
-	
 	@Autowired
 	UserService serv;
-	  
+	
 	
 	@Test
 	void getAllUsers() {
