@@ -15,4 +15,5 @@ public interface UserRepo extends CrudRepository<User, Integer>{
 	public List<User> findByAdmin(Boolean isAdmin);
 	public List<User> findByFirstName(String firstName);
 	public List<User> findByLastName(String lastName);
+	public List<User> findByEmailAndPassword(String email,String password);
 }
