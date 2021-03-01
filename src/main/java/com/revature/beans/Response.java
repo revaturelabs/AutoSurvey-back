@@ -17,7 +17,7 @@ public class Response {
 
 	@Id
 	@Column(updatable = false, name = "ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id = 0;
 
 	@Column(name = "SUBMITTED_AT")
