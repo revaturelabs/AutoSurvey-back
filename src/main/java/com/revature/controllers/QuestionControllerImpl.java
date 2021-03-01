@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.revature.beans.Question;
 import com.revature.services.QuestionService;
 
@@ -23,11 +26,14 @@ public class QuestionControllerImpl implements QuestionController {
 
 	@Override
 	@GetMapping(value = "/question/{id}")
-	public Question getQuestion(@PathVariable("id") int id) {
+	public Question getQuestion(@PathVariable("id") String id) {
 		try {
-			return qs.getQuestion(id);
+			int qid = Integer.parseInt(id);
+			return qs.getQuestion(qid);
 		} catch (NoSuchElementException e) {
 			System.out.println("NoSuchElementException in QuestionControllerImpl.getQuestion");
+		} catch (NumberFormatException e) {
+			System.out.println("NumberFormatException in QuestionControllerImpl.getQuestion");
 		}
 		return null;
 	}
@@ -45,18 +51,21 @@ public class QuestionControllerImpl implements QuestionController {
 
 	@Override
 	@GetMapping(value = "/questionByCreatedOn/{createdOn}", produces = "application/json")
-	public List<Question> getQuestionsByCreatedOn(Timestamp createdOn) {
+	public List<Question> getQuestionsByCreatedOn(@PathVariable("createdOn") String createdOn) {
 		try {
-			return qs.getQuestionsByCreatedOn(createdOn);
+			Timestamp qcreatedOn = Timestamp.valueOf(createdOn);
+			return qs.getQuestionsByCreatedOn(qcreatedOn);
 		} catch (NoSuchElementException e) {
 			System.out.println("NoSuchElementException in QuestionControllerImpl.getQuestionsByCreatedOn");
+		} catch (IllegalArgumentException e) {
+			System.out.println("IllegalArgumentException in QuestionControllerImpl.getQuestionsByCreatedOn");
 		}
 		return null;
 	}
 
 	@Override
 	@PostMapping(value = "/question", consumes = "application/json", produces = "application/json")
-	public Question addQuestion(Question q) {
+	public Question addQuestion(@RequestBody Question q) {
 		try {
 			return qs.addQuestion(q);
 		} catch (Exception e) {
@@ -68,7 +77,7 @@ public class QuestionControllerImpl implements QuestionController {
 
 	@Override
 	@PutMapping(value = "/question/{id}", consumes = "application/json", produces = "application/json")
-	public Question updateQuestion(Question q) {
+	public Question updateQuestion(@PathVariable("id") String id, @RequestBody Question q) {
 		try {
 			return qs.updateQuestion(q);
 		} catch (Exception e) {
@@ -79,11 +88,14 @@ public class QuestionControllerImpl implements QuestionController {
 
 	@Override
 	@DeleteMapping(value = "/question/{id}")
-	public boolean deleteQuestion(int id) {
+	public boolean deleteQuestion(@PathVariable("id") String id) {
 		try {
-			return qs.deleteQuestion(id);
+			int qid = Integer.parseInt(id);
+			return qs.deleteQuestion(qid);
 		} catch (NoSuchElementException e) {
 			System.out.println("NoSuchElementException in QuestionControllerImpl.deleteQuestion");
+		} catch (NumberFormatException e) {
+			System.out.println("NumberFormatException in QuestionControllerImpl.deleteQuestion");
 		}
 		return false;
 	}

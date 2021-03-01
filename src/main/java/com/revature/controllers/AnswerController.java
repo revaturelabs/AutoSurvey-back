@@ -39,8 +39,7 @@ public interface AnswerController {
 	 * @author Revature 2101 ETL batch
 	 */
 	public List<Answer> getAllAnswers();
-	
-	
+
 	/**
 	 * <p>
 	 * <h1>updateAnswer</h1> is a put mapping that will update an existing answer
