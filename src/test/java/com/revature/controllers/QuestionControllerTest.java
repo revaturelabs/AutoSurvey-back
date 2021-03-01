@@ -1,21 +1,19 @@
 package com.revature.controllers;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.NoSuchElementException;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 import java.sql.Timestamp;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,8 +22,6 @@ import com.google.gson.Gson;
 import com.revature.beans.Question;
 import com.revature.services.QuestionService;
 
-@AutoConfigureMockMvc
-@SpringBootTest(classes = com.example.demo.QcDataReportAppApplication.class)
 public class QuestionControllerTest {
 
 	@MockBean
