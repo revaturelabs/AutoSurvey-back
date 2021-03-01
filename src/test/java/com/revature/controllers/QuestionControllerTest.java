@@ -1,17 +1,15 @@
 package com.revature.controllers;
 
-import java.util.Date;
-import java.sql.Timestamp;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.revature.beans.Question;
+
+
 import com.revature.services.QuestionService;
 
 @AutoConfigureMockMvc
@@ -19,7 +17,7 @@ import com.revature.services.QuestionService;
 public class QuestionControllerTest {
 
 	@MockBean
-	QuestionService serv;
+	QuestionService qs;
 	
 	@Autowired
 	MockMvc mvc;
@@ -35,16 +33,7 @@ public class QuestionControllerTest {
 	 */
 	@Test
 	void getQuestion() throws Exception{
-		int id = 1;
-		Date date = new Date();
-		Timestamp ts = new Timestamp(date.getTime());
-		Question question = new Question();
-		question.setId(id);
-		question.setContent("Add Question Test");
-		question.setCreatedOn(ts);
-		
-		Mockito.when()
-		
+
 	}
 
 	/**
