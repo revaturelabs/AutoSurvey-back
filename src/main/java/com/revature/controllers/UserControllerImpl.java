@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.beans.Survey;
 import com.revature.beans.User;
 import com.revature.services.UserService;
 
@@ -80,5 +79,13 @@ public class UserControllerImpl implements UserController {
 		}
 		return false;
 	}
+
+	@Override
+	@GetMapping(value="/getUserByEmailAndPassword")
+	public User getUserByEmailAndPassword(@RequestParam String email,@RequestParam String password) {
+		return service.getUserByEmailAndPassword(email, password);
+	}
+	
+	
 
 }

@@ -82,6 +82,21 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User getUserByEmailAndPassword(String email, String password) {
+		try {
+			List<User> users = ur.findByEmailAndPassword(email, password);
+			if (users.size()==0) {
+				return null;
+			} else {
+				return users.get(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
 	public User updateUser(User u) {
 		try {
 			return ur.save(u);
