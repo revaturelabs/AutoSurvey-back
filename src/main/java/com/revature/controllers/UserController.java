@@ -74,5 +74,6 @@ public interface UserController {
 	 * @author Revature 2101 ETL batch
 	 */
 	public boolean deleteUser(int id);
+	public User getUserByEmailAndPassword(String email, String password);
 
 }
