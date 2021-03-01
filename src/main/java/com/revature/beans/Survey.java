@@ -21,7 +21,7 @@ public class Survey {
 	// INSTANCE VARIABLES //
 	@Id
 	@Column(updatable = false, name = "ID")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 
 	@Column(length = 32, name = "VERSION")
