@@ -74,13 +74,13 @@ public class ResponseControllerImpl implements ResponseController {
 
 	@Override
 	@PutMapping(value = "/response/{id}", consumes = "application/json")
-	public boolean updateResponse(@PathVariable("id") int id, @RequestBody Response r) {
-		// TODO Auto-generated method stub
+	public Response updateResponse(@PathVariable("id") int id, @RequestBody Response r) {
 		try {
+			r.setId(id);
 			return rs.updateResponse(r);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return true;
+		return null;
 	}
 }
