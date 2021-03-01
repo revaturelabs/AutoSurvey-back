@@ -26,14 +26,11 @@ public class QuestionControllerImpl implements QuestionController {
 
 	@Override
 	@GetMapping(value = "/question/{id}")
-	public Question getQuestion(@PathVariable("id") String id) {
+	public Question getQuestion(@PathVariable("id") int id) {
 		try {
-			int qid = Integer.parseInt(id);
-			return qs.getQuestion(qid);
+			return qs.getQuestion(id);
 		} catch (NoSuchElementException e) {
 			System.out.println("NoSuchElementException in QuestionControllerImpl.getQuestion");
-		} catch (NumberFormatException e) {
-			System.out.println("NumberFormatException in QuestionControllerImpl.getQuestion");
 		}
 		return null;
 	}
@@ -51,14 +48,11 @@ public class QuestionControllerImpl implements QuestionController {
 
 	@Override
 	@GetMapping(value = "/questionByCreatedOn/{createdOn}", produces = "application/json")
-	public List<Question> getQuestionsByCreatedOn(@PathVariable("createdOn") String createdOn) {
+	public List<Question> getQuestionsByCreatedOn(@PathVariable("createdOn") Timestamp createdOn) {
 		try {
-			Timestamp qcreatedOn = Timestamp.valueOf(createdOn);
-			return qs.getQuestionsByCreatedOn(qcreatedOn);
+			return qs.getQuestionsByCreatedOn(createdOn);
 		} catch (NoSuchElementException e) {
 			System.out.println("NoSuchElementException in QuestionControllerImpl.getQuestionsByCreatedOn");
-		} catch (IllegalArgumentException e) {
-			System.out.println("IllegalArgumentException in QuestionControllerImpl.getQuestionsByCreatedOn");
 		}
 		return null;
 	}
@@ -77,7 +71,7 @@ public class QuestionControllerImpl implements QuestionController {
 
 	@Override
 	@PutMapping(value = "/question/{id}", consumes = "application/json", produces = "application/json")
-	public Question updateQuestion(@PathVariable("id") String id, @RequestBody Question q) {
+	public Question updateQuestion(@PathVariable("id") int id, @RequestBody Question q) {
 		try {
 			return qs.updateQuestion(q);
 		} catch (Exception e) {
@@ -88,14 +82,11 @@ public class QuestionControllerImpl implements QuestionController {
 
 	@Override
 	@DeleteMapping(value = "/question/{id}")
-	public boolean deleteQuestion(@PathVariable("id") String id) {
+	public boolean deleteQuestion(@PathVariable("id") int id) {
 		try {
-			int qid = Integer.parseInt(id);
-			return qs.deleteQuestion(qid);
+			return qs.deleteQuestion(id);
 		} catch (NoSuchElementException e) {
 			System.out.println("NoSuchElementException in QuestionControllerImpl.deleteQuestion");
-		} catch (NumberFormatException e) {
-			System.out.println("NumberFormatException in QuestionControllerImpl.deleteQuestion");
 		}
 		return false;
 	}
