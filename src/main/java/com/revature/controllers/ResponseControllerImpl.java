@@ -75,9 +75,11 @@ public class ResponseControllerImpl implements ResponseController {
 	@Override
 	@PutMapping(value = "/response/{id}", consumes = "application/json")
 	public Response updateResponse(@PathVariable("id") int id, @RequestBody Response r) {
+		// TODO Auto-generated method stub
 		try {
-			r.setId(id);
-			return rs.updateResponse(r);
+      r.setId(id)
+			rs.updateResponse(r);
+			return r;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

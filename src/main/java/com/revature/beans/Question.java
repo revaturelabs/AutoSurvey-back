@@ -1,17 +1,12 @@
 package com.revature.beans;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,11 +23,6 @@ public class Question {
 
 	@Column(name = "CREATED_ON")
 	private Timestamp createdOn;
-
-	// Foreign Key
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "SURVEY_QUESTIONS", joinColumns = @JoinColumn(name = "QUESTION_ID"), inverseJoinColumns = @JoinColumn(name = "SURVEY_ID"))
-	private List<Survey> surveys;
 
 	public Question() {
 		super();
