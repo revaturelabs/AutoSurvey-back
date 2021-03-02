@@ -44,16 +44,8 @@ public class ResponseServiceImpl implements ResponseService {
 	}
 
 	@Override
-	public boolean updateResponse(Response r) {
-		try {
-			if (rr.save(r) != null) {
-				return true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return false;
+	public Response updateResponse(Response r) {	
+		return rr.save(r);
 	}
   
 	@Override

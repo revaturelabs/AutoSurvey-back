@@ -11,5 +11,5 @@ public interface ResponseService {
 	boolean deleteResponse(int id) ;
 	Response getResponse(int id) ;
 	List<Response> getAllResponse();
-	boolean updateResponse(Response r);
+	Response updateResponse(Response r);
 }

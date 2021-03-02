@@ -19,7 +19,7 @@ public interface QuestionController {
 	 * @return <strong>Question</strong>
 	 * @author Revature 2101 ETL batch
 	 */
-	public Question getQuestion(String id);
+	public Question getQuestion(int id);
 	
 	/**
 	 * <p>
@@ -42,11 +42,11 @@ public interface QuestionController {
 	 * matching that criteria.
 	 * </p>
 	 * 
-	 * @param createdOn Received as a String to be turned into a Timestamp object
+	 * @param createdOn Received as a pathvariable in URI
 	 * @return <strong>List<Question\></strong>
 	 * @author Revature 2101 ETL batch
 	 */
-	public List<Question> getQuestionsByCreatedOn(String createdOn);
+	public List<Question> getQuestionsByCreatedOn(Timestamp createdOn);
 	
 	//CREATE
 	/**
@@ -57,7 +57,7 @@ public interface QuestionController {
 	 * error in adding the question.
 	 * </p>
 	 * 
-	 * @param createdOn Received as a String to be turned into a Timestamp object
+	 * @param createdOn Received as a Question in the request body to be added
 	 * @return <strong>Question</strong>
 	 * @author Revature 2101 ETL batch
 	 */
@@ -72,12 +72,12 @@ public interface QuestionController {
 	 * or null if their was an error in updating the question.
 	 * </p>
 	 * 
-	 * @param id Received as a String of the id of the question being updated
+	 * @param id Received as a path variable
 	 * @param q Received in request body as the updated question to be sent to the database
 	 * @return <strong>Question</strong>
 	 * @author Revature 2101 ETL batch
 	 */
-	public Question updateQuestion(String id, Question q);
+	public Question updateQuestion(int id, Question q);
 	
 	//DELETE
 	/**
@@ -87,9 +87,9 @@ public interface QuestionController {
 	 * to be deleted. Returns true if the question is deleted, otherwise returns false
 	 * </p>
 	 * 
-	 * @param id Received as a String of the id of the question being deleted
+	 * @param id Received as an int of the question being deleted
 	 * @return <strong>boolean</strong>
 	 * @author Revature 2101 ETL batch
 	 */
-	public boolean deleteQuestion(String id);
+	public boolean deleteQuestion(int id);
 }

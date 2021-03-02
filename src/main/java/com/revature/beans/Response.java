@@ -68,4 +68,39 @@ public class Response {
 		return "Response [id=" + id + ", submittedAt=" + submittedAt + ", answers=" + answers + "]";
 	}
 
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((submittedAt == null) ? 0 : submittedAt.hashCode());
+		result = prime * result + ((surveyId == null) ? 0 : surveyId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Response other = (Response) obj;
+		if (id != other.id)
+			return false;
+		if (submittedAt == null) {
+			if (other.submittedAt != null)
+				return false;
+		} else if (!submittedAt.equals(other.submittedAt))
+			return false;
+		if (surveyId == null) {
+			if (other.surveyId != null)
+				return false;
+		} else if (!surveyId.equals(other.surveyId))
+			return false;
+		return true;
+	}
+	
 }
