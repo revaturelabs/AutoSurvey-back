@@ -63,6 +63,7 @@ public class AnswerControllerImpl implements AnswerController {
 	@PutMapping(value = "/answers/{id}", consumes = "application/json")
 	public Answer updateAnswer(@PathVariable("id") int id, @RequestBody Answer a) {
 		try {
+			a.setId(id);	// the id needs to be updated first.
 			return answerService.updateAnswer(a);
 		} catch (Exception e) {
 			e.printStackTrace();
