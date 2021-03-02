@@ -68,14 +68,13 @@ public class Response {
 		return "Response [id=" + id + ", submittedAt=" + submittedAt + ", answers=" + answers + "]";
 	}
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((answers == null) ? 0 : answers.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((submittedAt == null) ? 0 : submittedAt.hashCode());
-		result = prime * result + ((surveyId == null) ? 0 : surveyId.hashCode());
 		return result;
 	}
 
@@ -88,6 +87,11 @@ public class Response {
 		if (getClass() != obj.getClass())
 			return false;
 		Response other = (Response) obj;
+		if (answers == null) {
+			if (other.answers != null)
+				return false;
+		} else if (!answers.equals(other.answers))
+			return false;
 		if (id != other.id)
 			return false;
 		if (submittedAt == null) {
@@ -95,12 +99,9 @@ public class Response {
 				return false;
 		} else if (!submittedAt.equals(other.submittedAt))
 			return false;
-		if (surveyId == null) {
-			if (other.surveyId != null)
-				return false;
-		} else if (!surveyId.equals(other.surveyId))
-			return false;
 		return true;
 	}
+
+
 	
 }
