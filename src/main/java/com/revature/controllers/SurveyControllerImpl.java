@@ -23,7 +23,7 @@ public class SurveyControllerImpl implements SurveyController {
 	@Autowired
 	SurveyService ss;
 
-	@PostMapping(value = "/surveys", consumes = "application/json", produces = "applicaiton/json")
+	@PostMapping(value = "/surveys", consumes = "application/json", produces = "application/json")
 	public Survey addSurvey(@RequestBody Survey survey) {
 		try {
 			return ss.addSurvey(survey);
@@ -53,7 +53,7 @@ public class SurveyControllerImpl implements SurveyController {
 		return null;
 	}
 
-	@PutMapping(value = "/surveys/{id}", consumes = "applcation/json")
+	@PutMapping(value = "/surveys/{id}", consumes = "application/json")
 	public Survey updateSurvey(@PathVariable("id") int id, @RequestBody Survey change) {
 		try {
 			change.setId(id);
