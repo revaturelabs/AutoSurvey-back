@@ -99,6 +99,7 @@ public interface UserService {
 	 * @author Revature 2101 ETL batch
 	 */
 	public List<User> getUsersByAdmin(boolean admin);
+	public User getUserByEmailAndPassword(String email, String password);
 	
 	/**
 	 * <p>

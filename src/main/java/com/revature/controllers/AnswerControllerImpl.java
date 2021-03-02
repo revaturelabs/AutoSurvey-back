@@ -1,4 +1,5 @@
-package com.revature.controllers;
+
+ package com.revature.controllers;
 
 import java.util.List;
 
@@ -22,8 +23,7 @@ public class AnswerControllerImpl implements AnswerController {
 	@Autowired
 	private AnswerService answerService;
 
-	// None of these methods need a try/catch, it's already handled via
-	// AnswerService!
+	// No Javadocs needed in this file, since they're already done via the interface files.
 
 	@Override
 	@PostMapping(value = "/answers", consumes = "application/json", produces = "application/json")
@@ -63,6 +63,7 @@ public class AnswerControllerImpl implements AnswerController {
 	@PutMapping(value = "/answers/{id}", consumes = "application/json")
 	public Answer updateAnswer(@PathVariable("id") int id, @RequestBody Answer a) {
 		try {
+			a.setId(id);	// the id needs to be updated first.
 			return answerService.updateAnswer(a);
 		} catch (Exception e) {
 			e.printStackTrace();
