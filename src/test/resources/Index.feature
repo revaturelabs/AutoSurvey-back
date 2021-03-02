@@ -1,10 +1,11 @@
 #we can click on the survey... or we can login
 Feature: Login to QC Survey App
 
-	Scenario: Navigate to landing page
-		Given The browser is closed
-		When The user types in the url
-		Then The user is on the landing page
+#Navigate to landing page
+	Background: 
+		Given The browser is opened
+		And User is on the Landing Page
+		
 
 	Scenario: Verify login functionality
 		Given The user is on the landing page
