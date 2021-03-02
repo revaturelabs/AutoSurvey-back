@@ -17,11 +17,7 @@ public class Answer {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="ID", updatable=false)
 	private int id;
-	
-	@ManyToOne
-	@JoinColumn(name="RESPONSE_ID")
-	private Response response;
-	
+		
 	@ManyToOne
 	@JoinColumn(name="QUESTION_ID")
 	private Question question;
@@ -34,17 +30,16 @@ public class Answer {
 		
 	}
 
-	public Answer(int id, Response response, Question question, String content) {
+	public Answer(int id, Question question, String content) {
 		super();
 		this.id = id;
-		this.response = response;
 		this.question = question;
 		this.content = content;
 	}
 
 	@Override
 	public String toString() {
-		return "Answer [id=" + id + ", response=" + response + ", question=" + question + ", content=" + content + "]";
+		return "Answer [id=" + id +  ", question=" + question + ", content=" + content + "]";
 	}
 
 	public int getId() {
@@ -53,14 +48,6 @@ public class Answer {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Response getResponse() {
-		return response;
-	}
-
-	public void setResponse(Response response) {
-		this.response = response;
 	}
 
 	public Question getQuestion() {
