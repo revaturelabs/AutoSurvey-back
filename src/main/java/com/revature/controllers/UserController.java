@@ -1,7 +1,8 @@
 package com.revature.controllers;
 
 import java.util.List;
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import com.revature.beans.User;
 
 public interface UserController {
@@ -85,6 +86,6 @@ public interface UserController {
 	 * @return <strong>User</strong>
 	 * @author Revature 2101 ETL batch
 	 */
-	public User getUserByEmail(String email);
+	public User getUserByEmail(String email, HttpServletRequest request, HttpServletResponse response);
 
 }
