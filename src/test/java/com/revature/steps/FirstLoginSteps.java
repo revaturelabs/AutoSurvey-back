@@ -11,6 +11,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class FirstLoginSteps {
+	
 	public static FirstLoginPage firstpage = FirstLoginRunner.firstPage;
 	public static WebDriver driver = FirstLoginRunner.driver;
 	
@@ -34,25 +35,26 @@ public class FirstLoginSteps {
 
 	@When("^the User clicks on password input$")
 	public void the_User_clicks_on_password_input() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    firstpage.firstPasswordBar.click();
 	    throw new PendingException();
 	}
 
 	@When("^enters their password$")
 	public void enters_their_password() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    firstpage.firstPasswordBar.sendKeys("password");
 	    throw new PendingException();
 	}
 
 	@When("^clicks on the second password field$")
 	public void clicks_on_the_second_password_field() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    firstpage.secondPasswordBar.click();
 	    throw new PendingException();
 	}
 
 	@When("^confirms their password$")
 	public void confirms_their_password() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
+	    firstpage.secondPasswordBar.sendKeys("password");
+	    firstpage.submitPassword.click();
 	    throw new PendingException();
 	}
 
