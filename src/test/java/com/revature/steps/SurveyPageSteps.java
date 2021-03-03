@@ -1,11 +1,18 @@
 package com.revature.steps;
 
+import org.openqa.selenium.WebDriver;
+
+import com.revature.pages.SurveyPage;
+import com.revature.runners.SurveyRunner;
+
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class SurveyPageSteps {
+	public static SurveyPage surveypage = SurveyRunner.surveyPage;
+	public static WebDriver driver = SurveyRunner.driver;
 	
 	@Given("^The User has the Survey Page link$")
 	public void the_User_has_the_Survey_Page_link() throws Throwable {
