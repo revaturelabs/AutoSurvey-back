@@ -3,6 +3,7 @@ package com.revature.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session.Cookie;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -81,11 +82,20 @@ public class UserControllerImpl implements UserController {
 	}
 
 	@Override
-	@GetMapping(value="/getUserByEmailAndPassword")
-	public User getUserByEmailAndPassword(@RequestParam String email,@RequestParam String password) {
-		return service.getUserByEmailAndPassword(email, password);
+	@GetMapping(value="/getUserByEmail")
+	public User getUserByEmail(@RequestParam String email) {
+		try {
+			
+			String name = "LoggedInUser";
+			String value = service.getUserByEmail(email).toString();
+			Cookie cookie = new Cookie();
+			
+			
+			return service.getUserByEmail(email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
-	
-
 }
