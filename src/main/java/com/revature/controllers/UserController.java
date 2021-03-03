@@ -74,6 +74,17 @@ public interface UserController {
 	 * @author Revature 2101 ETL batch
 	 */
 	public boolean deleteUser(int id);
-	public User getUserByEmailAndPassword(String email, String password);
+	
+	/**
+	 * <p>
+	 * <h1>getUserByEmail</h1> is a get mapping that will retrieve a User by their
+	 * email address passed in as a parameter
+	 * </p>
+	 * 
+	 * @param email
+	 * @return <strong>User</strong>
+	 * @author Revature 2101 ETL batch
+	 */
+	public User getUserByEmail(String email);
 
 }
