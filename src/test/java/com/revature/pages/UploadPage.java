@@ -17,6 +17,9 @@ public class UploadPage {
 	@FindBy(xpath = "/html/body/div[2]/div/div/div[2]/p")
 	public WebElement uploadModal;
 	
+	@FindBy(id = "uploadedCSV")
+	public WebElement uploadCsv;
+	
 	public UploadPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
