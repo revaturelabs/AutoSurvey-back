@@ -9,8 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "RESPONSES")
@@ -24,10 +28,18 @@ public class Response {
 	@Column(name = "SUBMITTED_AT")
 	private Timestamp submittedAt;
 
-	@OneToMany
-	@JoinColumn(name = "RESPONSE_ID")
+	@OneToMany(mappedBy = "response")
+	@JsonManagedReference
 	private List<Answer> answers;
 
+	@ManyToOne
+	@JoinColumn(name = "SURVEY_ID")
+	@JsonBackReference
+	private Survey survey;
+	
+	
+	
+	
 	public Response() {
 		super();
 	}
@@ -37,6 +49,16 @@ public class Response {
 		this.id = id;
 		this.submittedAt = submittedAt;
 		this.answers = answers;
+	}
+	
+	
+
+	public Survey getSurvey() {
+		return survey;
+	}
+
+	public void setSurvey(Survey survey) {
+		this.survey = survey;
 	}
 
 	public int getId() {
