@@ -14,7 +14,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources", glue = "com.revature.steps")
+@CucumberOptions(features = "src/test/resources/AdminPage.feature", glue = "com.revature.steps")
 public class AdminRunner {
 	
 	public static WebDriver driver;
