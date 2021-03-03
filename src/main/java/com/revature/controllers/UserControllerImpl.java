@@ -80,25 +80,6 @@ public class UserControllerImpl implements UserController {
 		}
 		return false;
 	}
-
-//	@Override
-//	@GetMapping(value="/getUserByEmail")
-//	public User getUserByEmail(@RequestParam String email, HttpServletResponse response) {
-//		try {
-//			//create cookie
-//			String name = "loggedInUser";
-//			String value = service.getUserByEmail(email).toString();
-//			Cookie cookie = new Cookie(name, value);
-//			
-//			//add cookie to response body
-//			response.addCookie(cookie);
-//			
-//			return service.getUserByEmail(email);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
 	
 	@Override
 	@PostMapping(value="/getUserByEmail", consumes="application/json", produces="application/json")
@@ -121,13 +102,12 @@ public class UserControllerImpl implements UserController {
 						response.addCookie(cookie);
 						return service.getUserByEmail(email);
 					}
-					
 					return null;
+					
 				}
-				
 				return null;
+				
 			}
-			
 			return null;
 			
 		} catch (Exception e) {
