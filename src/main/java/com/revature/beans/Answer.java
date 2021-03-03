@@ -7,7 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="ANSWERS")
@@ -26,6 +29,14 @@ public class Answer {
 	@Column(length=1024, name="CONTENT")
 	private String content;
 	
+	
+	@ManyToOne
+	@JoinColumn(name = "RESPONSE_ID")
+	@JsonBackReference
+	private Response response;
+	
+	
+	
 	public Answer() {
 		
 	}
@@ -40,6 +51,16 @@ public class Answer {
 	@Override
 	public String toString() {
 		return "Answer [id=" + id +  ", question=" + question + ", content=" + content + "]";
+	}
+
+	
+	
+	public Response getResponse() {
+		return response;
+	}
+
+	public void setResponse(Response response) {
+		this.response = response;
 	}
 
 	public int getId() {

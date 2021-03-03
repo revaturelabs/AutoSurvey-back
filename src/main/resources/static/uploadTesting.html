@@ -148,13 +148,35 @@
 			xhttp.onreadystatechange = function() {
 				if(this.readyState == 4 && this.status == 200) {
 					survey = JSON.parse(this.responseText);
-					console.log(this.responseText);
-					console.log(survey);
+                    questions = survey.questions;
+                    console.log("made it back from the survery/questions ajax... moving onto the responses");
+                    console.log(survey);
+                    console.log("parses responses...");
+                    parseResponses();
+                    console.log("responses parsed... now going to the ajax to send responses");
+                    SendResponsesPost();
 				}
 			}	
 			xhttp.open("POST", "http://localhost:8080/surveys/csv", true);
 			xhttp.setRequestHeader('Content-Type','application/json');
 			xhttp.send(JSON.stringify(surveryObject));
+        }
+        
+
+
+        function SendResponsesPost(){
+			let xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if(this.readyState == 4 && this.status == 200) {
+                    console.log("got the answer back from the server")
+                    console.log(this.responseText);
+                    responses = JSON.parse(this.responseText);
+                    console.log(responses);
+				}
+			}	
+			xhttp.open("POST", "http://localhost:8080/response/csv", true);
+			xhttp.setRequestHeader('Content-Type','application/json');
+			xhttp.send(JSON.stringify(responses));
 		}
 
 
@@ -197,7 +219,8 @@
     function makeResponse(timeOfSubmission, attachedAnswers) {
         let out = {
             submittedAt: new Date(timeOfSubmission).getTime(),
-            answers: attachedAnswers
+            answers: attachedAnswers,
+            "survey":survey
         };
         return out;
 
