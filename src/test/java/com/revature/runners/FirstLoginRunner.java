@@ -14,8 +14,9 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources")
+@CucumberOptions(features = "src/test/resources/FirstLoginPage.feature", glue = "com.revature.steps")
 public class FirstLoginRunner {
+	
 	public static WebDriver driver;
 	public static FirstLoginPage firstPage;
 	
