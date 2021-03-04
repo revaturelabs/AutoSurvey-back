@@ -3,6 +3,7 @@ package com.revature.beans;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "SURVEYS")
@@ -31,9 +35,14 @@ public class Survey {
 	private Timestamp createdOn;
 
 	// Foreign Key
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH,
+			CascadeType.PERSIST })
 	@JoinTable(name = "SURVEY_QUESTIONS", joinColumns = @JoinColumn(name = "SURVEY_ID"), inverseJoinColumns = @JoinColumn(name = "QUESTION_ID"))
 	private List<Question> questions;
+
+	@OneToMany(mappedBy = "survey")
+	@JsonManagedReference
+	private List<Response> responses;
 
 	// ---CONSTRUCTORS--- //
 	// No Args
@@ -41,24 +50,15 @@ public class Survey {
 		super();
 	}
 
-	// Id-less
-	public Survey(String version, Timestamp createdOn, List<Question> questions) {
-		super();
-		this.version = version;
-		this.createdOn = createdOn;
-		this.questions = questions;
-	}
-
-	// Full Args
-	public Survey(int id, String version, Timestamp createdOn, List<Question> questions) {
+	public Survey(int id, String version, Timestamp createdOn, List<Question> questions, List<Response> responses) {
 		super();
 		this.id = id;
 		this.version = version;
 		this.createdOn = createdOn;
 		this.questions = questions;
+		this.responses = responses;
 	}
 
-	// -----GETTERS AND SETTERS-----//
 	public int getId() {
 		return id;
 	}
@@ -91,10 +91,18 @@ public class Survey {
 		this.questions = questions;
 	}
 
+	public List<Response> getResponses() {
+		return responses;
+	}
+
+	public void setResponses(List<Response> responses) {
+		this.responses = responses;
+	}
+
 	@Override
 	public String toString() {
 		return "Survey [id=" + id + ", version=" + version + ", createdOn=" + createdOn + ", questions=" + questions
-				+ "]";
+				+ ", responses=" + responses + "]";
 	}
 
 	@Override
