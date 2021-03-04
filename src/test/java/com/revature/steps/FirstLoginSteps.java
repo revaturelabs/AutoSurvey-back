@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import com.revature.pages.FirstLoginPage;
 import com.revature.runners.FirstLoginRunner;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -15,6 +14,7 @@ public class FirstLoginSteps {
 	
 	public static FirstLoginPage firstpage = FirstLoginRunner.firstPage;
 	public static WebDriver driver = FirstLoginRunner.driver;
+	String url = "D:\\AutoSurvey-front\\survey.html";
 	
 //	@Given("^the User Has Link$")
 //	public void the_User_Has_Link() throws Throwable {
