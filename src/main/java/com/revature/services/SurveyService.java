@@ -42,6 +42,7 @@ public interface SurveyService {
 	 * @author Revature 2101 ETL batch
 	 */
 	public List<Survey> getAllSurveys();
+	public List<Survey> getAllSurveysWithinWeekGivenTimestamp(String timestamp);
 	
 	/**
 	 * <p>

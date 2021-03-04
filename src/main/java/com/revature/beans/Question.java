@@ -1,17 +1,12 @@
 package com.revature.beans;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,11 +23,6 @@ public class Question {
 
 	@Column(name = "CREATED_ON")
 	private Timestamp createdOn;
-
-	// Foreign Key
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "SURVEY_QUESTIONS", joinColumns = @JoinColumn(name = "QUESTION_ID"), inverseJoinColumns = @JoinColumn(name = "SURVEY_ID"))
-	private List<Survey> surveys;
 
 	public Question() {
 		super();
@@ -80,6 +70,8 @@ public class Question {
 		return "Question [id=" + id + ", content=" + content + ", createdOn=" + createdOn + "]";
 	}
 
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -87,7 +79,6 @@ public class Question {
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result + ((createdOn == null) ? 0 : createdOn.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((surveys == null) ? 0 : surveys.hashCode());
 		return result;
 	}
 
@@ -111,11 +102,6 @@ public class Question {
 		} else if (!createdOn.equals(other.createdOn))
 			return false;
 		if (id != other.id)
-			return false;
-		if (surveys == null) {
-			if (other.surveys != null)
-				return false;
-		} else if (!surveys.equals(other.surveys))
 			return false;
 		return true;
 	}
