@@ -23,7 +23,7 @@ import com.revature.repos.UserRepo;
 @AutoConfigureMockMvc
 @SpringBootTest(classes = com.example.demo.QcDataReportAppApplication.class)
 public class UserServiceTest {
-
+ 
 	@MockBean
 	UserRepo repo;
 	

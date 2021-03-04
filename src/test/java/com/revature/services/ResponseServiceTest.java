@@ -50,7 +50,7 @@ public class ResponseServiceTest {
 		s.setId(1);
 		r.setId(1);
 		r.setSubmittedAt(new Timestamp(date.getTime()));
-		r.setSurveyId(s);
+		r.setSurvey(s);
 		
 		Response testR = new Response();
 		
@@ -94,7 +94,7 @@ public class ResponseServiceTest {
 		s.setId(0);
         r.setId(0);
         r.setSubmittedAt(new Timestamp(date.getTime()));
-        r.setSurveyId(s);
+        r.setSurvey(s);
         
         Mockito.when(repo.save(testR)).thenReturn(r);
         testR = serv.addResponse(testR);
@@ -120,7 +120,7 @@ public class ResponseServiceTest {
 		s.setId(0);
         r.setId(0);
         r.setSubmittedAt(new Timestamp(date.getTime()));
-        r.setSurveyId(s);
+        r.setSurvey(s);
 		
 		Mockito.when(repo.save(r)).thenReturn(r);
 		
@@ -149,7 +149,7 @@ public class ResponseServiceTest {
 		s.setId(0);
         r.setId(1);
         r.setSubmittedAt(new Timestamp(date.getTime()));
-        r.setSurveyId(s);
+        r.setSurvey(s);
         
 		Mockito.when(repo.findById(r.getId())).thenReturn(Optional.of(r));
 		Mockito.when(repo.findById(0)).thenThrow(IllegalArgumentException.class);
