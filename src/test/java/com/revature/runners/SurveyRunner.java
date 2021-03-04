@@ -29,6 +29,8 @@ public class SurveyRunner {
 			driver = new ChromeDriver();
 			surveyPage = new SurveyPage(driver);
 
+			//driver.manage().window().maximize();
+
 		}
 		
 		@AfterClass
