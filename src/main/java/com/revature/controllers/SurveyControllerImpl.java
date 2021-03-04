@@ -72,14 +72,13 @@ public class SurveyControllerImpl implements SurveyController {
 	}
 	
 	@GetMapping(value = "/getAllSurveysWithinWeekGivenTimestamp/{timestamp}", produces = "application/json")
-	public List<Survey> getAllSurveysWithinWeekGivenTimestamp(@PathVariable String timestamp) {
+	public List<Survey> getAllSurveysWithinWeekGivenTimestamp(@PathVariable("timestamp") String timestamp) {
 		try {
 			return ss.getAllSurveysWithinWeekGivenTimestamp(timestamp);
 		} catch(Exception e) {
 			System.out.println("Error in controller layer: " + e.getMessage());
 			return null;
 		}
-		
 	}
 
 	@GetMapping(value = "/surveys", produces = "application/json")

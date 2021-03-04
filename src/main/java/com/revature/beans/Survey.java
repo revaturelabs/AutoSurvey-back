@@ -1,6 +1,9 @@
 package com.revature.beans;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -55,6 +58,24 @@ public class Survey {
 		this.id = id;
 		this.version = version;
 		this.createdOn = createdOn;
+		this.questions = questions;
+		this.responses = responses;
+	}
+	
+	public Survey(int id, String version, String createdOn, List<Question> questions, List<Response> responses) {
+		super();
+		this.id = id;
+		this.version = version;
+		
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			Date parsedDate = dateFormat.parse(createdOn);
+			this.createdOn = new java.sql.Timestamp(parsedDate.getTime());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
 		this.questions = questions;
 		this.responses = responses;
 	}

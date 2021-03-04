@@ -20,6 +20,7 @@ public class SurveyServiceImpl implements SurveyService {
 	@Autowired
 	SurveyRepo sr;
 	
+	// Instead of storing a connection via JDBC, a connection is stored inside of a SessionFactory.
 	@Autowired
 	SessionFactory sf;
 
@@ -44,14 +45,15 @@ public class SurveyServiceImpl implements SurveyService {
 	public List<Survey> getAllSurveysWithinWeekGivenTimestamp(String timestamp){
 		try {
 			
-			// Create an EntityManager that will interact with the database (persistent)
+			// Create an EntityManager that will interact with the database itself.
 			EntityManager em = sf.createEntityManager();
 			
 			// Essentially, call the function from the database, register the parameters, set the parameters, and then return the result as a list.
-			return (List<Survey>) em.createStoredProcedureQuery("get_surveys_from_week")				// 1. call the function/procedure
+			// Note that test dummy data essentially makes this function do the same as getAllSurveys(), which is extremely slow (2 minutes)
+			return (List<Survey>) em.createStoredProcedureQuery("get_surveys_from_week", Survey.class)	// 1. call the function/procedure and store in Survey class
 					.registerStoredProcedureParameter("timestamp", String.class, ParameterMode.IN)		// 2. register all parameters of that function/procedure
-					.setParameter("timestamp", timestamp)												// 3. set all parameters
-					.getResultList();																	// 4. return the function/procedure as a list.
+					.setParameter("timestamp", timestamp)												// 3. set all registered parameters
+					.getResultList();																	// 4. return the function/procedure as a list with typecast
 			
 		} catch(Exception e) {
 			System.out.println("Error in service layer: " + e.getMessage());
