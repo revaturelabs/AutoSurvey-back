@@ -216,15 +216,41 @@
 
 
 
+
+
     function makeResponse(timeOfSubmission, attachedAnswers) {
+        let arrayOfString = timeOfSubmission.split("/"); //3/10/2020 9:36:02     yyyy-MM-dd HH:mm:ss
+        console.log(arrayOfString);    //3/3/2020 14:08:17
+        if(arrayOfString[0].length <2){
+            arrayOfString[0] = "0" + arrayOfString[0];
+        }
+        if(arrayOfString[1].length <2){
+            arrayOfString[1] = "0" + arrayOfString[1];
+        }
+        let year = arrayOfString[2].substring(0, 4);
+        let timePart = arrayOfString[2].substring(5, arrayOfString[2].length);
+        console.log(timePart);
+        let timePartsSplit = timePart.split(":");
+        console.log(timePartsSplit);
+        if(timePartsSplit[0].length == 1){
+            timePartsSplit[0] = "0" + timePartsSplit[0];
+        }
+        timeOfSubmission = year + "-" + arrayOfString[0] + "-" + arrayOfString[1] + " " + timePartsSplit[0] + ":" + timePartsSplit[1] + ":" + timePartsSplit[2]; // + ".000";
+        console.log("the format the date is in is now: " + timeOfSubmission);
         let out = {
-            submittedAt: new Date(timeOfSubmission).getTime(),
+            "timeStampString": timeOfSubmission,                   //////////////////////////////new Date(timeOfSubmission).getTime(),  
             answers: attachedAnswers,
             "survey":survey
         };
         return out;
 
 
+    }
+
+
+    function setCharAt(str,index,chr) {
+    if(index > str.length-1) return str;
+        return str.substring(0,index) + chr + str.substring(index+1);
     }
 
 

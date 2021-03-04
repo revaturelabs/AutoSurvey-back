@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -49,9 +50,12 @@ public class ResponseControllerImpl implements ResponseController {
 				//System.out.println(responses.get(i));
 				System.out.println("begining to process the " + i + " response");
 				Response curResponse = responses.get(i);
+				curResponse.setSubmittedAt(Timestamp.valueOf(curResponse.getTimeStampString()));
+				System.out.println("timestamp before saving to repo: " + curResponse.getSubmittedAt());
 				List<Answer> answers = curResponse.getAnswers();
 				curResponse.setAnswers(null);
 				curResponse = rs.addResponse(curResponse);
+				System.out.println("timestamp after saving to repo: " + curResponse.getSubmittedAt());
 				//now to add the answers... 
 				System.out.println("begining to process the answers of the " + i + " response");
 				for(int j = 0; j < answers.size(); j++) {
@@ -67,7 +71,8 @@ public class ResponseControllerImpl implements ResponseController {
 			return responses;
 			
 			
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;

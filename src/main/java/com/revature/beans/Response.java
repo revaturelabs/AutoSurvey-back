@@ -12,8 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -26,8 +28,14 @@ public class Response {
 	private int id = 0;
 
 	@Column(name = "SUBMITTED_AT")
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp submittedAt;
 
+	@Transient
+	private String timeStampString;
+	
+	
+	
 	@OneToMany(mappedBy = "response")
 	@JsonManagedReference
 	private List<Answer> answers;
@@ -52,6 +60,15 @@ public class Response {
 	}
 	
 	
+
+	
+	public String getTimeStampString() {
+		return timeStampString;
+	}
+
+	public void setTimeStampString(String timeStampString) {
+		this.timeStampString = timeStampString;
+	}
 
 	public Survey getSurvey() {
 		return survey;
