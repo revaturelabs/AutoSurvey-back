@@ -1,6 +1,7 @@
 package com.revature.beans;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,20 +23,20 @@ public class Response {
 
 	@Column(name = "SUBMITTED_AT")
 	private Timestamp submittedAt;
-	
-	@ManyToOne
-	@JoinColumn(name = "SURVEY_ID")
-	private Survey surveyId;
 
-	public Response(int id, Timestamp submittedAt, Survey surveyId) {
-		super();
-		this.id = id;
-		this.submittedAt = submittedAt;
-		this.surveyId = surveyId;
-	}
+	@OneToMany
+	@JoinColumn(name = "RESPONSE_ID")
+	private List<Answer> answers;
 
 	public Response() {
 		super();
+	}
+
+	public Response(int id, Timestamp submittedAt, List<Answer> answers) {
+		super();
+		this.id = id;
+		this.submittedAt = submittedAt;
+		this.answers = answers;
 	}
 
 	public int getId() {
@@ -54,26 +55,26 @@ public class Response {
 		this.submittedAt = submittedAt;
 	}
 
-	public Survey getSurveyId() {
-		return surveyId;
+	public List<Answer> getAnswers() {
+		return answers;
 	}
 
-	public void setSurveyId(Survey surveyId) {
-		this.surveyId = surveyId;
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
 	}
 
 	@Override
 	public String toString() {
-		return "Response [id=" + id + ", submittedAt=" + submittedAt + ", surveyId=" + surveyId + "]";
+		return "Response [id=" + id + ", submittedAt=" + submittedAt + ", answers=" + answers + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((answers == null) ? 0 : answers.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((submittedAt == null) ? 0 : submittedAt.hashCode());
-		result = prime * result + ((surveyId == null) ? 0 : surveyId.hashCode());
 		return result;
 	}
 
@@ -86,6 +87,11 @@ public class Response {
 		if (getClass() != obj.getClass())
 			return false;
 		Response other = (Response) obj;
+		if (answers == null) {
+			if (other.answers != null)
+				return false;
+		} else if (!answers.equals(other.answers))
+			return false;
 		if (id != other.id)
 			return false;
 		if (submittedAt == null) {
@@ -93,14 +99,9 @@ public class Response {
 				return false;
 		} else if (!submittedAt.equals(other.submittedAt))
 			return false;
-		if (surveyId == null) {
-			if (other.surveyId != null)
-				return false;
-		} else if (!surveyId.equals(other.surveyId))
-			return false;
 		return true;
 	}
-	
-	
 
+
+	
 }
