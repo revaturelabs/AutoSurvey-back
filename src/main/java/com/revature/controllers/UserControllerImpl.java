@@ -1,7 +1,9 @@
 package com.revature.controllers;
 
 import java.util.List;
-
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,10 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.revature.beans.Survey;
 import com.revature.beans.User;
 import com.revature.services.UserService;
 
@@ -59,7 +59,7 @@ public class UserControllerImpl implements UserController {
 
 	
 	@Override
-	@PutMapping(value = "/users/{id}", consumes = "applcation/json")
+	@PutMapping(value = "/users/{id}", consumes = "application/json")
 	public User updateUser(@PathVariable("id") int id, @RequestBody User change) {
 		try {
 			change.setId(id);
@@ -80,5 +80,40 @@ public class UserControllerImpl implements UserController {
 		}
 		return false;
 	}
-
+	
+	@Override
+	@PostMapping(value="/getUserByEmail", consumes="application/json", produces="application/json")
+	public User getUserByEmail(@RequestParam String email, @RequestBody HttpServletRequest request, HttpServletResponse response) {
+		try {
+			User u = service.getUserByEmail(email);
+			
+			if (u != null) {
+				//if email exists in the database, check password
+				System.out.println("PW in DB: " + u.getPassword());
+				System.out.println("PW in RequestBody: " + request);
+				
+				if(u.getPassword().equals(request)) {
+					//if passwords match, check admin status
+					System.out.println("Admin? " + u.isAdmin());
+					
+					if (u.isAdmin()) {
+						//if admin, create cookie and return User
+						Cookie cookie = new Cookie("loggedInAdmin", email);
+						response.addCookie(cookie);
+						return service.getUserByEmail(email);
+					}
+					return null;
+					
+				}
+				return null;
+				
+			}
+			return null;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }

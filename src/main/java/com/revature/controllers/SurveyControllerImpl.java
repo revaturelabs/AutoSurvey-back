@@ -13,17 +13,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.beans.Question;
 import com.revature.beans.Survey;
+import com.revature.services.QuestionService;
 import com.revature.services.SurveyService;
 
 @RestController
 @CrossOrigin
 public class SurveyControllerImpl implements SurveyController {
-
 	@Autowired
 	SurveyService ss;
 
-	@PostMapping(value = "/surveys", consumes = "application/json", produces = "applicaiton/json")
+	@Autowired
+	QuestionService qs;
+	
+	@PostMapping(value = "/surveys", consumes = "application/json", produces = "application/json")
 	public Survey addSurvey(@RequestBody Survey survey) {
 		try {
 			return ss.addSurvey(survey);
@@ -32,7 +36,28 @@ public class SurveyControllerImpl implements SurveyController {
 		}
 		return null;
 	}
-
+	
+	@PostMapping(value = "/surveys/csv", consumes = "application/json", produces = "application/json")
+	public Survey addSurveyByCSV(@RequestBody Survey survey) {
+		try {
+			//comment.setPosted(new java.sql.Timestamp(new java.util.Date().getTime()));
+			List<Question> attachedQuestions = survey.getQuestions();
+			survey.setQuestions(null);
+			survey.setCreatedOn(new java.sql.Timestamp(new java.util.Date().getTime()));
+			survey = ss.addSurvey(survey);
+			for(int i = 0; i < attachedQuestions.size(); i++) {
+				///handle questions that already existed 
+				attachedQuestions.get(i).setCreatedOn(new java.sql.Timestamp(new java.util.Date().getTime()));
+				attachedQuestions.set(i, qs.addQuestion(attachedQuestions.get(i)));
+			}
+			survey.setQuestions(attachedQuestions);
+			return ss.updateSurvey(survey);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	@GetMapping(value = "/surveys/{id}")
 	public Survey getSurvey(@PathVariable("id") int id) {
 		try {
@@ -53,7 +78,7 @@ public class SurveyControllerImpl implements SurveyController {
 		return null;
 	}
 
-	@PutMapping(value = "/surveys/{id}", consumes = "applcation/json")
+	@PutMapping(value = "/surveys/{id}", consumes = "application/json")
 	public Survey updateSurvey(@PathVariable("id") int id, @RequestBody Survey change) {
 		try {
 			change.setId(id);
