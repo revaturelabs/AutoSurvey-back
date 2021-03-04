@@ -55,6 +55,6 @@ public interface ResponseController {
 	 * @param r A JSON formatted Response object
 	 * @return True iff the update was successful
 	 */
-	boolean updateResponse(int id,Response r);
+	Response updateResponse(int id,Response r);
 
 }
