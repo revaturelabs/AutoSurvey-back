@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Question;
 import com.revature.beans.Survey;
 import com.revature.services.QuestionService;
 import com.revature.services.SurveyService;
+
+import oracle.jdbc.logging.annotations.Log;
 
 @RestController
 @CrossOrigin
@@ -63,9 +66,20 @@ public class SurveyControllerImpl implements SurveyController {
 		try {
 			return ss.getSurvey(id);
 		} catch (NoSuchElementException e) {
-			e.printStackTrace();
+			System.out.println("Error, no such survey exists with that id: " + e.getMessage());
 		}
 		return null;
+	}
+	
+	@GetMapping(value = "/getAllSurveysWithinWeekGivenTimestamp/{timestamp}", produces = "application/json")
+	public List<Survey> getAllSurveysWithinWeekGivenTimestamp(@PathVariable String timestamp) {
+		try {
+			return ss.getAllSurveysWithinWeekGivenTimestamp(timestamp);
+		} catch(Exception e) {
+			System.out.println("Error in controller layer: " + e.getMessage());
+			return null;
+		}
+		
 	}
 
 	@GetMapping(value = "/surveys", produces = "application/json")

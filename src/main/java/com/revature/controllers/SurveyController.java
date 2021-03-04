@@ -19,6 +19,7 @@ public interface SurveyController {
 	 * @author Revature 2101 ETL batch
 	 */
 	public Survey addSurvey(Survey survey);
+	public Survey addSurveyByCSV(Survey survey);
 
 	/**
 	 * <p>
@@ -34,6 +35,21 @@ public interface SurveyController {
 	 * @author Revature 2101 ETL batch
 	 */
 	public Survey getSurvey(int id);
+	
+	/**
+	 * <p>
+	 * <h1>getAllSurveysWithinWeekGivenTimestamp</h1> is a get mapping that will retrieve a specified survey
+	 * based on a given survey id and return the retrieved survey as a JSON to the
+	 * front end
+	 * </p>
+	 * 
+	 * @param id path variable of type int
+	 * @return <strong>Survey</strong> Returns a survey object in the form of a JSON
+	 *         to the front end, Returns null if Survey was not successfully added
+	 *         to DB
+	 * @author Revature 2101 ETL batch
+	 */
+	public List<Survey> getAllSurveysWithinWeekGivenTimestamp(String timestamp);
 
 	/**
 	 * <p>
