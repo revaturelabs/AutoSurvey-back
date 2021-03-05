@@ -48,7 +48,7 @@
           }
         </style>
 </head>
-<body class="body-bg" onload="populateLocations()">
+<body class="body-bg" onload="populateLocations(), populateBatches()">
         <!-- Navigation -->
         <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top py-0">
             <div class="container-fluid">
@@ -389,33 +389,33 @@ function getResponse(){
     var locationSelect = document.getElementById("location");
 
     /*----------------------------------*/
-    var locations = JSON.parse(`["Arlington","New York","Reston","West Virginia","Tampa"]`);
-    for(i = 0; i < locations.length; i++){
-      let location = locations[i];
-      let option = document.createElement("option");
-      option.value = location;
-      option.text = location;
-      locationSelect.add(option);
-    }
+    // var locations = JSON.parse(`["Arlington","New York","Reston","West Virginia","Tampa"]`);
+    // for(i = 0; i < locations.length; i++){
+    //   let location = locations[i];
+    //   let option = document.createElement("option");
+    //   option.value = location;
+    //   option.text = location;
+    //   locationSelect.add(option);
+    // }
     /*---------------------------------*/
 
-  //   xhttp.onreadystatechange = function () {
-  //     if(this.readyState == 4 && this.status == 200){
-  //       var locations = JSON.parse(this.responseText);
-  //       for(i = 0; i < this.responseText.length; i++){
-  //         let location = locations[i];
-  //         let option = document.createElement("option");
-  //         option.value = location;
-  //         option.text = location;
-  //         batchSelect.add(option);
-  //       }
-  //     }
-  //   }
+    xhttp.onreadystatechange = function () {
+      if(this.readyState == 4 && this.status == 200){
+        var locations = JSON.parse(this.responseText);
+        for(i = 0; i < this.responseText.length; i++){
+          let location = locations[i];
+          let option = document.createElement("option");
+          option.value = location;
+          option.text = location;
+          batchSelect.add(option);
+        }
+      }
+    }
 
-  //   xhttp.open("GET", "https://caliber2-mock.revaturelabs.com:443/mock/training/batch/locations", true);
-  //   xhttp.setRequestHeader("Content-Type","application/json")
-  //   xhttp.setRequestHeader("Accept", "*/*");
-  //   xhttp.send();
+    xhttp.open("GET", "https://caliber2-mock.revaturelabs.com:443/mock/training/batch/locations", true);
+    xhttp.setRequestHeader("Content-Type","application/json")
+    xhttp.setRequestHeader("Accept", "*/*");
+    xhttp.send();
   }
 
 
