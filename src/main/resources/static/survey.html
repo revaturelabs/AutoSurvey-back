@@ -47,6 +47,8 @@
             border-style: solid;
           }
         </style>
+
+        <script src="survey.js"></script>
 </head>
 <body class="body-bg" onload="populateLocations(), populateBatches()">
         <!-- Navigation -->
@@ -162,12 +164,12 @@
             <p>Were your one-on-one AND your online assessment conducted LAST WEEK of training?<span style="color:red">*</span></p>
             <div id="one-on-one-last-week">
               <div class="form-check">
-                <input type="radio" name="one-on-one" id="one-on-one-yes">
-                <label class="form-check-label" for="one-on-one-yes" value="Yes" style="padding-left: 5px;"> Yes</label>
+                <input type="radio" name="one-on-one" id="one-on-one-yes" value="Yes">
+                <label class="form-check-label" for="one-on-one-yes" style="padding-left: 5px;"> Yes</label>
               </div>
               <div class="form-check">
-                <input type="radio" name="one-on-one" id="one-on-one-no">
-                <label class="form-check-label" for="one-on-one-no" value="No" style="padding-left: 5px;"> No</label>
+                <input type="radio" name="one-on-one" id="one-on-one-no" value="No">
+                <label class="form-check-label" for="one-on-one-no" style="padding-left: 5px;"> No</label>
               </div>
             </div>
 
@@ -327,7 +329,7 @@
 
             <br><hr><br>
 
-            <button id="submitSurvey" type="button" class="btn btn-lg btn-custom" onclick="getResponse()">Submit</button>
+            <button id="submitSurvey" type="button" class="btn btn-lg btn-custom" onclick="submitSurvey()">Submit</button>
 
           </form>
       </div>
@@ -338,28 +340,28 @@
 
 <script>
 
-function getResponse(){
-  var today = new Date();
-  var response = [
-      timestamp = today.toUTCString(),
-      [question = "Name (Optional)", answer = document.getElementById("name").value],
-      [question = "Email (Optional)", answer = document.getElementById("email").value],
-      [question = "What was your most recently completed week of training? (Extended batches start with Week A, normal batches start with Week 1)", answer = document.getElementById("week").value],
-      [question = "How satisfied were you with the Training?", answer = document.querySelector('input[name=satisfaction]:checked').value],
-      [question = "Any overall feedback (Training / Trainer / QC)", answer = document.getElementById("feedback").value],
-      [question = "Any specific training issues you would like to mention?", answer = document.getElementById("issues").value],
-      [question = "Where is your training location?", answer = document.getElementById("location").value],
-      [question = "What batch are you in?", answer = document.getElementById("batch").value],
-      [question = "Please rate the pace of training for the last week.", answer = document.querySelector('input[name=pace]:checked').value],
-      [question = "Please give your ratings for the list given below : [Materials and content provided were helpful]", answer = document.querySelector('input[name=helpfulMaterials]:checked').value],
-      [question = "Please give your ratings for the list given below : [Training activities were well organized]", answer = document.querySelector('input[name=wellOrganized]:checked').value],
-      [question = "Please give your ratings for the list given below : [Questions were encouraged and answered]", answer = document.querySelector('input[name=questionsEncouraged]:checked').value],
-      [question = "Please give your ratings for the list given below : [Training and Projects met my expectations]", answer = document.querySelector('input[name=metExpectations]:checked').value]
-  ]
+// function getResponse(){
+//   var today = new Date();
+//   var response = [
+//       timestamp = today.toUTCString(),
+//       [question = "Name (Optional)", answer = document.getElementById("name").value],
+//       [question = "Email (Optional)", answer = document.getElementById("email").value],
+//       [question = "What was your most recently completed week of training? (Extended batches start with Week A, normal batches start with Week 1)", answer = document.getElementById("week").value],
+//       [question = "How satisfied were you with the Training?", answer = document.querySelector('input[name=satisfaction]:checked').value],
+//       [question = "Any overall feedback (Training / Trainer / QC)", answer = document.getElementById("feedback").value],
+//       [question = "Any specific training issues you would like to mention?", answer = document.getElementById("issues").value],
+//       [question = "Where is your training location?", answer = document.getElementById("location").value],
+//       [question = "What batch are you in?", answer = document.getElementById("batch").value],
+//       [question = "Please rate the pace of training for the last week.", answer = document.querySelector('input[name=pace]:checked').value],
+//       [question = "Please give your ratings for the list given below : [Materials and content provided were helpful]", answer = document.querySelector('input[name=helpfulMaterials]:checked').value],
+//       [question = "Please give your ratings for the list given below : [Training activities were well organized]", answer = document.querySelector('input[name=wellOrganized]:checked').value],
+//       [question = "Please give your ratings for the list given below : [Questions were encouraged and answered]", answer = document.querySelector('input[name=questionsEncouraged]:checked').value],
+//       [question = "Please give your ratings for the list given below : [Training and Projects met my expectations]", answer = document.querySelector('input[name=metExpectations]:checked').value]
+//   ]
 
-  console.log(response);
-  console.log(JSON.stringify(response));
-}
+//   console.log(response);
+//   console.log(JSON.stringify(response));
+// }
 
   function populateBatches(){
     let xhttp = new XMLHttpRequest();
