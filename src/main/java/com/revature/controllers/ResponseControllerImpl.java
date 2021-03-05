@@ -46,13 +46,17 @@ public class ResponseControllerImpl implements ResponseController {
     public Response addResponseForSurvey(@RequestBody Response r) {
         // TODO Auto-generated method stub
         try {
-        	Response newResponse = rs.addResponse(r);
-            ArrayList<Answer> answers = (ArrayList<Answer>) newResponse.getAnswers();
+        	//int responseID = r.getId();
+        	//Response newResponse = rs.addResponse(r);
+            List<Answer> answers = r.getAnswers();
+            r.setAnswers(null);
+            Response newResponse = rs.addResponse(r);
             for(int i = 0; i < answers.size(); i++)
             {
             	answers.get(i).setResponse(newResponse);
-                answerService.addAnswer(answers.get(i));
+            	answers.set(i, answerService.addAnswer(answers.get(i)));
             }
+            newResponse.setAnswers(answers);
             return newResponse;
         } catch (Exception e) {
             e.printStackTrace();

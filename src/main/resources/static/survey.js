@@ -55,9 +55,9 @@ function submitSurveyToServer() {
       xhttp2.onreadystatechange = function () {
         if (this.status == 200 && this.readyState == 4) {
           console.log(this.responseText);
+          console.log(response);
         }
       };
-      console.log(response);
 
       //Call For Response
       xhttp2.open(
