@@ -47,7 +47,7 @@ public class ResponseControllerImpl implements ResponseController {
         // TODO Auto-generated method stub
         try {
         	Response newResponse = rs.addResponse(r);
-            ArrayList<Answer> answers = (ArrayList<Answer>) r.getAnswers();
+            ArrayList<Answer> answers = (ArrayList<Answer>) newResponse.getAnswers();
             for(int i = 0; i < answers.size(); i++)
             {
             	answers.get(i).setResponse(newResponse);
