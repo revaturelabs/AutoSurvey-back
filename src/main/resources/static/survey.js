@@ -44,10 +44,14 @@ function submitSurveyToServer() {
         responseAnswers.push(answer);
       }
 
+      var today = new Date();
+      var dateString = today.toISOString().slice(0, 19);
+      var fixedDateString = dateString.replace("T", " ");
+
       var response = {
         id: 0,
         submittedAt: null,
-        timeStampString: null,
+        timeStampString: fixedDateString,
         answers: responseAnswers,
         survey: survey,
       };

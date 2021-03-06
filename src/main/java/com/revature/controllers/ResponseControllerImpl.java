@@ -51,6 +51,7 @@ public class ResponseControllerImpl implements ResponseController {
             List<Answer> answers = r.getAnswers();
             r.setAnswers(null);
             Response newResponse = rs.addResponse(r);
+            newResponse.setSubmittedAt(Timestamp.valueOf(newResponse.getTimeStampString()));
             for(int i = 0; i < answers.size(); i++)
             {
             	answers.get(i).setResponse(newResponse);
@@ -63,8 +64,6 @@ public class ResponseControllerImpl implements ResponseController {
         }
         return null;
     }
-	
-	
 	
 	
 	@PostMapping(value = "/response/csv", consumes = "application/json", produces = "application/json")
