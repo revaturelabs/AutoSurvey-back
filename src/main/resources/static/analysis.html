@@ -191,7 +191,7 @@
     </script>
 </head>
 
-<body class="body-bg" onload="getDataOnLoad()">
+<body class="body-bg" onload="getDataOnLoad(); onloadFunct()">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top py-0">
@@ -280,5 +280,12 @@
     <br><br><br>
 
 </body>
+
+<script>
+    function onloadFunct(){
+        var x = document.cookie;
+        console.log(x);
+    }
+</script>
 
 </html>

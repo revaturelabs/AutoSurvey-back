@@ -79,8 +79,15 @@
 <script>
     function login() {
 
-        let email = document.getElementById('email').value;
-        let password = document.getElementById('password').value;
+        let inputEmail = document.getElementById('email').value;
+        let inputPassword = document.getElementById('password').value;
+        console.log(JSON.stringify(inputPassword));
+
+        let inputUser = {
+            id: 0,
+            email: inputEmail,
+            password: inputPassword
+        }
 
         var date = new Date();
 
@@ -94,25 +101,46 @@
         let xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {
+            console.log(this.status);
             if (this.readyState == 4 && this.status == 200) {
                 let user = JSON.parse(this.responseText);
-                // document.cookie = "username=" + user.email;
-                // document.cookie = "admin=" + user.admin;
-                // document.cookie = "path=/";
-                // document.cookie = "expires=" + (date.getTime() + 86400000);
-                // document.cookie = "SameSite=lax";
-                console.log(user);
-                // window.location.href = "analysis.html";
-            // } else {
-            //     window.alert("An account with that information could not be found.\nPlease try again or contact an administrator for access.");
+                console.log("4");
+
+                    document.cookie = "username=" + user.email;
+                    document.cookie = "admin=" + user.admin;
+                    document.cookie = "path=/";
+                    document.cookie = "expires=" + (date.getTime() + 86400000);
+                    document.cookie = "SameSite=lax";
+                    console.log(user);
+                    window.location.href = "analysis.html";
+
+                // } else {
+                //     window.alert("An account with that information could not be found.\nPlease try again or contact an administrator for access.");
+            }
+            if(this.readyState == 4){
+                console.log("4");
+                console.log(this.status);
+            }
+            if (this.readyState == 3) {
+                console.log("3");
+            }
+            if (this.readyState == 2) {
+                console.log("2");
+            }
+            if (this.readyState == 1) {
+                console.log("1");
             }
         }
 
-        xhttp.open("POST", "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/getUserByEmail?email=" + email, true);
-        xhttp.setRequestHeader("Content-Type","application/json")
-        xhttp.setRequestHeader("Accept", "*/*");
-        xhttp.setRequestHeader("Access-Control-Allow-Origin", `${window.location.origin}`);
-        xhttp.send(JSON.stringify(password));
+        let inputUserJSON = JSON.stringify(inputUser);
+        console.log(inputUserJSON);
+
+        xhttp.open("POST", "http://localhost:8080/getUserByEmail", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json')
+        // xhttp.setRequestHeader("Accept", "*/*");
+        // xhttp.setRequestHeader("Access-Control-Allow-Origin", `${window.location.origin}`);
+        xhttp.send(inputUserJSON);
+        // xhttp.send(inputUserJSON);
     }
 
 </script>

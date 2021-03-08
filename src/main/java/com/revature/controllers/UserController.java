@@ -86,6 +86,6 @@ public interface UserController {
 	 * @return <strong>User</strong>
 	 * @author Revature 2101 ETL batch
 	 */
-	public User getUserByEmail(String email, HttpServletRequest request, HttpServletResponse response);
+	public User getUserByEmail(User u);
 
 }
