@@ -110,6 +110,8 @@
 
         xhttp.open("POST", "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/getUserByEmail?email=" + email, true);
         xhttp.setRequestHeader("Content-Type","application/json")
+        xhttp.setRequestHeader("Accept", "*/*");
+        xhttp.setRequestHeader("Access-Control-Allow-Origin", `${window.location.origin}`);
         xhttp.send(JSON.stringify(password));
     }
 
