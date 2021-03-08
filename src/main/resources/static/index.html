@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revature | QC Survey App</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <!-- Custom Styling -->
+    <link href="style.css" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="img/revatureprofavicon.png">
+</head>
+
+<body class="body-bg">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top py-0">
+        <div class="container-fluid">
+            <a class="navbar-brand"> <img src="img/rev-logo-alt.png" width="200px"></a>
+        </div>
+    </nav>
+
+    <div class="d-flex h-90 align-items-center" style="margin-top:8%;">
+        <div class="container">
+            <div class="row text-center justify-content-center">
+
+                <!-- Associates Panel/Survey Link -->
+                <div class="col-md-8 col-xl-6 col-sm-12 col-xs-12 bubble" style="width: 500px;">
+                    <h1 class="display-4" style="padding-bottom:10px;">Associates</h1>
+                    <p class="lead">Give feedback on last week's training.</p>
+                    <hr class="my-4">
+                    <br>
+                    <button class="btn btn-lg btn-custom" id="surveyButton" onclick="window.location.href='survey.html'"
+                        style="height:auto; margin-top:25px;">Take the QC Survey</button>
+                    <br>
+                    <br>
+                </div>
+
+                <!-- QC Panel/Login -->
+                <div class="col-md-8 col-xl-6 offset-xl-1 col-sm-12 col-xs-12 bubble" style="width: 500px;">
+                    <h1 class="display-4" style="padding-bottom:10px;">QC Team</h1>
+                    <p class="lead">View survey analytics & upload data.</p>
+                    <hr class="my-4">
+                    <div class="text-center">
+                        <form class="form" style="margin:auto; max-width: 360px;">
+                            <input
+                                style="margin-bottom:10px; border-radius:5px; border-color:#474c5583; border-style:solid;"
+                                type="text" id="email" class="form-control" placeholder="Email" required>
+                            <input type="password"
+                                style="border-radius:5px; border-color:#474c557a; border-style:solid;" id="password"
+                                class="form-control" placeholder="Password" required>
+                            <br>
+                            <button class="btn btn-lg btn-custom" id="loginButton" style="width: 200px; height:auto;"
+                                onclick="login()">Log In</button>
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div><br><br>
+
+
+</body>
+
+<script>
+    function login() {
+
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+
+        var date = new Date();
+
+        // document.cookie = "username=" + email;
+        // document.cookie = "admin=true";
+        // document.cookie = "SameSite=lax";
+
+
+        // window.location.href = "analysis.html";
+
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let user = JSON.parse(this.responseText);
+                // document.cookie = "username=" + user.email;
+                // document.cookie = "admin=" + user.admin;
+                // document.cookie = "path=/";
+                // document.cookie = "expires=" + (date.getTime() + 86400000);
+                // document.cookie = "SameSite=lax";
+                console.log(user);
+                // window.location.href = "analysis.html";
+            // } else {
+            //     window.alert("An account with that information could not be found.\nPlease try again or contact an administrator for access.");
+            }
+        }
+
+        xhttp.open("POST", "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/getUserByEmail?email=" + email, true);
+        xhttp.setRequestHeader("Content-Type","application/json")
+        xhttp.setRequestHeader("Accept", "*/*");
+        xhttp.setRequestHeader("Access-Control-Allow-Origin", `${window.location.origin}`);
+        xhttp.send(JSON.stringify(password));
+    }
+
+</script>
+
+</html>

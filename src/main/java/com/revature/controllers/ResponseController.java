@@ -37,7 +37,8 @@ public interface ResponseController {
 	
 	/**
 	 * <strong>getAllResponse</strong> captures HTTP GET requests sent to
-	 * the URI "/response". It takes no parameters and returns a JSON formatted
+	 * the URI "/response". It takes no parameters and retu@Override
+	rns a JSON formatted
 	 * array of all Response objects in the database.
 	 * @return An array of responses
 	 */
@@ -56,5 +57,7 @@ public interface ResponseController {
 	 * @return Returns the updated Response
 	 */
 	Response updateResponse(int id,Response r);
+
+	Response addResponseForSurvey(Response r);
 
 }
