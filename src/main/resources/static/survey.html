@@ -1,338 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revature | QC Survey</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revature | QC Survey</title>
 
-        <!-- Bootstrap CDN -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
 
-        <!-- Custom Styling -->
-        <link href="style.css" rel="stylesheet">
+  <!-- Custom Styling -->
+  <link href="style.css" rel="stylesheet">
 
-        <style>
-          .form-check{
-            padding-top: 10px;
-          }
+  <style>
+    .form-check {
+      padding-top: 10px;
+    }
 
-          .satisfactionQuestionGroup{
-            display: inline-block;
-            text-align:center;
-          }
+    .satisfactionQuestionGroup {
+      display: inline-block;
+      text-align: center;
+    }
 
-          .satisfactionQuestionGroup label{
-            display: block;
-          }
+    .satisfactionQuestionGroup label {
+      display: block;
+    }
 
-          .understandingQuestionGroup{
-            display: inline-block;
-            text-align: center;
-          }
+    .understandingQuestionGroup {
+      display: inline-block;
+      text-align: center;
+    }
 
-          .understandingQuestionGroup label{
-            display: block;
-          }
+    .understandingQuestionGroup label {
+      display: block;
+    }
 
-          input[type='radio']{
-            border-color: black;
-            border-radius: 1px;
-            border-style: solid;
-          }
-        </style>
+    input[type='radio'] {
+      border-color: black;
+      border-radius: 1px;
+      border-style: solid;
+    }
+  </style>
 
 
 </head>
+
 <body class="body-bg" onload="populateLocations(), populateBatches()">
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top py-0">
-            <div class="container-fluid">
-                <a class="navbar-brand"> <img src="img/rev-logo-alt.png" width="200px"></a>
-            </div>
-        </nav>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top py-0">
+    <div class="container-fluid">
+      <a class="navbar-brand"> <img src="img/rev-logo-alt.png" width="200px"></a>
+    </div>
+  </nav>
 
-      <div class="container bubble" style="margin-top: 1%; width:800px;">
+  <div class="container bubble" style="margin-top: 1%; width:800px;">
 
-        <div class="d-flex justify-content-center">
-          <h1 class="display-4" style="padding-bottom:10px; padding-top: 10px;">Training Feedback</h1>
+    <div class="d-flex justify-content-center">
+      <h1 class="display-4" style="padding-bottom:10px; padding-top: 10px;">Training Feedback</h1>
+    </div>
+    <hr>
+    <div class="container">
+
+      <br>
+      <p>Thank you for being a part of Revature. We hope you are having as much fun attending as we do organizing.</p>
+      <p>We want to hear your feedback so we can keep improving our logistics and content. Please fill this quick survey
+        out and let us know your thoughts. Please note that you will be using this SAME link EVERY week to give your
+        feedback about training, so you may want to bookmark or pin this URL in your Slack channel.</p>
+      <p>Survey responses are only accessible by the QC team and are collected anonymously unless you fill in your
+        information below.</p>
+      <p>Please note this survey is for the last completed week of training (e.g. if you are currently in Week 4, please
+        fill out the survey for Week 3.)</p>
+      <p style="color:red;">* Required</p>
+    </div>
+
+    <br>
+    <hr><br>
+
+    <form>
+
+      <div id="emailQuestion">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name (Optional)</label>
+          <input type="text" class="form-control" id="name" style="max-width: 400px;">
         </div>
-        <hr>
-        <div class="container">
-
-          <br>
-          <p>Thank you for being a part of Revature. We hope you are having as much fun attending as we do organizing.</p>
-          <p>We want to hear your feedback so we can keep improving our logistics and content. Please fill this quick survey out and let us know your thoughts. Please note that you will be using this SAME link EVERY week to give your feedback about training, so you may want to bookmark or pin this URL in your Slack channel.</p>
-          <p>Survey responses are only accessible by the QC team and are collected anonymously unless you fill in your information below.</p>
-          <p>Please note this survey is for the last completed week of training (e.g. if you are currently in Week 4, please fill out the survey for Week 3.)</p>
-          <p style="color:red;">* Required</p>
-        </div>
-
-        <br><hr><br>
-
-        <form>
-
-            <div id="emailQuestion">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name (Optional)</label>
-                    <input type="text" class="form-control" id="name" style="max-width: 400px;">
-                  </div>
-            </div>
-
-           <!-- <br> <hr> <br> -->
-
-            <div id="emailQuestion">
-              <div class="mb-3">
-                <label for="email" class="form-label">Email (Optional)</label>
-                <input type="text" class="form-control" id="email" style="max-width: 400px;">
-              </div>
-            </div>
-
-            <br> <hr> <br>
-
-            <div id="locationQuestion">
-              <div class="mb-3">
-                <label for="location" class="form-label">Where is your training location? <span style="color: red">*</span></label>
-                <select class="form-control" id="location" style="max-width: 400px;" required></select>
-              </div>
-            </div>
-
-            <!-- <br> <hr> <br> -->
-
-            <div id="batchQuestion">
-              <div class="mb-3">
-                <label for="batch" class="form-label">What batch are you in? <span style="color: red">*</span></label>
-                <select class="form-control" id="batch" style="max-width: 400px;" required></select>
-              </div>
-            </div>
-
-            <br> <hr> <br>
-
-            <div id="weekQuestion">
-                <label for="week" class="form-label">What was your most recently completed week of training? (Extended batches start with Week A, normal batches start with Week 1)<span style="color:red">*</span></label>
-                <select class="form-control" id="week" style="max-width: 400px;" required>
-                    <option value="A">Week A</option>
-                    <option value="B">Week B</option>
-                    <option value="1">Week 1</option>
-                    <option value="2">Week 2</option>
-                    <option value="3">Week 3</option>
-                    <option value="4">Week 4</option>
-                    <option value="5">Week 5</option>
-                    <option value="6">Week 6</option>
-                    <option value="7">Week 7</option>
-                    <option value="8">Week 8</option>
-                    <option value="9">Week 9</option>
-                </select>
-            </div>
-
-            <br> <hr> <br>
-
-            <p>How satisfied were you with the training this week?<span style="color:red">*</span></p>
-            <div class="d-flex justify-content-center" id="satisfactionQuestion">
-              <p style="margin-top: 6px; margin-right: 10px;">Not Satisfied</p>
-              <div class="satisfactionQuestionGroup form-check form-check-inline">
-                <input type="radio" name="satisfaction" id="sat1" value="1">
-                <label for="sat1">1</label>
-              </div>
-              <div class="satisfactionQuestionGroup form-check form-check-inline">
-                <input type="radio" name="satisfaction" id="sat2" value="2">
-                <label for="sat2">2</label>
-              </div>
-              <div class="satisfactionQuestionGroup form-check form-check-inline">
-                <input type="radio" name="satisfaction" id="sat3" value="3">
-                <label for="sat3">3</label>
-              </div>
-              <div class="satisfactionQuestionGroup form-check form-check-inline">
-                <input type="radio" name="satisfaction" id="sat4" value="4">
-                <label for="sat4">4</label>
-              </div>
-              <div class="satisfactionQuestionGroup form-check form-check-inline">
-                <input type="radio" name="satisfaction" id="sat5" value="5">
-                <label for="sat5">5</label>
-              </div>
-              <p style="margin-top: 9px; margin-left: 10px;">Very Satisfied</p>
-            </div>
-          
-            <br> <hr> <br>
-
-            <p>Were your one-on-one AND your online assessment conducted LAST WEEK of training?<span style="color:red">*</span></p>
-            <div id="one-on-one-last-week">
-              <div class="form-check">
-                <input type="radio" name="one-on-one" id="one-on-one-yes" value="Yes">
-                <label class="form-check-label" for="one-on-one-yes" style="padding-left: 5px;"> Yes</label>
-              </div>
-              <div class="form-check">
-                <input type="radio" name="one-on-one" id="one-on-one-no" value="No">
-                <label class="form-check-label" for="one-on-one-no" style="padding-left: 5px;"> No</label>
-              </div>
-            </div>
-
-            <br><hr><br>
-
-            <p>Please rate your level of understanding of last week's topics.<span style="color:red">*</span></p>
-            <div class="d-flex justify-content-center" id="understandingQuestion">
-              <p style="margin-top: 9px; margin-right: 10px;">Poor</p>
-              <div class="understandingQuestionGroup form-check form-check-inline">
-                <input type="radio" name="understanding" id="understanding1" value="1">
-                <label for="understanding1">1</label>
-              </div>
-              <div class="understandingQuestionGroup form-check form-check-inline">
-                <input type="radio" name="understanding" id="understanding2" value="2">
-                <label for="understanding2">2</label>
-              </div>
-              <div class="understandingQuestionGroup form-check form-check-inline">
-                <input type="radio" name="understanding" id="understanding3" value="3">
-                <label for="understanding3">3</label>
-              </div>
-              <div class="understandingQuestionGroup form-check form-check-inline">
-                <input type="radio" name="understanding" id="understanding4" value="4">
-                <label for="understanding4">4</label>
-              </div>
-              <div class="understandingQuestionGroup form-check form-check-inline">
-                <input type="radio" name="understanding" id="understanding5" value="5">
-                <label for="understanding5">5</label>
-              </div>
-              <p style="margin-top: 9px; margin-left: 10px;">Great</p>
-            </div>
-
-            <br><hr><br>
-
-            <p>Please rate the pace of training for the last week.<span style="color:red">*</span></p>
-            <div id="paceQuestion">
-              <div class="form-check">
-                <input type="radio" name="pace" id="paceTooSlow" value="Too slow">
-                <label class="form-check-label" for="paceTooSlow" value="Too slow" style="padding-left: 5px;">Too slow</label>
-              </div>
-              <div class="form-check">
-                <input type="radio" name="pace" id="paceGood" value="Good">
-                <label class="form-check-label" for="paceGood" value="Good" style="padding-left: 5px;">Good</label>
-              </div>
-              <div class="form-check">
-                <input type="radio" name="pace" id="paceTooFast" value="Too fast">
-                <label class="form-check-label" for="paceTooFast" value="Too fast" style="padding-left: 5px;">Too fast</label>
-              </div>
-            </div>
-
-            <br><hr><br>
-
-            <p>Please give your ratings for the list given below:<span style="color:red;">*</span></p>
-            <table style="border-style: solid; border-color: black; border-width: 1px; background-color: rgb(233, 233, 233);" class="table align-middle text-center">
-              <thead style="font-family: Futura-Std-Book;">
-                <tr>
-                  <th scope="col" style="width: 100px;"></th>
-                  <th scope="col" style="width: 100px;">Strongly Agree</th>
-                  <th scope="col" style="width: 100px;">Agree</th>
-                  <th scope="col" style="width: 100px;">Disagree</th>
-                  <th scope="col" style="width: 100px;">Strongly Disagree</th>
-                  <th scope="col" style="width: 100px;">N/A</th>
-                </tr>
-              </thead>
-              <tbody style="border-style: solid; border-color: black; border-radius:1px;">
-                <tr>
-                  <th scope="row">Materials and content provided were helpful.</th>
-                  <td>
-                    <input type="radio" name="helpfulMaterials" id="helpfulMaterials1" value="Strongly Agree">
-                  </td>
-                  <td>
-                    <input type="radio" name="helpfulMaterials" id="helpfulMaterials2" value="Agree">  
-                  </td>
-                  <td>
-                    <input type="radio" name="helpfulMaterials" id="helpfulMaterials3" value="Disagree">
-                  </td>
-                  <td>
-                    <input type="radio" name="helpfulMaterials" id="helpfulMaterials4" value="Strongly Disagree">
-                  </td>
-                  <td>
-                    <input type="radio" name="helpfulMaterials" id="helpfulMaterials5" value="N/A">
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Training activities were well organized.</th>
-                  <td>
-                    <input type="radio" name="wellOrganized" id="wellOrganized1" value="Strongly Agree">
-                  </td>
-                  <td>
-                    <input type="radio" name="wellOrganized" id="wellOrganized2" value="Agree">
-                  </td>
-                  <td>
-                    <input type="radio" name="wellOrganized" id="wellOrganized3" value="Disagree">
-                  </td>
-                  <td>
-                    <input type="radio" name="wellOrganized" id="wellOrganized4" value="Strongly Disagree">
-                  </td>
-                  <td>
-                    <input type="radio" name="wellOrganized" id="wellOrganized5" value="N/A">
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Questions were encouraged and answered.</th>
-                  <td>
-                    <input type="radio" name="questionsEncouraged" id="questionsEncouraged1" value="Strongly Agree">
-                  </td>
-                  <td>
-                    <input type="radio" name="questionsEncouraged" id="questionsEncouraged2" value="Agree">
-                  </td>
-                  <td>
-                    <input type="radio" name="questionsEncouraged" id="questionsEncouraged3" value="Disagree">
-                  </td>
-                  <td>
-                    <input type="radio" name="questionsEncouraged" id="questionsEncouraged4" value="Strongly Disagree">
-                  </td>
-                  <td>
-                    <input type="radio" name="questionsEncouraged" id="questionsEncouraged5" value="N/A">
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">Training and Projects met my expectations.</th>
-                  <td>
-                    <input type="radio" name="metExpectations" id="metExpectations1" value="Strongly Agree">
-                  </td>
-                  <td>
-                    <input type="radio" name="metExpectations" id="metExpectations2" value="Agree">
-                  </td>
-                  <td>
-                    <input type="radio" name="metExpectations" id="metExpectations3" value="Disagree">
-                  </td>
-                  <td>
-                    <input type="radio" name="metExpectations" id="metExpectations4" value="Strongly Disagree">
-                  </td>
-                  <td>
-                    <input type="radio" name="metExpectations" id="metExpectations5" value="N/A">
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <br><hr><br>
-
-            <div id="issuesQuestion">
-              <div class="mb-3">
-                <label for="issues" class="form-label">Any specific training issues you would like to mention? (Optional)</label>
-                <textarea class="form-control" id="issues" rows="3"></textarea>
-              </div>
-            </div>
-
-            <br><hr><br>
-
-            <div id="feedbackQuestion">
-              <div class="mb-3">
-                <label for="feedback" class="form-label">Any overall feedback on your Training / Trainer / QC? (Optional)</label>
-                <textarea class="form-control" id="feedback" rows="3"></textarea>
-              </div>
-            </div>
-
-            <br><hr><br>
-
-            <button id="submitSurvey" type="button" class="btn btn-lg btn-custom" onclick="submitSurveyToServer()">Submit</button>
-
-          </form>
       </div>
+
+      <!-- <br> <hr> <br> -->
+
+      <div id="emailQuestion">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email (Optional)</label>
+          <input type="text" class="form-control" id="email" style="max-width: 400px;">
+        </div>
+      </div>
+
+      <br>
+      <hr> <br>
+
+      <div id="locationQuestion">
+        <div class="mb-3">
+          <label for="location" class="form-label">Where is your training location? <span
+              style="color: red">*</span></label>
+          <select class="form-control" id="location" style="max-width: 400px;" required></select>
+        </div>
+      </div>
+
+      <!-- <br> <hr> <br> -->
+
+      <div id="batchQuestion">
+        <div class="mb-3">
+          <label for="batch" class="form-label">What batch are you in? <span style="color: red">*</span></label>
+          <select class="form-control" id="batch" style="max-width: 400px;" required></select>
+        </div>
+      </div>
+
+      <br>
+      <hr> <br>
+
+      <div id="weekQuestion">
+        <label for="week" class="form-label">What was your most recently completed week of training? (Extended batches
+          start with Week A, normal batches start with Week 1)<span style="color:red">*</span></label>
+        <select class="form-control" id="week" style="max-width: 400px;" required>
+          <option value="A">Week A</option>
+          <option value="B">Week B</option>
+          <option value="1">Week 1</option>
+          <option value="2">Week 2</option>
+          <option value="3">Week 3</option>
+          <option value="4">Week 4</option>
+          <option value="5">Week 5</option>
+          <option value="6">Week 6</option>
+          <option value="7">Week 7</option>
+          <option value="8">Week 8</option>
+          <option value="9">Week 9</option>
+        </select>
+      </div>
+
+      <br>
+      <hr> <br>
+
+      <p>How satisfied were you with the training this week?<span style="color:red">*</span></p>
+      <div class="d-flex justify-content-center" id="satisfactionQuestion">
+        <p style="margin-top: 6px; margin-right: 10px;">Not Satisfied</p>
+        <div class="satisfactionQuestionGroup form-check form-check-inline">
+          <input type="radio" name="satisfaction" id="sat1" value="1">
+          <label for="sat1">1</label>
+        </div>
+        <div class="satisfactionQuestionGroup form-check form-check-inline">
+          <input type="radio" name="satisfaction" id="sat2" value="2">
+          <label for="sat2">2</label>
+        </div>
+        <div class="satisfactionQuestionGroup form-check form-check-inline">
+          <input type="radio" name="satisfaction" id="sat3" value="3">
+          <label for="sat3">3</label>
+        </div>
+        <div class="satisfactionQuestionGroup form-check form-check-inline">
+          <input type="radio" name="satisfaction" id="sat4" value="4">
+          <label for="sat4">4</label>
+        </div>
+        <div class="satisfactionQuestionGroup form-check form-check-inline">
+          <input type="radio" name="satisfaction" id="sat5" value="5">
+          <label for="sat5">5</label>
+        </div>
+        <p style="margin-top: 9px; margin-left: 10px;">Very Satisfied</p>
+      </div>
+
+      <br>
+      <hr> <br>
+
+      <p>Were your one-on-one AND your online assessment conducted LAST WEEK of training?<span
+          style="color:red">*</span></p>
+      <div id="one-on-one-last-week">
+        <div class="form-check">
+          <input type="radio" name="one-on-one" id="one-on-one-yes" value="Yes">
+          <label class="form-check-label" for="one-on-one-yes" style="padding-left: 5px;"> Yes</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" name="one-on-one" id="one-on-one-no" value="No">
+          <label class="form-check-label" for="one-on-one-no" style="padding-left: 5px;"> No</label>
+        </div>
+      </div>
+
+      <br>
+      <hr><br>
+
+      <p>Please rate your level of understanding of last week's topics.<span style="color:red">*</span></p>
+      <div class="d-flex justify-content-center" id="understandingQuestion">
+        <p style="margin-top: 9px; margin-right: 10px;">Poor</p>
+        <div class="understandingQuestionGroup form-check form-check-inline">
+          <input type="radio" name="understanding" id="understanding1" value="1">
+          <label for="understanding1">1</label>
+        </div>
+        <div class="understandingQuestionGroup form-check form-check-inline">
+          <input type="radio" name="understanding" id="understanding2" value="2">
+          <label for="understanding2">2</label>
+        </div>
+        <div class="understandingQuestionGroup form-check form-check-inline">
+          <input type="radio" name="understanding" id="understanding3" value="3">
+          <label for="understanding3">3</label>
+        </div>
+        <div class="understandingQuestionGroup form-check form-check-inline">
+          <input type="radio" name="understanding" id="understanding4" value="4">
+          <label for="understanding4">4</label>
+        </div>
+        <div class="understandingQuestionGroup form-check form-check-inline">
+          <input type="radio" name="understanding" id="understanding5" value="5">
+          <label for="understanding5">5</label>
+        </div>
+        <p style="margin-top: 9px; margin-left: 10px;">Great</p>
+      </div>
+
+      <br>
+      <hr><br>
+
+      <p>Please rate the pace of training for the last week.<span style="color:red">*</span></p>
+      <div id="paceQuestion">
+        <div class="form-check">
+          <input type="radio" name="pace" id="paceTooSlow" value="Too slow">
+          <label class="form-check-label" for="paceTooSlow" value="Too slow" style="padding-left: 5px;">Too slow</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" name="pace" id="paceGood" value="Good">
+          <label class="form-check-label" for="paceGood" value="Good" style="padding-left: 5px;">Good</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" name="pace" id="paceTooFast" value="Too fast">
+          <label class="form-check-label" for="paceTooFast" value="Too fast" style="padding-left: 5px;">Too fast</label>
+        </div>
+      </div>
+
+      <br>
+      <hr><br>
+
+      <p>Please give your ratings for the list given below:<span style="color:red;">*</span></p>
+      <table style="border-style: solid; border-color: black; border-width: 1px; background-color: rgb(233, 233, 233);"
+        class="table align-middle text-center">
+        <thead style="font-family: Futura-Std-Book;">
+          <tr>
+            <th scope="col" style="width: 100px;"></th>
+            <th scope="col" style="width: 100px;">Strongly Agree</th>
+            <th scope="col" style="width: 100px;">Agree</th>
+            <th scope="col" style="width: 100px;">Disagree</th>
+            <th scope="col" style="width: 100px;">Strongly Disagree</th>
+            <th scope="col" style="width: 100px;">N/A</th>
+          </tr>
+        </thead>
+        <tbody style="border-style: solid; border-color: black; border-radius:1px;">
+          <tr>
+            <th scope="row">Materials and content provided were helpful.</th>
+            <td>
+              <input type="radio" name="helpfulMaterials" id="helpfulMaterials1" value="Strongly Agree">
+            </td>
+            <td>
+              <input type="radio" name="helpfulMaterials" id="helpfulMaterials2" value="Agree">
+            </td>
+            <td>
+              <input type="radio" name="helpfulMaterials" id="helpfulMaterials3" value="Disagree">
+            </td>
+            <td>
+              <input type="radio" name="helpfulMaterials" id="helpfulMaterials4" value="Strongly Disagree">
+            </td>
+            <td>
+              <input type="radio" name="helpfulMaterials" id="helpfulMaterials5" value="N/A">
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Training activities were well organized.</th>
+            <td>
+              <input type="radio" name="wellOrganized" id="wellOrganized1" value="Strongly Agree">
+            </td>
+            <td>
+              <input type="radio" name="wellOrganized" id="wellOrganized2" value="Agree">
+            </td>
+            <td>
+              <input type="radio" name="wellOrganized" id="wellOrganized3" value="Disagree">
+            </td>
+            <td>
+              <input type="radio" name="wellOrganized" id="wellOrganized4" value="Strongly Disagree">
+            </td>
+            <td>
+              <input type="radio" name="wellOrganized" id="wellOrganized5" value="N/A">
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Questions were encouraged and answered.</th>
+            <td>
+              <input type="radio" name="questionsEncouraged" id="questionsEncouraged1" value="Strongly Agree">
+            </td>
+            <td>
+              <input type="radio" name="questionsEncouraged" id="questionsEncouraged2" value="Agree">
+            </td>
+            <td>
+              <input type="radio" name="questionsEncouraged" id="questionsEncouraged3" value="Disagree">
+            </td>
+            <td>
+              <input type="radio" name="questionsEncouraged" id="questionsEncouraged4" value="Strongly Disagree">
+            </td>
+            <td>
+              <input type="radio" name="questionsEncouraged" id="questionsEncouraged5" value="N/A">
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Training and Projects met my expectations.</th>
+            <td>
+              <input type="radio" name="metExpectations" id="metExpectations1" value="Strongly Agree">
+            </td>
+            <td>
+              <input type="radio" name="metExpectations" id="metExpectations2" value="Agree">
+            </td>
+            <td>
+              <input type="radio" name="metExpectations" id="metExpectations3" value="Disagree">
+            </td>
+            <td>
+              <input type="radio" name="metExpectations" id="metExpectations4" value="Strongly Disagree">
+            </td>
+            <td>
+              <input type="radio" name="metExpectations" id="metExpectations5" value="N/A">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>
+      <hr><br>
+
+      <div id="issuesQuestion">
+        <div class="mb-3">
+          <label for="issues" class="form-label">Any specific training issues you would like to mention?
+            (Optional)</label>
+          <textarea class="form-control" id="issues" rows="3"></textarea>
+        </div>
+      </div>
+
+      <br>
+      <hr><br>
+
+      <div id="feedbackQuestion">
+        <div class="mb-3">
+          <label for="feedback" class="form-label">Any overall feedback on your Training / Trainer / QC?
+            (Optional)</label>
+          <textarea class="form-control" id="feedback" rows="3"></textarea>
+        </div>
+      </div>
+
+      <br>
+      <hr><br>
+
+      <button id="submitSurvey" type="button" class="btn btn-lg btn-custom"
+        onclick="submitSurveyToServer()">Submit</button>
+
+    </form>
+  </div>
 
 
 
@@ -340,37 +364,37 @@
 
 <script>
 
-// function getResponse(){
-//   var today = new Date();
-//   var response = [
-//       timestamp = today.toUTCString(),
-//       [question = "Name (Optional)", answer = document.getElementById("name").value],
-//       [question = "Email (Optional)", answer = document.getElementById("email").value],
-//       [question = "What was your most recently completed week of training? (Extended batches start with Week A, normal batches start with Week 1)", answer = document.getElementById("week").value],
-//       [question = "How satisfied were you with the Training?", answer = document.querySelector('input[name=satisfaction]:checked').value],
-//       [question = "Any overall feedback (Training / Trainer / QC)", answer = document.getElementById("feedback").value],
-//       [question = "Any specific training issues you would like to mention?", answer = document.getElementById("issues").value],
-//       [question = "Where is your training location?", answer = document.getElementById("location").value],
-//       [question = "What batch are you in?", answer = document.getElementById("batch").value],
-//       [question = "Please rate the pace of training for the last week.", answer = document.querySelector('input[name=pace]:checked').value],
-//       [question = "Please give your ratings for the list given below : [Materials and content provided were helpful]", answer = document.querySelector('input[name=helpfulMaterials]:checked').value],
-//       [question = "Please give your ratings for the list given below : [Training activities were well organized]", answer = document.querySelector('input[name=wellOrganized]:checked').value],
-//       [question = "Please give your ratings for the list given below : [Questions were encouraged and answered]", answer = document.querySelector('input[name=questionsEncouraged]:checked').value],
-//       [question = "Please give your ratings for the list given below : [Training and Projects met my expectations]", answer = document.querySelector('input[name=metExpectations]:checked').value]
-//   ]
+  // function getResponse(){
+  //   var today = new Date();
+  //   var response = [
+  //       timestamp = today.toUTCString(),
+  //       [question = "Name (Optional)", answer = document.getElementById("name").value],
+  //       [question = "Email (Optional)", answer = document.getElementById("email").value],
+  //       [question = "What was your most recently completed week of training? (Extended batches start with Week A, normal batches start with Week 1)", answer = document.getElementById("week").value],
+  //       [question = "How satisfied were you with the Training?", answer = document.querySelector('input[name=satisfaction]:checked').value],
+  //       [question = "Any overall feedback (Training / Trainer / QC)", answer = document.getElementById("feedback").value],
+  //       [question = "Any specific training issues you would like to mention?", answer = document.getElementById("issues").value],
+  //       [question = "Where is your training location?", answer = document.getElementById("location").value],
+  //       [question = "What batch are you in?", answer = document.getElementById("batch").value],
+  //       [question = "Please rate the pace of training for the last week.", answer = document.querySelector('input[name=pace]:checked').value],
+  //       [question = "Please give your ratings for the list given below : [Materials and content provided were helpful]", answer = document.querySelector('input[name=helpfulMaterials]:checked').value],
+  //       [question = "Please give your ratings for the list given below : [Training activities were well organized]", answer = document.querySelector('input[name=wellOrganized]:checked').value],
+  //       [question = "Please give your ratings for the list given below : [Questions were encouraged and answered]", answer = document.querySelector('input[name=questionsEncouraged]:checked').value],
+  //       [question = "Please give your ratings for the list given below : [Training and Projects met my expectations]", answer = document.querySelector('input[name=metExpectations]:checked').value]
+  //   ]
 
-//   console.log(response);
-//   console.log(JSON.stringify(response));
-// }
+  //   console.log(response);
+  //   console.log(JSON.stringify(response));
+  // }
 
-  function populateBatches(){
+  function populateBatches() {
     let xhttp = new XMLHttpRequest();
     var locationSelect = document.getElementById("batch");
     xhttp.onreadystatechange = function () {
-      if(this.readyState == 4 && this.status == 200){
+      if (this.readyState == 4 && this.status == 200) {
         var batches = JSON.parse(this.responseText);
         console.log(batches);
-        for(i = 0; i < batches.length; i++){
+        for (i = 0; i < batches.length; i++) {
           let batch = batches[i];
           var option = document.createElement("option");
           option.value = batch.name;
@@ -381,12 +405,13 @@
     }
 
     xhttp.open("GET", "https://caliber2-mock.revaturelabs.com:443/mock/training/batch/current", true);
-    xhttp.setRequestHeader("Content-Type","application/json")
+    xhttp.setRequestHeader("Content-Type", "application/json")
     xhttp.setRequestHeader("Accept", "*/*");
+    xhttp.setRequestHeader("Access-Control-Allow-Origin", `${window.location.origin}`);
     xhttp.send();
   }
 
-  function populateLocations(){
+  function populateLocations() {
     let xhttp = new XMLHttpRequest();
     var locationSelect = document.getElementById("location");
 
@@ -402,9 +427,9 @@
     /*---------------------------------*/
 
     xhttp.onreadystatechange = function () {
-      if(this.readyState == 4 && this.status == 200){
+      if (this.readyState == 4 && this.status == 200) {
         var locations = JSON.parse(this.responseText);
-        for(i = 0; i < this.responseText.length; i++){
+        for (i = 0; i < this.responseText.length; i++) {
           let location = locations[i];
           let option = document.createElement("option");
           option.value = location;
@@ -415,8 +440,9 @@
     }
 
     xhttp.open("GET", "https://caliber2-mock.revaturelabs.com:443/mock/training/batch/locations", true);
-    xhttp.setRequestHeader("Content-Type","application/json")
+    xhttp.setRequestHeader("Content-Type", "application/json")
     xhttp.setRequestHeader("Accept", "*/*");
+    xhttp.setRequestHeader("Access-Control-Allow-Origin", `${window.location.origin}`);
     xhttp.send();
   }
 
