@@ -375,9 +375,10 @@
         console.log(batches);
         for (i = 0; i < batches.length; i++) {
           let batch = batches[i];
+          let assignedEmployee = batch.employeeAssignments.employee;
           var option = document.createElement("option");
           option.value = batch.name;
-          option.text = batch.skill + " - " + batch.employeeAssignments.employee.firstName + " " + batch.employeeAssignments.employee.lastName;
+          option.text = batch.skill + " - " + assignedEmployee.firstName + " " + assignedEmployee.lastName;
           batchSelect.add(option);
         }
       }
@@ -413,7 +414,7 @@
           let option = document.createElement("option");
           option.value = location;
           option.text = location;
-          batchSelect.add(option);
+          locationSelect.add(option);
         }
       }
     }
