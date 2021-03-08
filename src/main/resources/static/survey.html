@@ -368,17 +368,21 @@
 
   function populateBatches() {
     let xhttp = new XMLHttpRequest();
-    var locationSelect = document.getElementById("batch");
+    var batchSelect = document.getElementById("batch");
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         var batches = JSON.parse(this.responseText);
         console.log(batches);
         for (i = 0; i < batches.length; i++) {
           let batch = batches[i];
-          let assignedEmployee = batch.employeeAssignments.employee;
+          let employeeAssignments = batch.employeeAssignments;
+          let empArray = employeeAssignments[0];
+          let employeeObject = empArray.employee;
           var option = document.createElement("option");
           option.value = batch.name;
-          option.text = batch.skill + " - " + assignedEmployee.firstName + " " + assignedEmployee.lastName;
+          // option.text = batch.skill + " - " + employeeObject.firstName + " " + employeeObject.lastName;
+          // above doesn't really work with the mock data, but it's this format: "Java w/ETL - Ryan Schlientz"
+          option.text = batch.name;
           batchSelect.add(option);
         }
       }
@@ -395,21 +399,11 @@
     let xhttp = new XMLHttpRequest();
     var locationSelect = document.getElementById("location");
 
-    /*----------------------------------*/
-    // var locations = JSON.parse(`["Arlington","New York","Reston","West Virginia","Tampa"]`);
-    // for(i = 0; i < locations.length; i++){
-    //   let location = locations[i];
-    //   let option = document.createElement("option");
-    //   option.value = location;
-    //   option.text = location;
-    //   locationSelect.add(option);
-    // }
-    /*---------------------------------*/
-
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         var locations = JSON.parse(this.responseText);
-        for (i = 0; i < this.responseText.length; i++) {
+        console.log(locations);
+        for (i = 0; i < locations.length; i++) {
           let location = locations[i];
           let option = document.createElement("option");
           option.value = location;
