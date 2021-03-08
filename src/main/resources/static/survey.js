@@ -1,6 +1,6 @@
 function submitSurveyToServer() {
   let xhttp = new XMLHttpRequest();
-
+  
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       let xhttp2 = new XMLHttpRequest();
@@ -60,6 +60,7 @@ function submitSurveyToServer() {
         if (this.status == 200 && this.readyState == 4) {
           console.log(this.responseText);
           console.log(response);
+          window.location.href = "success.html"
         }
       };
 

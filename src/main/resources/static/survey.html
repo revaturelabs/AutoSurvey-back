@@ -16,6 +16,8 @@
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
     crossorigin="anonymous"></script>
 
+  <link rel="icon" type="image/png" href="img/revatureprofavicon.png">
+
   <!-- Custom Styling -->
   <link href="style.css" rel="stylesheet">
 
@@ -364,29 +366,6 @@
 
 <script>
 
-  // function getResponse(){
-  //   var today = new Date();
-  //   var response = [
-  //       timestamp = today.toUTCString(),
-  //       [question = "Name (Optional)", answer = document.getElementById("name").value],
-  //       [question = "Email (Optional)", answer = document.getElementById("email").value],
-  //       [question = "What was your most recently completed week of training? (Extended batches start with Week A, normal batches start with Week 1)", answer = document.getElementById("week").value],
-  //       [question = "How satisfied were you with the Training?", answer = document.querySelector('input[name=satisfaction]:checked').value],
-  //       [question = "Any overall feedback (Training / Trainer / QC)", answer = document.getElementById("feedback").value],
-  //       [question = "Any specific training issues you would like to mention?", answer = document.getElementById("issues").value],
-  //       [question = "Where is your training location?", answer = document.getElementById("location").value],
-  //       [question = "What batch are you in?", answer = document.getElementById("batch").value],
-  //       [question = "Please rate the pace of training for the last week.", answer = document.querySelector('input[name=pace]:checked').value],
-  //       [question = "Please give your ratings for the list given below : [Materials and content provided were helpful]", answer = document.querySelector('input[name=helpfulMaterials]:checked').value],
-  //       [question = "Please give your ratings for the list given below : [Training activities were well organized]", answer = document.querySelector('input[name=wellOrganized]:checked').value],
-  //       [question = "Please give your ratings for the list given below : [Questions were encouraged and answered]", answer = document.querySelector('input[name=questionsEncouraged]:checked').value],
-  //       [question = "Please give your ratings for the list given below : [Training and Projects met my expectations]", answer = document.querySelector('input[name=metExpectations]:checked').value]
-  //   ]
-
-  //   console.log(response);
-  //   console.log(JSON.stringify(response));
-  // }
-
   function populateBatches() {
     let xhttp = new XMLHttpRequest();
     var locationSelect = document.getElementById("batch");
@@ -445,15 +424,6 @@
     xhttp.setRequestHeader("Access-Control-Allow-Origin", `${window.location.origin}`);
     xhttp.send();
   }
-
-
-  // Note for whoever does the JS for this:
-
-  // For the radio buttons, something like the following should 
-  // theoretically pull the correct value selected even though they aren't in individual forms:
-
-  //document.querySelector('input[name="understanding"]:checked').value;
-  //document.querySelector('input[name="questionsEncouraged"]:checked').value;
 
 </script>
 

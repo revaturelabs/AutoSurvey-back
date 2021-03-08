@@ -22,6 +22,8 @@
     <!-- Custom JS Script -->
     <script src="script.js"></script>
 
+    <link rel="icon" type="image/png" href="img/revatureprofavicon.png">
+
 </head>
 
 <body class="body-bg">
@@ -70,8 +72,9 @@
             <div class="d-flex justify-content-center" style="max-width: 800px;">
                 <input type="file" class="form-control" id="uploadedCSV"
                     style="border-radius:5px; border-color:#474c5583; border-style:solid;" accept=".csv">
-                <button id="uploadButton" class="btn btn-custom" style="height:auto; margin-left:10px; min-width:fit-content;"
-                    data-bs-toggle="modal" data-bs-target="#uploadModal" onclick="submitDocument()">Upload</button>
+                <button id="uploadButton" class="btn btn-custom"
+                    style="height:auto; margin-left:10px; min-width:fit-content;" data-bs-toggle="modal"
+                    data-bs-target="#uploadModal" onclick="submitDocument()">Upload</button>
             </div>
         </div>
         <br>
@@ -88,16 +91,17 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="uploadModalLabel">Upload Status</h5>
-                    <button id="closeModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button id="closeModalButton" type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p class="modal-body" id="uploadModalBody">CSV file was successfully added to the database!</p>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button id="refreshButton" type="button" class="btn btn-secondary" onclick="window.location.reload()"
-                        aria-label="Upload Another CSV">Upload Another CSV</button>
-                    <button id="analysisButton" type="button" class="btn btn-custom" onclick="window.location.href='analysis.html'"
-                        style="height:auto">View QC Analytics</button>
+                    <button id="refreshButton" type="button" class="btn btn-secondary"
+                        onclick="window.location.reload()" aria-label="Upload Another CSV">Upload Another CSV</button>
+                    <button id="analysisButton" type="button" class="btn btn-custom"
+                        onclick="window.location.href='analysis.html'" style="height:auto">View QC Analytics</button>
                 </div>
             </div>
         </div>
@@ -141,52 +145,52 @@
         fr.readAsText(file);
     }
 
-    function SendSurveyPost(){
-            let surveyObject = {
-                "version":"testVersion", 
-                "questions":questions
-            };
-			let xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if(this.readyState == 4 && this.status == 200) {
-					survey = JSON.parse(this.responseText);
-                    questions = survey.questions;
-                    console.log("made it back from the survey/questions ajax... moving onto the responses");
-                    console.log(survey);
-                    console.log("parses responses...");
-                    parseResponses();
-                    console.log("responses parsed... now going to the ajax to send responses");
-                    SendResponsesPost();
-				}
-			}	
-			xhttp.open("POST", "http://localhost:8080/surveys/csv", true);
-			xhttp.setRequestHeader('Content-Type','application/json');
-			xhttp.send(JSON.stringify(surveyObject));
+    function SendSurveyPost() {
+        let surveyObject = {
+            "version": "testVersion",
+            "questions": questions
+        };
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                survey = JSON.parse(this.responseText);
+                questions = survey.questions;
+                console.log("made it back from the survey/questions ajax... moving onto the responses");
+                console.log(survey);
+                console.log("parses responses...");
+                parseResponses();
+                console.log("responses parsed... now going to the ajax to send responses");
+                SendResponsesPost();
+            }
         }
-        
+        xhttp.open("POST", "http://localhost:8080/surveys/csv", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify(surveyObject));
+    }
 
 
-        function SendResponsesPost(){
-			let xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-				if(this.readyState == 4 && this.status == 200) {
-                    console.log("got the answer back from the server")
-                    console.log(this.responseText);
-                    responses = JSON.parse(this.responseText);
-                    console.log(responses);
-				}
-			}	
-			xhttp.open("POST", "http://localhost:8080/response/csv", true);
-			xhttp.setRequestHeader('Content-Type','application/json');
-			xhttp.send(JSON.stringify(responses));
-		}
+
+    function SendResponsesPost() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("got the answer back from the server")
+                console.log(this.responseText);
+                responses = JSON.parse(this.responseText);
+                console.log(responses);
+            }
+        }
+        xhttp.open("POST", "http://localhost:8080/response/csv", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify(responses));
+    }
 
 
     function parseQuestions() {
         let questionLine = lines[0].slice(0, -1) + ','; // .slice(0,-1) gets rid of /r at the end; + ',' allows the final line to be split correctly instead of ignored
         let currentLine = questionLine.split(/(?: *?([^",]+?) *?,|" *?(.+?)" *?,|( *?),)/).slice(1).reduce((a, b) => (a.length > 0 && a[a.length - 1].length < 4) ? [...a.slice(0, a.length - 1), [...a[a.length - 1], b]] : [...a, [b]], []).map(e => e.reduce((a, b) => a !== undefined ? a : b, undefined));
         // above is a monster... visit https://stackoverflow.com/questions/57576681/how-can-i-split-by-commas-while-ignoring-any-comma-thats-inside-quotes for an explanation
-        
+
         questions = [];
         for (var i = 1; i < currentLine.length; i++) { //skip index 0 because that is the timestamp
             questions.push(makeQuestion(currentLine[i]));
@@ -209,7 +213,7 @@
         let answersArray = [];
         for (var j = 1; j < parsedLineArray.length; j++) {
             answersArray.push(makeAnswer(j - 1, parsedLineArray[j])); // j - 1 because question 0 is the person's name, but we're starting from index 1 to skip the timestamp in the response
-                                                                    // without - 1, you get things like "what is your name? -> email@email.com; what is your batch's location -> Week 4; etc."
+            // without - 1, you get things like "what is your name? -> email@email.com; what is your batch's location -> Week 4; etc."
         }
         let out = makeResponse(timeStampString, answersArray);
         return out;
@@ -220,10 +224,10 @@
     function makeResponse(timeOfSubmission, attachedAnswers) {
         let arrayOfString = timeOfSubmission.split("/"); //3/10/2020 9:36:02     yyyy-MM-dd HH:mm:ss
         console.log(arrayOfString);    //3/3/2020 14:08:17
-        if(arrayOfString[0].length <2){
+        if (arrayOfString[0].length < 2) {
             arrayOfString[0] = "0" + arrayOfString[0];
         }
-        if(arrayOfString[1].length <2){
+        if (arrayOfString[1].length < 2) {
             arrayOfString[1] = "0" + arrayOfString[1];
         }
         let year = arrayOfString[2].substring(0, 4);
@@ -231,7 +235,7 @@
         console.log(timePart);
         let timePartsSplit = timePart.split(":");
         console.log(timePartsSplit);
-        if(timePartsSplit[0].length == 1){
+        if (timePartsSplit[0].length == 1) {
             timePartsSplit[0] = "0" + timePartsSplit[0];
         }
         timeOfSubmission = year + "-" + arrayOfString[0] + "-" + arrayOfString[1] + " " + timePartsSplit[0] + ":" + timePartsSplit[1] + ":" + timePartsSplit[2]; // + ".000";
@@ -239,15 +243,15 @@
         let out = {
             "timeStampString": timeOfSubmission,                   //////////////////////////////new Date(timeOfSubmission).getTime(),  
             answers: attachedAnswers,
-            "survey":survey
+            "survey": survey
         };
         return out;
     }
 
-    
-    function setCharAt(str,index,chr) {
-    if(index > str.length-1) return str;
-        return str.substring(0,index) + chr + str.substring(index+1);
+
+    function setCharAt(str, index, chr) {
+        if (index > str.length - 1) return str;
+        return str.substring(0, index) + chr + str.substring(index + 1);
     }
 
 

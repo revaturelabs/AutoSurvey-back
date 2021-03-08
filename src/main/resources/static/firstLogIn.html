@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revature | QC Survey App</title>
 
-        <!-- Bootstrap CDN -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
 
-        <!-- Font Awesome CDN -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <!-- Custom Styling -->
-        <link href="style.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Custom Styling -->
+    <link href="style.css" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="img/revatureprofavicon.png">
 </head>
 
 <body class="body-bg" onload="welcome()">
 
-     <!-- Navigation -->
-     <nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top py-0">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top py-0">
         <div class="container-fluid">
             <a class="navbar-brand"> <img src="img/rev-logo-alt.png" width="200px"></a>
         </div>
@@ -36,7 +40,8 @@
             <div class="d-flex justify-content-center">
                 <h1 style="margin-bottom: 10px;">First Time Login</h1>
             </div>
-            <br><hr><br>
+            <br>
+            <hr><br>
             <div class="d-flex justify-content-center">
                 <p id=welcomeMessage></p>
             </div>
@@ -44,30 +49,34 @@
                 <div class="col-12 col-xs-12 col-sm-12 col-md-8 col-lg-4 col-xl-4 align-self-center padding">
                     <form class="needs-validation" novalidate>
                         <div class="input-group">
-                            <input id="newPasswordInput" type="password" class="form-control pwd" style="padding:5px" placeholder="Password" minlength="8" maxlength="20" 
-                            pattern="(?!.* )(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-]).{8,20}" required>
+                            <input id="newPasswordInput" type="password" class="form-control pwd" style="padding:5px"
+                                placeholder="Password" minlength="8" maxlength="20"
+                                pattern="(?!.* )(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-]).{8,20}" required>
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="button" id="eye1">
                                     <i class="fa fa-eye-slash"></i>
                                 </button>
                             </div>
-                            <div class='invalid-feedback'>Please enter a password between 8-20 characters following the guides below.</div>
+                            <div class='invalid-feedback'>Please enter a password between 8-20 characters following the
+                                guides below.</div>
                         </div>
-                        
-                        <br/>
+
+                        <br />
                         <div class="input-group">
-                            <input id="checkPasswordInput" type="password" class="form-control pwd" style="padding:5px" placeholder="Re-type Password" 
-                                area-described-by="passHelp" minlength="8" maxlength="20" pattern="(?!.* )(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-]).{8,20}" data-toggle="password" required>
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="button" id="eye2">
-                                        <i class="fa fa-eye-slash"></i>
-                                    </button>
-                                </div>
-                                <div class='invalid-feedback'>Passwords must match.</div>
+                            <input id="checkPasswordInput" type="password" class="form-control pwd" style="padding:5px"
+                                placeholder="Re-type Password" area-described-by="passHelp" minlength="8" maxlength="20"
+                                pattern="(?!.* )(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-]).{8,20}"
+                                data-toggle="password" required>
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="eye2">
+                                    <i class="fa fa-eye-slash"></i>
+                                </button>
+                            </div>
+                            <div class='invalid-feedback'>Passwords must match.</div>
                         </div>
-                       
-                        <br/>
-                        <small id="passHelp" class="form-text text-muted"> 
+
+                        <br />
+                        <small id="passHelp" class="form-text text-muted">
                             <ul>
                                 <li>Your password:</li>
                                 <ul>
@@ -75,9 +84,9 @@
                                     <li>must contain letters and numbers</li>
                                     <li>must contain at least one special characters</li>
                                     <li>must NOT contain spaces or emojis</li>
-                                    
+
                                 </ul>
-                                
+
                             </ul>
                         </small>
 
@@ -86,12 +95,14 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 col-xs-12 col-sm-12 col-md-8 col-lg-4 col-xl-4 align-self-center">
-                    <button id="setPasswordButton" class="btn btn-custom form-control" type="submit" data-bs-toggle="modal" data-bs-target="#passwordModal" onclick="inputValidate()">Set Password</button>
+                    <button id="setPasswordButton" class="btn btn-custom form-control" type="submit"
+                        data-bs-toggle="modal" data-bs-target="#passwordModal" onclick="inputValidate()">Set
+                        Password</button>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Modal for successful password registration -->
 
     <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
@@ -133,9 +144,9 @@
         // get input field
         let type = document.getElementById('newPasswordInput');
         // if the type of input is password, change to text and vice versa
-        if (type.getAttribute('type') == 'password') { 
+        if (type.getAttribute('type') == 'password') {
             console.log("changing input type");
-            type.setAttribute('type', 'text'); 
+            type.setAttribute('type', 'text');
             eye1.children[0].classList.replace('fa-eye-slash', 'fa-eye')
         }
         else if (type.getAttribute('type') == 'text') {
@@ -149,7 +160,7 @@
         // get input field
         let type = document.getElementById('checkPasswordInput');
         // if the type of input is password, change to text and vice versa
-        if (type.getAttribute('type') == 'password') { 
+        if (type.getAttribute('type') == 'password') {
             console.log("changing input type");
             type.setAttribute('type', 'text');
             eye2.children[0].classList.replace('fa-eye-slash', 'fa-eye');
@@ -168,7 +179,7 @@
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.querySelectorAll('.needs-validation')
         console.log(forms);
-    
+
         // Loop over them and prevent submission if invalid
         Array.prototype.slice.call(forms).forEach(function (form) {
             console.log(form);
@@ -180,11 +191,11 @@
                 setPassword();
             }
             form.classList.add('was-validated')
-            }, false);
+        }, false);
     }
 
     // Function to populate the welcome message
-    function welcome(){
+    function welcome() {
         let welcomeMessage = document.getElementById("welcomeMessage");
         welcomeMessage.innerHTML = "Hello, " + urlParams.get("firstName") + " " + urlParams.get("lastName") + "! Since this is your first time logging in, you need to set your password."
     }
@@ -201,8 +212,8 @@
             console.log(query);
             user[query[0]] = query[1];
         }
-    
-        
+
+
         //collecting user inputs
         let password = document.getElementById('newPasswordInput').value;
 
@@ -215,9 +226,9 @@
             user.password = password;
             console.log(user);
             // create object of password (and email?) -  how will we know who the user is?
-           
+
             console.log(JSON.stringify(user));
-            
+
             // restful enpoint tbc
             let endpointURL = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/users";
             // send AJAX call to pback end to create a new user 
@@ -230,14 +241,14 @@
 
             xhttp.send(JSON.stringify(user));
 
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log(this.responseText);
 
                     // Alert that they've been registered
-                    
+
                     // Send them to the index/login page
-                   // above two things happen in the modal
+                    // above two things happen in the modal
                 }
             }
         }
@@ -249,4 +260,5 @@
 
 
 </script>
+
 </html>

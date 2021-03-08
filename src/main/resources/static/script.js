@@ -39,7 +39,3 @@ function checkUser() {
     window.location.href = "redirect.html";
   }
 }
-
-function sayHello() {
-  console.log("Hello!");
-}
