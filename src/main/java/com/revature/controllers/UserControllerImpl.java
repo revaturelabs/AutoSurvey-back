@@ -86,13 +86,14 @@ public class UserControllerImpl implements UserController {
 	public User getUserByEmail(@RequestParam String email, @RequestBody HttpServletRequest request, HttpServletResponse response) {
 		try {
 			User u = service.getUserByEmail(email);
+			String password = request.getParameter("password");
 			
 			if (u != null) {
 				//if email exists in the database, check password
 				System.out.println("PW in DB: " + u.getPassword());
-				System.out.println("PW in RequestBody: " + request);
+				System.out.println("PW in RequestBody: " + password);
 				
-				if(u.getPassword().equals(request)) {
+				if(u.getPassword().equals(password)) {
 					//if passwords match, check admin status
 					System.out.println("Admin? " + u.isAdmin());
 					
