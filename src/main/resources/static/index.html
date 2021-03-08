@@ -62,7 +62,7 @@
                                 class="form-control" placeholder="Password" required>
                             <br>
                             <button class="btn btn-lg btn-custom" id="loginButton" style="width: 200px; height:auto;"
-                                onclick="login()">Log In</button>
+                                onclick="login()" type="button">Log In</button>
                         </form>
                     </div>
 
@@ -103,33 +103,32 @@
         xhttp.onreadystatechange = function () {
             console.log(this.status);
             if (this.readyState == 4 && this.status == 200) {
-                let user = JSON.parse(this.responseText);
-                console.log("4");
-
-                    document.cookie = "username=" + user.email;
+                console.log(this.responseText);
+                if(this.responseText != ""){
+                    let user = JSON.parse(this.responseText);
+                    document.cookie = "username=" + user.email + "; path=/; expires=" + (date.getTime() + 86400000) + "; SameSite=lax";
                     document.cookie = "admin=" + user.admin;
-                    document.cookie = "path=/";
-                    document.cookie = "expires=" + (date.getTime() + 86400000);
-                    document.cookie = "SameSite=lax";
-                    console.log(user);
-                    window.location.href = "analysis.html";
+                    window.location.assign("analysis.html");
+                }else{
+                    window.location.reload;
+                }
 
                 // } else {
                 //     window.alert("An account with that information could not be found.\nPlease try again or contact an administrator for access.");
             }
-            if(this.readyState == 4){
-                console.log("4");
-                console.log(this.status);
-            }
-            if (this.readyState == 3) {
-                console.log("3");
-            }
-            if (this.readyState == 2) {
-                console.log("2");
-            }
-            if (this.readyState == 1) {
-                console.log("1");
-            }
+            // if(this.readyState == 4){
+            //     console.log("4");
+            //     console.log(this.status);
+            // }
+            // if (this.readyState == 3) {
+            //     console.log("3");
+            // }
+            // if (this.readyState == 2) {
+            //     console.log("2");
+            // }
+            // if (this.readyState == 1) {
+            //     console.log("1");
+            // }
         }
 
         let inputUserJSON = JSON.stringify(inputUser);
