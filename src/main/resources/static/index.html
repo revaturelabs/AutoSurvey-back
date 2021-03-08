@@ -84,32 +84,33 @@
 
         var date = new Date();
 
-        document.cookie = "username=" + email;
-        document.cookie = "admin=true";
-        document.cookie = "SameSite=lax";
+        // document.cookie = "username=" + email;
+        // document.cookie = "admin=true";
+        // document.cookie = "SameSite=lax";
 
 
-        window.location.href = "analysis.html";
+        // window.location.href = "analysis.html";
 
         let xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let user = JSON.parse(this.responseText);
-                document.cookie = "username=" + user.email;
-                document.cookie = "admin=" + user.admin;
-                document.cookie = "path=/";
-                document.cookie = "expires=" + (date.getTime() + 86400000);
-                document.cookie = "SameSite=lax";
-                window.location.href = "analysis.html";
-            } else {
-                window.alert("An account with that information could not be found.\nPlease try again or contact an administrator for access.");
+                // document.cookie = "username=" + user.email;
+                // document.cookie = "admin=" + user.admin;
+                // document.cookie = "path=/";
+                // document.cookie = "expires=" + (date.getTime() + 86400000);
+                // document.cookie = "SameSite=lax";
+                console.log(user);
+                // window.location.href = "analysis.html";
+            // } else {
+            //     window.alert("An account with that information could not be found.\nPlease try again or contact an administrator for access.");
             }
         }
 
-        xhttp.open("GET", "http://localhost:8080/AutoSurvey/getUserByEmail?email=" + email, true);
-
-        xhttp.send(password);
+        xhttp.open("POST", "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/getUserByEmail?email=" + email, true);
+        xhttp.setRequestHeader("Content-Type","application/json")
+        xhttp.send(JSON.stringify(password));
     }
 
 </script>
