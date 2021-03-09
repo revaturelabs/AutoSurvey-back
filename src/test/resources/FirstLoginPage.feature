@@ -1,5 +1,3 @@
-#We can login for the first time on our first time login page
-
 Feature: Login to the QC Survey App as a new user
 
 

@@ -16,7 +16,7 @@ public class FirstLoginSteps {
 	
 	public static FirstLoginPage firstpage = FirstLoginRunner.firstPage;
 	public static WebDriver driver = FirstLoginRunner.driver;
-	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/firstLogin.html";//?firstName=sd&lastName=er&email=aa@gmail.com";
+	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/firstLogIn.html?firstName=Emily&lastName=Troll&email=emily.troll@revature.net";
 	
 	@Given("^the User Has Link$")
 	public void the_User_Has_Link() throws Throwable {

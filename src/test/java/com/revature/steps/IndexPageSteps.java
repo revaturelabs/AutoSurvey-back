@@ -1,7 +1,5 @@
 package com.revature.steps;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
