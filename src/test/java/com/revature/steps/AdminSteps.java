@@ -13,7 +13,7 @@ import cucumber.api.java.en.When;
 public class AdminSteps {
 	public static AdminPage adminpage = AdminRunner.adminpage;
 	public static WebDriver driver = AdminRunner.driver;
-	String url = "file:///C:/Users/Ric/Documents/workspace-spring-tool-suite-4-4.9.0.RELEASE/AutoSurvey-front/admin.html";
+	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/admin.html";
 
 	@Given("^the Admin is on the Admin Page$")
 	public void the_Admin_is_on_the_Admin_Page() throws Throwable {

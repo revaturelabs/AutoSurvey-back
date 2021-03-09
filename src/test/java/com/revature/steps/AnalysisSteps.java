@@ -15,7 +15,7 @@ public class AnalysisSteps {
 	
 	public static WebDriver driver = AnalysisRunner.driver;
 	public static AnalysisPage analysispages = AnalysisRunner.analysispage;
-	String url = "file:///C:/Users/Ric/Documents/workspace-spring-tool-suite-4-4.9.0.RELEASE/AutoSurvey-front/analysis.html";
+	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/analysis.html";
 	
 	@Given("^the user is on the Analysis Page$")
 	public void the_user_is_on_the_Analysis_Page() throws Throwable {

@@ -15,7 +15,7 @@ public class UploadPageSteps {
 	
 	public static UploadPage uploadpage = UploadRunner.uploadPage;
 	public static WebDriver driver = UploadRunner.driver;
-	String url = "file:///C:/Users/Ric/Documents/workspace-spring-tool-suite-4-4.9.0.RELEASE/AutoSurvey-front/upload.html";
+	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/upload.html";
 	String testfile = "C:\\\\Users\\\\Ric\\\\Documents\\\\uploadtest.txt";
 	
 	@Given("^The user is on the upload page$")
