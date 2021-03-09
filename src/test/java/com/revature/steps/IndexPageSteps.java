@@ -1,5 +1,7 @@
 package com.revature.steps;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
@@ -19,6 +21,7 @@ public class IndexPageSteps {
 	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/";
 	
 	
+	
 //	@Given("^The browser is opened$")
 //	public void the_browser_is_opened() throws Throwable {
 //	    // Write code here that turns the phrase above into concrete actions
@@ -33,28 +36,29 @@ public class IndexPageSteps {
 
 	@Given("^The user is on the landing page$")
 	public void the_user_is_on_the_landing_page() throws Throwable {
+		
 	    driver.get(url);
 	    try {
-	 			Thread.sleep(1000);
-	 		} catch (InterruptedException e) {
-	 			e.printStackTrace();
-	 		}
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@When("^The user clicks on the email input$")
 	public void the_user_clicks_on_the_email_input() throws Throwable {
 	    indexpage.email.click();
 	    try {
-	 			Thread.sleep(1000);
-	 		} catch (InterruptedException e) {
-	 			e.printStackTrace();
-	 		}
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	   
 	}
 
 	@When("^types in their email$")
 	public void types_in_their_email() throws Throwable {
-	    indexpage.email.sendKeys("username@example.com"); // to be changed to test user when that gets created
+	    indexpage.email.sendKeys("a@example.com"); // to be changed to test user when that gets created
 	    try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -74,7 +78,7 @@ public class IndexPageSteps {
 
 	@When("^types in their password$")
 	public void types_in_their_password() throws Throwable {
-	    indexpage.password.sendKeys("password");
+	    indexpage.password.sendKeys("bar");
 	    try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -94,7 +98,7 @@ public class IndexPageSteps {
 
 	@Then("^The user is logged in$")
 	public void the_user_is_logged_in() throws Throwable {
-	    Assertions.assertEquals("Page Title", "Page Title");
+	    Assertions.assertEquals("Revature | QC Analysis", driver.getTitle());
 	}
 	
 }

@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
 import com.revature.pages.AdminPage;
+import com.revature.pages.IndexPage;
 import com.revature.runners.AdminRunner;
+import com.revature.runners.IndexRunner;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -13,8 +15,38 @@ import cucumber.api.java.en.When;
 public class AdminSteps {
 	public static AdminPage adminpage = AdminRunner.adminpage;
 	public static WebDriver driver = AdminRunner.driver;
+	
+	
+	
 	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/admin.html";
 
+	@Given("^the Admin is Logged in$")
+	public void the_Admin_is_Logged_in() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+		driver.get("http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/");
+		
+		   adminpage.email.sendKeys("admin@admin.com"); // to be changed to test user when that gets created
+		    try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		    
+		    adminpage.password.sendKeys("admin");
+		    try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		    
+		    adminpage.loginBtn.click();
+		    try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+	}
+	
 	@Given("^the Admin is on the Admin Page$")
 	public void the_Admin_is_on_the_Admin_Page() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions

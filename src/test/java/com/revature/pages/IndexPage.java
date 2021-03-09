@@ -1,7 +1,5 @@
 package com.revature.pages;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +15,7 @@ public class IndexPage {
 	@FindBy(id = "password")
 	public WebElement password;
 	
-	@FindBy(id = "test")
+	@FindBy(id = "loginButton")
 	public WebElement loginButton;
 	
 	public IndexPage(WebDriver driver)

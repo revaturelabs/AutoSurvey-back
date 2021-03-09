@@ -20,6 +20,12 @@ public class AdminPage {
 	@FindBy(id = "register")
 	public WebElement registerBtn; 
 	
+	@FindBy(id = "password")
+	public WebElement password;
+	
+	@FindBy(id = "loginButton")
+	public WebElement loginBtn;
+	
 	public AdminPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
