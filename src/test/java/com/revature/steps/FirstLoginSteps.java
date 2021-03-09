@@ -1,5 +1,7 @@
 package com.revature.steps;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
@@ -14,23 +16,31 @@ public class FirstLoginSteps {
 	
 	public static FirstLoginPage firstpage = FirstLoginRunner.firstPage;
 	public static WebDriver driver = FirstLoginRunner.driver;
-	String url = "D:\\AutoSurvey-front\\survey.html";
+	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/firstLogIn.html?firstName=Emily&lastName=Troll&email=emily.troll@revature.net";
 	
-//	@Given("^the User Has Link$")
-//	public void the_User_Has_Link() throws Throwable {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new PendingException();
-//	}
-//
-//	@Given("^the User follows the link$")
-//	public void the_User_follows_the_link() throws Throwable {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new PendingException();
-//	}
+	@Given("^the User Has Link$")
+	public void the_User_Has_Link() throws Throwable {
+		assertTrue(true);
+		 try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+	}
+
+	@Given("^the User follows the link$")
+	public void the_User_follows_the_link() throws Throwable {
+	    driver.get(url);
+	    try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Given("^the User is on the First Login Page$")
 	public void the_User_is_on_the_First_Login_Page() throws Throwable {
-	    driver.get("url");
+	    assertTrue(true);
 	    try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {

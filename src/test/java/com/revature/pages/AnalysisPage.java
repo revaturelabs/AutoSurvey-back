@@ -11,10 +11,10 @@ public class AnalysisPage {
 	@FindBy(id = "nav-batch-tab")
 	public WebElement batchTab;
 	
-	@FindBy(xpath = "//*[@id=\"datepicker\"]/div/table/tbody/tr[2]/td[6]/a")
+	@FindBy(xpath = "/html/body/div[1]/div[1]/div[3]/div/div[1]/div[1]/div/table/tbody/tr[1]/td[1]/a")
 	public WebElement date;
 	
-	@FindBy(xpath = "/html/body/div[1]/div/div[3]/div/button")
+	@FindBy(xpath = "//*[@id=\"nav-date\"]/div[2]/button")
 	public WebElement searchBtn;
 	
 	@FindBy(xpath = "//*[@id=\"nav-batch\"]/select[1]")
@@ -25,6 +25,15 @@ public class AnalysisPage {
 	
 	@FindBy(xpath = "/html/body/div[1]/div/div[2]/div/div[2]/select[3]")
 	public WebElement week;
+	
+	@FindBy(id = "email")
+	public WebElement email;
+	
+	@FindBy(id = "password")
+	public WebElement password;
+	
+	@FindBy(id = "loginButton")
+	public WebElement loginButton;
 
 	
 	
