@@ -14,7 +14,7 @@ public class IndexPageSteps {
 	
 	public static IndexPage indexpage = IndexRunner.indexPage;
 	public static WebDriver driver = IndexRunner.driver;
-	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/survey.html";
+	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/";
 	
 //	@Given("^The browser is opened$")
 //	public void the_browser_is_opened() throws Throwable {
@@ -30,7 +30,7 @@ public class IndexPageSteps {
 
 	@Given("^The user is on the landing page$")
 	public void the_user_is_on_the_landing_page() throws Throwable {
-	    driver.get("url");
+	    driver.get(url);
 	    try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {

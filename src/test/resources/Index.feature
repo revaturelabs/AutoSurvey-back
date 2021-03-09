@@ -2,9 +2,9 @@
 Feature: Login to QC Survey App
 
 #Navigate to landing page
-	Background: 
-		Given The browser is opened
-		And User is on the Landing Page
+#	Background: 
+#		Given The browser is opened
+#		And User is on the Landing Page
 		
 
 	Scenario: Verify login functionality
