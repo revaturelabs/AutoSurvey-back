@@ -16,7 +16,7 @@ function submitSurveyToServer() {
         document.getElementById("location").value,
         document.getElementById("batch").value,
         document.getElementById("week").value,
-        document.querySelector('input[name="understanding"]:checked').value,
+        document.querySelector('input[name="satisfaction"]:checked').value,
         document.querySelector('input[name="one-on-one"]:checked').value,
         document.querySelector('input[name="understanding"]:checked').value,
         document.querySelector('input[name="pace"]:checked').value,

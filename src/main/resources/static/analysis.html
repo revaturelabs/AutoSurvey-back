@@ -47,18 +47,18 @@
             }
 
             $('.week-picker').datepicker({
-                firstDay: 1,
+                firstDay: 0,
                 showOtherMonths: true,
                 selectOtherMonths: true,
                 onSelect: function (dateText, inst) {
                     var date = $(this).datepicker('getDate');
-                    if (date.getDay() == 0) {
-                        startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() - 6)
-                        endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay())
-                    } else {
-                        startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 1);
-                        endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 7);
-                    }
+                    // if (date.getDay() == 0) {
+                    //     startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() - 7)
+                    //     endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() - 1)
+                    // } else {
+                        startDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
+                        endDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 6);
+                    // }
 
                     let formattedStartDate = startDate.toISOString().slice(0, 10) + " 00:00:00.0";
                     let formattedEndDate = endDate.toISOString().slice(0, 10) + " 00:00:00.0";
@@ -87,38 +87,59 @@
         });
 
         function getDataOnLoad() {
-            // let xhttp = new XMLHttpRequest();
+            let xhttp = new XMLHttpRequest();
 
-            // xhttp.onreadystatechange = function(){
-            //     if(this.readyState == 4 && this.status == 200){
-            //         let data = JSON.parse(this.responseText);
-            //         createCharts(data);
-            //     }
-            // }
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    let data = JSON.parse(this.responseText);
+                    let satisfaction = data.avgSatisfaction;
+                    let understanding = data.avgUnderstanding;
+                    let helpful = data.avgHelpful;
+                    let organized = data.avgOrganized;
+                    let questionsEnc = data.avgQuestionsEncouraged;
+                    let training = data.avgMetExpectations;
+                    let pace = data.avgPace;
 
-            // xhttp.open("GET", "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/averageData", true);
-            // xhttp.send();
+                    let array = [satisfaction, understanding, helpful, organized, questionsEnc, training, pace];
+                    let title = "Averages for All Time";
+                    createCharts(array, title);
+                }
+            }
 
-            let data = [2, 3, 5, 4, 1, 2, 3, 2];
-            let title = "Averages for All Time"
-            createCharts(data, title);
+            xhttp.open("GET", "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/dateview", true);
+            xhttp.send();
+
+            // let data = [2, 3, 5, 4, 1, 2, 3];
+            // let title = "Averages for All Time"
+            // createCharts(data, title);
         }
         function getData() {
             let xhttp = new XMLHttpRequest();
-            let data = [5, 2, 3, 1, 3, 3, 1, 4];
+            let data = [5, 2, 3, 1, 3, 3, 1];
             let title = "Averages for " + document.getElementById("startDate").innerHTML;
             createCharts(data, title);
 
-            // xhttp.onreadystatechange = function (){
-            //     if(this.readyState == 4 && this.status == 200){
-            //         let data = JSON.parse(this.responseText);
+            xhttp.onreadystatechange = function (){
+                if(this.readyState == 4 && this.status == 200){
+                    let data = JSON.parse(this.responseText);
+                    let satisfaction = data.avgSatisfaction;
+                    let understanding = data.avgUnderstanding;
+                    let helpful = data.avgHelpful;
+                    let organized = data.avgOrganized;
+                    let questionsEnc = data.avgQuestionsEncouraged;
+                    let training = data.avgMetExpectations;
+                    let pace = data.avgPace;
 
-            //         createCharts(data);
-            //     }
-            // }
+                    console.log(data);
 
-            // xhttp.open("GET", `http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/averageData?timestamp=${weekDate}`, true);
-            // xhttp.send();
+                    let array = [satisfaction, understanding, helpful, organized, questionsEnc, training, pace];
+                    let title = "Averages for Week Of " + weekDate.slice(0,10);
+                    createCharts(array, title);
+                }
+            }
+
+            xhttp.open("GET", `http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/dateview/${weekDate}`, true);
+            xhttp.send();
 
             console.log(weekDate)
             console.log("Creating charts...")
@@ -136,28 +157,26 @@
             window.myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Clarity', 'Preparedness', 'Understanding', 'Helpful Materials', 'Organization', 'Questions Encouraged', 'Training & Project Expectations', 'Pace of Training'],
+                    labels: ['Satisfaction', 'Understanding', 'Helpful Materials', 'Organization', 'Questions Encouraged', 'Training & Project Expectations', 'Pace of Training (1 = Too slow; 5 = Too fast)'],
                     datasets: [{
                         data: dataSetFromAjax,
                         backgroundColor: [
                             'rgba(189,28,20, 0.5)',
-                            'rgba(114,196,172, 0.5)',
                             'rgba(40,117,18, 0.5)',
                             'rgba(106,42,150, 0.5)',
                             'rgba(13,99,133, 0.5)',
                             'rgba(255, 159, 64, 0.5)',
-                            'rgba(128,20,77,0.5',
+                            'rgba(128,20,77,0.5)',
                             'rgba(0,82,86,0.5'
                         ],
                         borderColor: [
                             'rgba(189,28,20, 1)',
-                            'rgba(114,196,172, 1)',
                             'rgba(40,117,18, 1)',
                             'rgba(106,42,150, 1)',
                             'rgba(13,99,133, 1)',
                             'rgba(255, 159, 64, 1)',
-                            'rgba(128,20,77,1',
-                            'rgba(0,82,86,1'
+                            'rgba(128,20,77,1)',
+                            'rgba(0,82,86,1)'
                         ],
                         borderWidth: 1
                     }]
