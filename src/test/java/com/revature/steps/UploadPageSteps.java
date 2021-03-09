@@ -50,21 +50,13 @@ public class UploadPageSteps {
 	public void the_user_is_on_the_upload_page() {
 		driver.get(url);
 	    try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@When("^The user clicks the choose file button$")
-	public void the_user_clicks_the_choose_file_button() {
-		uploadpage.uploadButton.click();
-		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
+
+
 
 	@When("^The user selects a file$")
 	public void the_user_selects_a_file() { 
