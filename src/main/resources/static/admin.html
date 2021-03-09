@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="img/revatureprofavicon.png">
 </head>
 
-<body class="body-bg">
+<body class="body-bg" onload="checkUser()">
 
 
     <!-- Navigation -->
@@ -108,7 +108,7 @@
 </body>
 <script>
 
-    let url = "file:///C:/Revature/Training/AutoSurvey-front/AutoSurvey-front/"
+    let url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/"
     function isValidEmail(email) {
         var regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;;
         return regex.test(email);
@@ -142,7 +142,7 @@
         }
 
         let element = document.getElementById("uploadModalBody");
-        element.innerHTML = "Please provide the following link to the employee this account was created for:\n \n" + url + `firstLogin.html?firstName=${firstName}&lastName=${lastName}&email=${email}`;
+        element.innerHTML = "Please provide the following link to the employee this account was created for:\n \n" + url + `firstLogIn.html?firstName=${firstName}&lastName=${lastName}&email=${email}`;
         $("#addUserModal").modal("show");
     }
 </script>
