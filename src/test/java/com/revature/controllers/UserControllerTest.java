@@ -27,7 +27,7 @@ import com.revature.services.UserService;
 @AutoConfigureMockMvc
 @SpringBootTest(classes = com.example.demo.QcDataReportAppApplication.class)
 public class UserControllerTest {
-
+ 
 	@MockBean
 	UserService serv;
 
