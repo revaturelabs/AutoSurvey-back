@@ -106,7 +106,7 @@
                 }
             }
 
-            xhttp.open("GET", "http://localhost:8080/dateview", true);
+            xhttp.open("GET", "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/dateview", true);
             xhttp.send();
 
             // let data = [2, 3, 5, 4, 1, 2, 3];
@@ -138,7 +138,7 @@
                 }
             }
 
-            xhttp.open("GET", `http://localhost:8080/dateview/${weekDate}`, true);
+            xhttp.open("GET", `http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/dateview/${weekDate}`, true);
             xhttp.send();
 
             console.log(weekDate)
