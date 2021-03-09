@@ -15,27 +15,48 @@ public class UploadPageSteps {
 	
 	public static UploadPage uploadpage = UploadRunner.uploadPage;
 	public static WebDriver driver = UploadRunner.driver;
-	String url = "file:///C:/Users/Ric/Documents/workspace-spring-tool-suite-4-4.9.0.RELEASE/AutoSurvey-front/upload.html";
+	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/upload.html";
 	String testfile = "C:\\\\Users\\\\Ric\\\\Documents\\\\uploadtest.txt";
+	
+	@Given("^The user is logged in as admin$")
+	public void the_User_is_logged_in_as_admin()
+	{
+			driver.get("http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/");
+			
+				uploadpage.email.sendKeys("admin@admin.com"); // to be changed to test user when that gets created
+			    try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			    
+			    uploadpage.password.sendKeys("admin");
+			    try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			    
+			    uploadpage.loginButton.click();
+			    try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+	}
+
 	
 	@Given("^The user is on the upload page$")
 	public void the_user_is_on_the_upload_page() {
-	    driver.get(url);
+		driver.get(url);
 	    try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@When("^The user clicks the choose file button$")
-	public void the_user_clicks_the_choose_file_button() {
-		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
+
+
 
 	@When("^The user selects a file$")
 	public void the_user_selects_a_file() { 
@@ -45,11 +66,6 @@ public class UploadPageSteps {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-	}
-
-	@Then("^The file name should appear$")
-	public void the_file_name_should_appear() {
-	    Assertions.assertNotEquals("uploadtest.txt", uploadpage.uploadCsv);
 	}
 
 	@When("^The user clicks the upload button$")
@@ -79,4 +95,5 @@ public class UploadPageSteps {
 		}
 	}
 	
+
 }
