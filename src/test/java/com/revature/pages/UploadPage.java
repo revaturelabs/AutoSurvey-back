@@ -20,6 +20,15 @@ public class UploadPage {
 	@FindBy(id = "uploadedCSV")
 	public WebElement uploadCsv;
 	
+	@FindBy(id = "email")
+	public WebElement email;
+	
+	@FindBy(id = "password")
+	public WebElement password;
+	
+	@FindBy(id = "loginButton")
+	public WebElement loginButton;
+	
 	public UploadPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

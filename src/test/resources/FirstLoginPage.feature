@@ -3,9 +3,9 @@
 Feature: Login to the QC Survey App as a new user
 
 
-#	Background:
-#		Given the User Has Link
-#		And the User follows the link
+	Background:
+		Given the User Has Link
+		And the User follows the link
 		
 
 	Scenario: Verify First Time Login functionality
