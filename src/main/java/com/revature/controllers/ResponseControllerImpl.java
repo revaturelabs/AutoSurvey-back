@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -40,6 +41,31 @@ public class ResponseControllerImpl implements ResponseController {
 		return null;
 	}
 	
+	@Override
+	@PostMapping(value = "/responseSurvey", consumes = "application/json", produces = "application/json")
+	public Response addResponseForSurvey(@RequestBody Response r) {
+		// TODO Auto-generated method stub
+		try {
+
+			List<Answer> answers = r.getAnswers();
+			Response newResponse = rs.addResponse(r);
+			
+			List<Answer> newAnswers = null;
+			for(int i = 0; i < answers.size(); i++)
+			{
+				answers.get(i).setResponse(newResponse);
+				Answer newAwnser = answerService.addAnswer(answers.get(i));
+				newAnswers.add(newAwnser);
+			}
+			
+			newResponse.setAnswers(newAnswers);
+			return rs.updateResponse(newResponse);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	@PostMapping(value = "/response/csv", consumes = "application/json", produces = "application/json")
 	public List<Response> addResponsesByCSV(@RequestBody List<Response> responses) {
