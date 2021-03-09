@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revature | QC Admin Page</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <!-- JQuery import -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Custom Styling -->
+    <link href="style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/revatureprofavicon.png">
+</head>
+
+<body class="body-bg" onload="checkUser()">
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top py-0">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="analysis.html"> <img src="img/rev-logo-alt.png" width="200px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link" href="survey.html" id="navbarSurvey">Survey</a>
+                    </li>
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link" href="analysis.html" id="navbarAnalysis">Analysis</a>
+                    </li>
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link" href="upload.html" id="navbarUpload">Upload</a>
+                    </li>
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link active" href="admin.html" id="navbarAdmin">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container bubble" style="margin-top: 1%; width: 800px;">
+        <div class="d-flex justify-content-center">
+            <h1>Create QC Account</h1>
+        </div>
+        <hr>
+        <br>
+        <div class="d-flex justify-content-center">
+            <p>Please enter the QC member's information below:</p>
+        </div>
+        <div class="d-flex justify-content-center" style="padding-bottom: 20px;">
+            <input class="form-control" style="border-color: black; border-color:#474c5583; width: 300px;" type="text"
+                id="firstName" placeholder="First Name" autocomplete="off">
+        </div>
+        <div class="d-flex justify-content-center" style="padding-bottom: 20px;">
+            <input class="form-control" style="border-color: black; border-color:#474c5583; width: 300px;" type="text"
+                id="lastName" placeholder="Last Name" autocomplete="off">
+        </div>
+        <div class="d-flex justify-content-center" style="padding-bottom: 20px;">
+            <input class="form-control" style="border-color: black; border-color:#474c5583; width: 300px;" type="text"
+                id="email" placeholder="Email" autocomplete="off">
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <h5 id="warning" style="color: red; margin-bottom: 15px;">
+                </h3>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button onclick="registerEmployee()" class="btn btn-lg btn-custom" style="width: 196px;"
+                id="register">Register Employee</button>
+        </div>
+
+
+    </div>
+
+    <div class="modal fade" id="addUserModal" tabindex="-1" ara-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadModalLabel">User Creation Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="white-space: pre-line;">
+                    <p class="modal-body" id="uploadModalBody"></p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.reload()"
+                        aria-label="Upload Another CSV">Add Another User</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    let url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/"
+    function isValidEmail(email) {
+        var regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;;
+        return regex.test(email);
+    }
+
+    function registerEmployee() {
+        document.getElementById("warning").innerHTML = " ";
+
+        let firstName = document.getElementById("firstName").value;
+        let lastName = document.getElementById("lastName").value;
+        let email = document.getElementById("email").value;
+
+        console.log(firstName);
+        console.log(lastName);
+        console.log(email);
+
+        if (!firstName || !lastName || !email) {
+            document.getElementById("warning").innerHTML = "You must fill out every section to continue.";
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            document.getElementById("warning").innerHTML = "You have entered an invalid email address.";
+            return;
+        }
+
+        let newUser = {
+            "first_name": firstName,
+            "last_name": lastName,
+            "email": email
+        }
+
+        let element = document.getElementById("uploadModalBody");
+        element.innerHTML = "Please provide the following link to the employee this account was created for:\n \n" + url + `firstLogIn.html?firstName=${firstName}&lastName=${lastName}&email=${email}`;
+        $("#addUserModal").modal("show");
+    }
+</script>
+
+</html>

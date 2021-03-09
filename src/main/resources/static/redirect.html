@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revature | QC App</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <!-- Custom Styling -->
+    <link href="style.css" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="img/revatureprofavicon.png">
+</head>
+
+<body class="body-bg" onload="message()">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-light bg-dark sticky-top py-0">
+        <div class="container-fluid">
+            <a class="navbar-brand"> <img src="img/rev-logo-alt.png" width="200px"></a>
+        </div>
+    </nav>
+</body>
+
+<script>
+    function message() {
+        window.alert("You must be logged in to view that page! \nYou are being redirected.")
+        window.location.href = "index.html"
+    }
+</script>
+
+</html>

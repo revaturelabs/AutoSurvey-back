@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -39,6 +41,30 @@ public class ResponseControllerImpl implements ResponseController {
 		return null;
 	}
 	
+	@Override
+    @PostMapping(value = "/responseSurvey", consumes = "application/json", produces = "application/json")
+    public Response addResponseForSurvey(@RequestBody Response r) {
+        // TODO Auto-generated method stub
+        try {
+        	//int responseID = r.getId();
+        	//Response newResponse = rs.addResponse(r);
+            List<Answer> answers = r.getAnswers();
+            r.setAnswers(null);
+            Response newResponse = rs.addResponse(r);
+            newResponse.setSubmittedAt(Timestamp.valueOf(newResponse.getTimeStampString()));
+            for(int i = 0; i < answers.size(); i++)
+            {
+            	answers.get(i).setResponse(newResponse);
+            	answers.set(i, answerService.addAnswer(answers.get(i)));
+            }
+            newResponse.setAnswers(answers);
+            return newResponse;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+	
 	
 	@PostMapping(value = "/response/csv", consumes = "application/json", produces = "application/json")
 	public List<Response> addResponsesByCSV(@RequestBody List<Response> responses) {
@@ -49,9 +75,12 @@ public class ResponseControllerImpl implements ResponseController {
 				//System.out.println(responses.get(i));
 				System.out.println("begining to process the " + i + " response");
 				Response curResponse = responses.get(i);
+				curResponse.setSubmittedAt(Timestamp.valueOf(curResponse.getTimeStampString()));
+				System.out.println("timestamp before saving to repo: " + curResponse.getSubmittedAt());
 				List<Answer> answers = curResponse.getAnswers();
 				curResponse.setAnswers(null);
 				curResponse = rs.addResponse(curResponse);
+				System.out.println("timestamp after saving to repo: " + curResponse.getSubmittedAt());
 				//now to add the answers... 
 				System.out.println("begining to process the answers of the " + i + " response");
 				for(int j = 0; j < answers.size(); j++) {
@@ -67,7 +96,8 @@ public class ResponseControllerImpl implements ResponseController {
 			return responses;
 			
 			
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;

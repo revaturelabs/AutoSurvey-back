@@ -14,6 +14,7 @@ public class IndexPageSteps {
 	
 	public static IndexPage indexpage = IndexRunner.indexPage;
 	public static WebDriver driver = IndexRunner.driver;
+	String url = "D:\\AutoSurvey-front\\survey.html";
 	
 //	@Given("^The browser is opened$")
 //	public void the_browser_is_opened() throws Throwable {

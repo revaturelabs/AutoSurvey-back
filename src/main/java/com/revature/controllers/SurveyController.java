@@ -38,15 +38,13 @@ public interface SurveyController {
 	
 	/**
 	 * <p>
-	 * <h1>getAllSurveysWithinWeekGivenTimestamp</h1> is a get mapping that will retrieve a specified survey
-	 * based on a given survey id and return the retrieved survey as a JSON to the
-	 * front end
+	 * <h1>getAllSurveysWithinWeekGivenTimestamp</h1> is a get mapping that will retrieve all surveys
+	 * based on a Timestamp as a string (yyyy-mm-dd hh:mm:ss).
 	 * </p>
 	 * 
-	 * @param id path variable of type int
-	 * @return <strong>Survey</strong> Returns a survey object in the form of a JSON
-	 *         to the front end, Returns null if Survey was not successfully added
-	 *         to DB
+	 * @param timestamp path variable of type String
+	 * @return <strong>List<Survey></strong> Returns a list of surveys in the form of a JSON
+	 *         to the front end, Returns null if Survey was not successfully added to DB
 	 * @author Revature 2101 ETL batch
 	 */
 	public List<Survey> getAllSurveysWithinWeekGivenTimestamp(String timestamp);
