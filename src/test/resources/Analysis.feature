@@ -1,5 +1,8 @@
 Feature: Testing both Date and Batch Search functions
 
+Background:
+	Given the user is logged in
+
 Scenario: Testing the Date Search Function
 	Given the user is on the Analysis Page
 	When the user clicks a start date on the Calendar

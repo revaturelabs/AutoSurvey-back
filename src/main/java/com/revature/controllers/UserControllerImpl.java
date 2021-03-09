@@ -83,27 +83,28 @@ public class UserControllerImpl implements UserController {
 	
 	@Override
 	@PostMapping(value="/getUserByEmail", consumes="application/json", produces="application/json")
-	public User getUserByEmail(@RequestParam String email, @RequestBody HttpServletRequest request, HttpServletResponse response) {
+	public User getUserByEmail(@RequestBody User requestUser) {
 		try {
-			User u = service.getUserByEmail(email);
+			User u = service.getUserByEmail(requestUser.getEmail());
 			
 			if (u != null) {
 				//if email exists in the database, check password
 				System.out.println("PW in DB: " + u.getPassword());
-				System.out.println("PW in RequestBody: " + request);
+				System.out.println("PW in RequestBody: " + requestUser.getPassword());
 				
-				if(u.getPassword().equals(request)) {
+				if(u.getPassword().equals(requestUser.getPassword())) {
 					//if passwords match, check admin status
 					System.out.println("Admin? " + u.isAdmin());
+					return u;
 					
-					if (u.isAdmin()) {
-						//if admin, create cookie and return User
-						Cookie cookie = new Cookie("loggedInAdmin", email);
-						response.addCookie(cookie);
-						return service.getUserByEmail(email);
-					}
-					return null;
-					
+//					if (u.isAdmin()) {
+//						//if admin, create cookie and return User
+//						Cookie cookie = new Cookie("loggedInAdmin", requestUser.getEmail());
+////						response.addCookie(cookie);
+//						return service.getUserByEmail(requestUser.getEmail());
+//					}
+//					return null;
+//					
 				}
 				return null;
 				

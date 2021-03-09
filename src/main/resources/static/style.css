@@ -1,0 +1,95 @@
+@font-face{
+    font-family: Futura-Std-Book;
+    src:url("fonts/Futura-Std-Book.otf")
+}
+
+@font-face{
+    font-family: Futura-Std;
+    src:url("fonts/Futura-Std-Medium.otf")
+}
+
+@font-face{
+    font-family: Futura-Std-Heavy;
+    src:url("fonts/Futura-Std-Heavy.otf")
+}
+
+@font-face{
+    font-family: Futura-Std-Bold;
+    src:url("fonts/Futura-Std-Bold.otf")
+}
+
+html, body{
+    width: 100%;
+    background-color: #F8F9FA;
+    /* background-color: #474C55; */
+    font-family: Futura-Std-Book;
+}
+
+body h1{
+    font-family: Futura-Std-Heavy;
+}
+
+.btn-custom{
+    background-color: #F26925;
+    color:white;
+    height:50px;
+}
+
+.btn-custom:hover{
+    background-color: #b34108;
+    color: white;
+}
+
+.navbar{
+    padding:.8rem;
+}
+
+.navbar img {
+    padding-right:.7rem;
+    padding-top:.7rem;
+    padding-bottom:.7rem;
+}
+
+.navbar-nav li{
+    padding-right: 20px;
+}
+
+.nav-link {
+    font-size:larger;
+    font-family: Futura-Std;
+}
+
+.padding {
+    padding: 1rem;
+}
+
+.bubble{
+    margin-top: 15px; 
+    border-color:#474C55; 
+    border-width:1px;
+    border-style:solid; 
+    border-radius:50px; 
+    background-color:#e2e2e2; 
+    padding:50px;
+    box-shadow: 10px 10px 25px -20px black;
+}
+
+.body-bg{
+    background:url('img/index-bg.png') center repeat-y;
+    /* background-image:url('img/index-bg-2.png');  */
+    background-size: 100% auto;
+    min-height: 100vh;
+}
+
+.hidden{
+    display: none !important;
+}
+
+option{
+    font-family: "Futura-Std" !important;
+}
+
+input[type=radio]{
+    height: 20px;
+    width: 20px;
+}

@@ -17,7 +17,7 @@ public class SurveyPageSteps {
 	public static SurveyPage surveypage = SurveyRunner.surveyPage;
 	public static WebDriver driver = SurveyRunner.driver;
 	public static JavascriptExecutor js = (JavascriptExecutor) driver;		
-	String url = "D:\\AutoSurvey-front\\survey.html";
+	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/survey.html";
 
 	@Given("^The User is on the survey page$")
 	public void the_User_is_on_the_survey_page() throws Throwable

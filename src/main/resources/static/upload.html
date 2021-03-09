@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revature | QC Data Upload</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <!-- Custom Styling -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Custom JS Script -->
+    <script src="script.js"></script>
+
+    <link rel="icon" type="image/png" href="img/revatureprofavicon.png">
+
+</head>
+
+<body class="body-bg" onload="checkUser()">
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top py-0">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="analysis.html"> <img src="img/rev-logo-alt.png" width="200px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link" href="survey.html" id="navbarSurvey">Survey</a>
+                    </li>
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link" href="analysis.html" id="navbarAnalysis">Analysis</a>
+                    </li>
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link active" href="upload.html" id="navbarUpload">Upload</a>
+                    </li>
+                    <li class="nav-item ms-auto">
+                        <a class="nav-link hidden" href="admin.html" id="navbarAdmin">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Upload -->
+
+    <div class="container bubble" style="margin-top:1%; max-width: 800px;">
+        <div class="d-flex justify-content-center">
+            <h1>Upload CSV File</h1>
+        </div>
+
+        <div class="container">
+            <br>
+            <hr>
+            <br>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center" style="max-width: 800px;">
+                <input type="file" class="form-control" id="uploadedCSV"
+                    style="border-radius:5px; border-color:#474c5583; border-style:solid;" accept=".csv">
+                <button id="uploadButton" class="btn btn-custom"
+                    style="height:auto; margin-left:10px; min-width:fit-content;" data-bs-toggle="modal"
+                    data-bs-target="#uploadModal" onclick="submitDocument()">Upload</button>
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <p>Using the form above, you may upload QC data from the Google Forms QC Survey and add it to the database.
+            Please ensure that the data is uploaded as a .CSV from Google Sheets.</p>
+    </div>
+
+    <!-- Modal -->
+
+    <div class="modal fade" id="uploadModal" tabindex="-1" ara-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadModalLabel">Upload Status</h5>
+                    <button id="closeModalButton" type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-body" id="uploadModalBody">CSV file was successfully added to the database!</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button id="refreshButton" type="button" class="btn btn-secondary"
+                        onclick="window.location.reload()" aria-label="Upload Another CSV">Upload Another CSV</button>
+                    <button id="analysisButton" type="button" class="btn btn-custom"
+                        onclick="window.location.href='analysis.html'" style="height:auto">View QC Analytics</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+
+    var lines;
+    var survey;
+    var questions;
+    var responses;
+
+
+    function submitDocument() {
+        let fileInput = document.getElementById("uploadedCSV");
+        let inputFiles = fileInput.files;
+        let file = inputFiles[0];
+        let fr = new FileReader();
+
+        fr.onload = function (progressEvent) {
+            console.log(this.result);
+            lines = this.result.split('\n');
+            for (var line = 0; line < lines.length; line++) {
+                console.log(lines[line]);
+            }
+            console.log("lets start to parse it\nQuestions:");
+            parseQuestions();
+            console.log(questions);
+            console.log("parsing responses:");
+            parseResponses();
+            console.log(responses);
+            console.log("done\nQuestions JSON:\n");
+            console.log(JSON.stringify(questions));
+            console.log("Responses JSON:");
+            console.log(JSON.stringify(responses));
+            SendSurveyPost();
+        };
+        fr.readAsText(file);
+    }
+
+    function SendSurveyPost() {
+        let surveyObject = {
+            "version": "testVersion",
+            "questions": questions
+        };
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                survey = JSON.parse(this.responseText);
+                questions = survey.questions;
+                console.log("made it back from the survey/questions ajax... moving onto the responses");
+                console.log(survey);
+                console.log("parses responses...");
+                parseResponses();
+                console.log("responses parsed... now going to the ajax to send responses");
+                SendResponsesPost();
+            }
+        }
+        xhttp.open("POST", "http://localhost:8080/surveys/csv", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify(surveyObject));
+    }
+
+
+
+    function SendResponsesPost() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log("got the answer back from the server")
+                console.log(this.responseText);
+                responses = JSON.parse(this.responseText);
+                console.log(responses);
+            }
+        }
+        xhttp.open("POST", "http://localhost:8080/response/csv", true);
+        xhttp.setRequestHeader('Content-Type', 'application/json');
+        xhttp.send(JSON.stringify(responses));
+    }
+
+
+    function parseQuestions() {
+        let questionLine = lines[0].slice(0, -1) + ','; // .slice(0,-1) gets rid of /r at the end; + ',' allows the final line to be split correctly instead of ignored
+        let currentLine = questionLine.split(/(?: *?([^",]+?) *?,|" *?(.+?)" *?,|( *?),)/).slice(1).reduce((a, b) => (a.length > 0 && a[a.length - 1].length < 4) ? [...a.slice(0, a.length - 1), [...a[a.length - 1], b]] : [...a, [b]], []).map(e => e.reduce((a, b) => a !== undefined ? a : b, undefined));
+        // above is a monster... visit https://stackoverflow.com/questions/57576681/how-can-i-split-by-commas-while-ignoring-any-comma-thats-inside-quotes for an explanation
+
+        questions = [];
+        for (var i = 1; i < currentLine.length; i++) { //skip index 0 because that is the timestamp
+            questions.push(makeQuestion(currentLine[i]));
+        }
+    }
+
+
+    function parseResponses() {
+        responses = [];
+        for (var k = 1; k < lines.length - 1; k++) {
+            responses.push(parseSingleResponse(k));
+        }
+    }
+
+
+    function parseSingleResponse(lineToParse) {
+        let responseLine = lines[lineToParse].slice(0, -1) + ',';
+        let parsedLineArray = responseLine.split(/(?: *?([^",]+?) *?,|" *?(.+?)" *?,|( *?),)/).slice(1).reduce((a, b) => (a.length > 0 && a[a.length - 1].length < 4) ? [...a.slice(0, a.length - 1), [...a[a.length - 1], b]] : [...a, [b]], []).map(e => e.reduce((a, b) => a !== undefined ? a : b, undefined));
+        let timeStampString = parsedLineArray[0];
+        let answersArray = [];
+        for (var j = 1; j < parsedLineArray.length; j++) {
+            answersArray.push(makeAnswer(j - 1, parsedLineArray[j])); // j - 1 because question 0 is the person's name, but we're starting from index 1 to skip the timestamp in the response
+            // without - 1, you get things like "what is your name? -> email@email.com; what is your batch's location -> Week 4; etc."
+        }
+        let out = makeResponse(timeStampString, answersArray);
+        return out;
+    }
+
+
+
+    function makeResponse(timeOfSubmission, attachedAnswers) {
+        let arrayOfString = timeOfSubmission.split("/"); //3/10/2020 9:36:02     yyyy-MM-dd HH:mm:ss
+        console.log(arrayOfString);    //3/3/2020 14:08:17
+        if (arrayOfString[0].length < 2) {
+            arrayOfString[0] = "0" + arrayOfString[0];
+        }
+        if (arrayOfString[1].length < 2) {
+            arrayOfString[1] = "0" + arrayOfString[1];
+        }
+        let year = arrayOfString[2].substring(0, 4);
+        let timePart = arrayOfString[2].substring(5, arrayOfString[2].length);
+        console.log(timePart);
+        let timePartsSplit = timePart.split(":");
+        console.log(timePartsSplit);
+        if (timePartsSplit[0].length == 1) {
+            timePartsSplit[0] = "0" + timePartsSplit[0];
+        }
+        timeOfSubmission = year + "-" + arrayOfString[0] + "-" + arrayOfString[1] + " " + timePartsSplit[0] + ":" + timePartsSplit[1] + ":" + timePartsSplit[2]; // + ".000";
+        console.log("the format the date is in is now: " + timeOfSubmission);
+        let out = {
+            "timeStampString": timeOfSubmission,                   //////////////////////////////new Date(timeOfSubmission).getTime(),  
+            answers: attachedAnswers,
+            "survey": survey
+        };
+        return out;
+    }
+
+
+    function setCharAt(str, index, chr) {
+        if (index > str.length - 1) return str;
+        return str.substring(0, index) + chr + str.substring(index + 1);
+    }
+
+
+
+    function makeAnswer(questionIndex, contentOfAnswer) {
+        let out = {
+            question: questions[questionIndex],
+            content: contentOfAnswer
+        };
+        return out;
+    }
+
+    function makeQuestion(questionContent) {
+        let out = { content: questionContent };
+        return out;
+    }
+</script>
+
+</html>

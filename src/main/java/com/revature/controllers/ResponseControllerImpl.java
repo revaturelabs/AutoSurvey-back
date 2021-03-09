@@ -42,30 +42,29 @@ public class ResponseControllerImpl implements ResponseController {
 	}
 	
 	@Override
-	@PostMapping(value = "/responseSurvey", consumes = "application/json", produces = "application/json")
-	public Response addResponseForSurvey(@RequestBody Response r) {
-		// TODO Auto-generated method stub
-		try {
-
-			List<Answer> answers = r.getAnswers();
-			Response newResponse = rs.addResponse(r);
-			
-			List<Answer> newAnswers = null;
-			for(int i = 0; i < answers.size(); i++)
-			{
-				answers.get(i).setResponse(newResponse);
-				Answer newAwnser = answerService.addAnswer(answers.get(i));
-				newAnswers.add(newAwnser);
-			}
-			
-			newResponse.setAnswers(newAnswers);
-			return rs.updateResponse(newResponse);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+    @PostMapping(value = "/responseSurvey", consumes = "application/json", produces = "application/json")
+    public Response addResponseForSurvey(@RequestBody Response r) {
+        // TODO Auto-generated method stub
+        try {
+        	//int responseID = r.getId();
+        	//Response newResponse = rs.addResponse(r);
+            List<Answer> answers = r.getAnswers();
+            r.setAnswers(null);
+            Response newResponse = rs.addResponse(r);
+            newResponse.setSubmittedAt(Timestamp.valueOf(newResponse.getTimeStampString()));
+            for(int i = 0; i < answers.size(); i++)
+            {
+            	answers.get(i).setResponse(newResponse);
+            	answers.set(i, answerService.addAnswer(answers.get(i)));
+            }
+            newResponse.setAnswers(answers);
+            return newResponse;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+	
 	
 	@PostMapping(value = "/response/csv", consumes = "application/json", produces = "application/json")
 	public List<Response> addResponsesByCSV(@RequestBody List<Response> responses) {

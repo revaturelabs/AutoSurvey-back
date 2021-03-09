@@ -15,12 +15,13 @@ public class IndexPage {
 	@FindBy(id = "password")
 	public WebElement password;
 	
-	@FindBy(id = "test")
+	@FindBy(id = "loginButton")
 	public WebElement loginButton;
 	
 	public IndexPage(WebDriver driver)
 	{
 		this.driver = driver;
+
 		PageFactory.initElements(driver, this);
 	}
 }
