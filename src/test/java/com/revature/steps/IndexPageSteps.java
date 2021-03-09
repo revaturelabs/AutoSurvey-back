@@ -14,7 +14,10 @@ public class IndexPageSteps {
 	
 	public static IndexPage indexpage = IndexRunner.indexPage;
 	public static WebDriver driver = IndexRunner.driver;
+	
+	
 	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/";
+	
 	
 //	@Given("^The browser is opened$")
 //	public void the_browser_is_opened() throws Throwable {
@@ -32,20 +35,21 @@ public class IndexPageSteps {
 	public void the_user_is_on_the_landing_page() throws Throwable {
 	    driver.get(url);
 	    try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+	 			Thread.sleep(1000);
+	 		} catch (InterruptedException e) {
+	 			e.printStackTrace();
+	 		}
 	}
 
 	@When("^The user clicks on the email input$")
 	public void the_user_clicks_on_the_email_input() throws Throwable {
 	    indexpage.email.click();
 	    try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+	 			Thread.sleep(1000);
+	 		} catch (InterruptedException e) {
+	 			e.printStackTrace();
+	 		}
+	   
 	}
 
 	@When("^types in their email$")
