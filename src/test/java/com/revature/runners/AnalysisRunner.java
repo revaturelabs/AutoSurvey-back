@@ -27,7 +27,7 @@ public class AnalysisRunner {
 		driver = new ChromeDriver();
 		analysispage = new AnalysisPage(driver);
 		
-	
+		driver.manage().window().maximize();
 
 	}
 	

@@ -113,13 +113,13 @@ class AnswerControllerTest {
 		testObj.setId(2);
 		
 		Mockito.when(serv.updateAnswer(obj)).thenReturn(obj); //ArgumentMatchers.eq() not needed when using Gson
-		Mockito.when(serv.updateAnswer(ArgumentMatchers.eq(testObj))).thenThrow(NullPointerException.class);
+		Mockito.when(serv.updateAnswer(testObj)).thenThrow(NullPointerException.class);
 		
 		ResultActions ra = mvc.perform(put("/answers/1").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(obj)));
 		ra.andExpect(status().isOk());
 		ra.andExpect(jsonPath("$.id", is(1)));
 		
-		ra = mvc.perform(put("/answers/1").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(testObj)));
+		ra = mvc.perform(put("/answers/2").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(testObj)));
 		ra.andExpect(status().isOk());
 
 	}

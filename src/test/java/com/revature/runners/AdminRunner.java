@@ -27,6 +27,8 @@ public class AdminRunner {
 		
 		driver = new ChromeDriver();
 		adminpage = new AdminPage(driver);
+		
+		driver.manage().window().maximize();
 	}
 	
 	@AfterClass
