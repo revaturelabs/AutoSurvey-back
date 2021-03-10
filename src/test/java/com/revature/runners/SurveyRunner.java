@@ -17,26 +17,27 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(features = "src/test/resources/Survey.feature", glue = "com.revature.steps")
 
 public class SurveyRunner {
-		public static WebDriver driver;
-		public static SurveyPage surveyPage;
-		
-		@BeforeClass
-		public static void setup()
-		{
-			File file = new File("src/test/resources/chromedriver.exe");
-			System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-			
-			driver = new ChromeDriver();
-			surveyPage = new SurveyPage(driver);
 
-			driver.manage().window().maximize();
+	public static WebDriver driver;
+	public static SurveyPage surveyPage;
 
-		}
-		
-		@AfterClass
-		public static void teardown()
-		{
-			driver.quit();
-		}
+	@BeforeClass
+	public static void setup()
+	{
+		File file = new File("src/test/resources/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+
+		driver = new ChromeDriver();
+		surveyPage = new SurveyPage(driver);
+
+		driver.manage().window().maximize();
+	}
+
+	@AfterClass
+	public static void teardown()
+	{
+		driver.quit();
+	}
+
 
 }

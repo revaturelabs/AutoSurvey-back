@@ -31,6 +31,7 @@ public class IndexRunner {
 		
 		driver.manage().window().maximize();//Added
 
+		driver.manage().window().maximize();
 	}
 	
 	@AfterClass

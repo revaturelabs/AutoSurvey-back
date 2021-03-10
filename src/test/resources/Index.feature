@@ -15,3 +15,8 @@ Feature: Login to QC Survey App
 		And types in their password
 		And clicks the login button
 		Then The user is logged in
+		
+	Scenario: Verify survey redirect
+		Given The user is on the landing page again
+		When The user clicks the survey button
+		Then The user is redirected to the survey page

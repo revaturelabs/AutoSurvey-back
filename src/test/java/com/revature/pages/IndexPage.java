@@ -18,6 +18,9 @@ public class IndexPage {
 	@FindBy(id = "loginButton")
 	public WebElement loginButton;
 	
+	@FindBy(id = "surveyButton")
+	public WebElement surveyButton;
+	
 	public IndexPage(WebDriver driver)
 	{
 		this.driver = driver;

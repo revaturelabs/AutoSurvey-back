@@ -9,11 +9,11 @@ Scenario: Testing the Date Search Function
 	And the user clicks on the Search button
 	Then the selected week analysis displays
 	
-Scenario: Testing the Batch Search Function
-	Given the user is on the default Analysis Page
-	When the User Clicks on the Batch Tab
-	And the user Selects a Location
-	And the user Selects a Batch
-	And the user Selects a Week
-	And the user clicks on the Search Button
-	Then the selected Batch Analysis displays
+#Scenario: Testing the Batch Search Function
+#	Given the user is on the default Analysis Page
+#	When the User Clicks on the Batch Tab
+#	And the user Selects a Location
+#	And the user Selects a Batch
+#	And the user Selects a Week
+#	And the user clicks on the Search Button
+#	Then the selected Batch Analysis displays

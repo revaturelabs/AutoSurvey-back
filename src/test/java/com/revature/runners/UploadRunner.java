@@ -27,7 +27,7 @@ public class UploadRunner {
 		driver = new ChromeDriver();
 		uploadPage = new UploadPage(driver);
 		
-		driver.manage().window().maximize(); //Added
+		driver.manage().window().maximize();
 
 	}
 	
