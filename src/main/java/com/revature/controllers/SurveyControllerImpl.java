@@ -72,6 +72,7 @@ public class SurveyControllerImpl implements SurveyController {
                     i--;
                 }                
             }
+	return out;		
         } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
