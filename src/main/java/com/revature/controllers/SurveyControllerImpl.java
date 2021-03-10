@@ -64,10 +64,9 @@ public class SurveyControllerImpl implements SurveyController {
             Survey out =  ss.getSurvey(id);
             for(int i = 0; i < out.getQuestions().size(); i++) {
                 if(out.getQuestions().get(i).getId() == 30704 ||
-                        out.getQuestions().get(i).getId() == 30704 ||
                         out.getQuestions().get(i).getId() == 30705 ||
                         out.getQuestions().get(i).getId() == 30706 ||
-                        out.getQuestions().get(i).getId() == 30704 ) {
+                        out.getQuestions().get(i).getId() == 30707 ) {
                     out.getQuestions().remove(i);
                     i--;
                 }                
