@@ -28,9 +28,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.google.gson.Gson;
+
 import com.revature.beans.Answer;
 import com.revature.beans.Question;
 import com.revature.beans.Survey;
+import com.revature.services.QuestionService;
 import com.revature.services.SurveyService;
 
 @AutoConfigureMockMvc
@@ -39,6 +41,9 @@ public class SurveyControllerTest {
 	
 	@MockBean
 	SurveyService serv;
+	
+	@MockBean
+	QuestionService qServ;
 	
 	@Autowired
 	MockMvc mvc;
@@ -135,5 +140,39 @@ public class SurveyControllerTest {
 		ra = mvc.perform(delete("/surveys/" + badID));
 		ra.andExpect(status().isOk());
 		ra.andExpect(content().string("false"));
+	}
+	
+	@Test
+	void addSurveyByCSVTest() throws Exception {
+		Survey testSurvey = new Survey();
+		testSurvey.setId(1);
+		testSurvey.setVersion("Test");
+		//testSurvey.setCreatedOn(new java.sql.Timestamp(new java.util.Date().getTime()));
+		
+		List<Question> qList = new ArrayList<Question>();
+		Question q1 = new Question();
+		q1.setId(1);
+		q1.setContent("Test Question 1");
+		qList.add(q1);
+		
+		Question q2 = new Question();
+		q2.setId(2);
+		q2.setContent("Test Question 2");
+		qList.add(q2);
+				
+		testSurvey.setQuestions(qList);
+		
+		Mockito.when(serv.addSurvey(ArgumentMatchers.any(Survey.class))).thenReturn(testSurvey);
+		Mockito.when(qServ.addQuestion(q1)).thenReturn(q1);
+		Mockito.when(qServ.addQuestion(q2)).thenReturn(q2);
+		
+		ResultActions ra = mvc.perform(post("/surveys/csv").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(testSurvey)));
+		ra.andExpect(status().isOk());
+		
+		testSurvey.setQuestions(null);
+		ra = mvc.perform(post("/surveys/csv").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(testSurvey)));
+		ra.andExpect(status().isOk());
+		
+		
 	}
 }

@@ -28,6 +28,7 @@ public class UploadRunner {
 		uploadPage = new UploadPage(driver);
 		
 		driver.manage().window().maximize();
+
 	}
 	
 	@AfterClass

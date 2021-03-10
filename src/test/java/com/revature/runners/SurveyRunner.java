@@ -17,6 +17,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(features = "src/test/resources/Survey.feature", glue = "com.revature.steps")
 
 public class SurveyRunner {
+
 	public static WebDriver driver;
 	public static SurveyPage surveyPage;
 
@@ -37,5 +38,6 @@ public class SurveyRunner {
 	{
 		driver.quit();
 	}
+
 
 }

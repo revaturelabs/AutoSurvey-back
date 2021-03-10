@@ -12,6 +12,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,7 +32,9 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.revature.beans.Answer;
 import com.revature.beans.Response;
+import com.revature.services.AnswerService;
 import com.revature.services.ResponseService;
 
 @AutoConfigureMockMvc
@@ -39,6 +43,9 @@ public class ResponseControllerTest {
 
 	@MockBean
 	ResponseService serv;
+	
+	@MockBean
+	AnswerService aServ;
 	
 	@Autowired
 	MockMvc mvc;
@@ -152,6 +159,57 @@ public class ResponseControllerTest {
 		Mockito.when(serv.deleteResponse(2)).thenThrow(NoSuchElementException.class); //leaving null just throws "Exception"
 		ResultActions ra = mvc.perform(delete("/response/2"));
 		ra.andExpect(status().isOk());
+	}
+	
+	@Test
+	void addResponsesByCSVTest() throws Exception {
+		//Object Setup
+		List<Response> resList = new ArrayList<Response>();
+		List<Answer> aList1 = new ArrayList<Answer>();
+		List<Answer> aList2 = new ArrayList<Answer>();
+		
+		Answer a1 = new Answer();
+		a1.setId(1);
+		a1.setContent("Test");
+		Answer a2 = new Answer();
+		a2.setId(2);
+		Answer a3 = new Answer();
+		a3.setId(3);
+		
+		aList1.add(a1);
+		aList1.add(a2);
+		aList2.add(a2);
+		aList2.add(a3);
+		
+		Response r1 = new Response();
+		r1.setId(1);
+		//r1.setSubmittedAt(2020-03-03 14:08:17);
+		r1.setTimeStampString("2020-03-03 14:08:17");
+		//r1.setSubmittedAt(Timestamp.valueOf(r1.getTimeStampString()));
+		//r1.setSubmittedAt(Timestamp.valueOf("2020-03-03 14:08:17"));
+		r1.setAnswers(aList1);
+		resList.add(r1);
+		
+		Response r2 = new Response();
+		r2.setId(2);
+		//r2.setTimeStampString("2020-04-03 14:08:17");
+		r2.setAnswers(aList2);
+		resList.add(r2);
+		
+		//Mockito Setup
+		Mockito.when(serv.addResponse(ArgumentMatchers.any(Response.class))).thenReturn(r1);
+		//Mockito.when(serv.addResponse(ArgumentMatchers.eq(r2))).thenReturn(r2);
+		Mockito.when(aServ.addAnswer(a1)).thenReturn(a1);
+		Mockito.when(aServ.addAnswer(a2)).thenReturn(a2);
+		Mockito.when(aServ.addAnswer(a3)).thenReturn(a3);
+		
+		ResultActions ra = mvc.perform(post("/response/csv").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(resList)));
+		ra.andExpect(status().isOk());
+		
+		r2.setTimeStampString("2020-04-03 14:08:17");
+		ra = mvc.perform(post("/response/csv").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(resList)));
+		ra.andExpect(status().isOk());
+		
 	}
 }
 
