@@ -146,7 +146,7 @@ public class SurveyPageSteps {
 	@When("^The User views the Training Satisfaction radio button spread$")
 	public void the_User_views_the_Training_Satisfaction_radio_button_spread() throws Throwable {
 	    js.executeScript("arguments[0].scrollIntoView();", surveypage.satisfactionNotSat);
-	    js.executeScript("window.scrollBy(0,200)");
+	    js.executeScript("window.scrollBy(0,400)");
 	  try {
 			Thread.sleep(1000);
 		}
@@ -176,6 +176,8 @@ public class SurveyPageSteps {
 			e1.printStackTrace();
 		}
 	}
+	
+//*********************************************************************************************
 
 	@Given("^The User is on the survey page again again again$")
 	public void the_User_is_on_the_survey_page_again_again_again() throws Throwable {
@@ -633,7 +635,7 @@ public class SurveyPageSteps {
 
 	@When("^The User clicks the Submit button$")
 	public void the_User_clicks_the_Submit_button() throws Throwable {
-		assertTrue(true);
+		surveypage.submit.click();
 		 try {
 			Thread.sleep(1000);
 		}

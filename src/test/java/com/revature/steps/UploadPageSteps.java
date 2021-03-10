@@ -1,5 +1,7 @@
 package com.revature.steps;
 
+import java.io.File;
+
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
@@ -12,44 +14,46 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class UploadPageSteps {
-	
+
 	public static UploadPage uploadpage = UploadRunner.uploadPage;
 	public static WebDriver driver = UploadRunner.driver;
 	String url = "http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/upload.html";
-	String testfile = "C:\\\\Users\\\\Ric\\\\Documents\\\\uploadtest.txt";
 	
+	String testfile = "./src/test/resources/test.txt";
+	File file = new File(new File(testfile).getAbsolutePath());
+
 	@Given("^The user is logged in as admin$")
 	public void the_User_is_logged_in_as_admin()
 	{
-			driver.get("http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/");
-			
-				uploadpage.email.sendKeys("admin@admin.com"); // to be changed to test user when that gets created
-			    try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			    
-			    uploadpage.password.sendKeys("admin");
-			    try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			    
-			    uploadpage.loginButton.click();
-			    try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+		driver.get("http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/");
+
+		uploadpage.email.sendKeys("admin@admin.com"); // to be changed to test user when that gets created
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		uploadpage.password.sendKeys("admin");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		uploadpage.loginButton.click();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
-	
+
 	@Given("^The user is on the upload page$")
 	public void the_user_is_on_the_upload_page() {
 		driver.get(url);
-	    try {
+		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -59,19 +63,20 @@ public class UploadPageSteps {
 
 
 	@When("^The user selects a file$")
-	public void the_user_selects_a_file() { 
-		   uploadpage.uploadCsv.sendKeys(testfile);
-		   try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+	public void the_user_selects_a_file() {
+		//not working for me
+		uploadpage.uploadCsv.sendKeys(file.getAbsolutePath());
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@When("^The user clicks the upload button$")
 	public void the_user_clicks_the_upload_button() {
-	    uploadpage.uploadButton.click();
-	    try {
+		uploadpage.uploadButton.click();
+		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -83,17 +88,17 @@ public class UploadPageSteps {
 	//and the title page remains the same if the upload fails?
 	@Then("^The file should be uploaded$")
 	public void the_file_should_be_uploaded() {
-		
-	    if (uploadpage.modal()==true) {
-	    	Assertions.assertTrue(true);
-	    }
-	    
-	    try {
+
+		if (uploadpage.modal()==true) {
+			Assertions.assertTrue(true);
+		}
+
+		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 
 }

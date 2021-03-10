@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
 import com.revature.pages.AdminPage;
-import com.revature.pages.IndexPage;
 import com.revature.runners.AdminRunner;
-import com.revature.runners.IndexRunner;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
