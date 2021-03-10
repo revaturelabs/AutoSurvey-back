@@ -121,7 +121,7 @@ class AnswerControllerTest {
 		
 		ra = mvc.perform(put("/answers/1").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(testObj)));
 		ra.andExpect(status().isOk());
-		ra.andExpect(content().string(""));	
+
 	}
 	
 	@Test
