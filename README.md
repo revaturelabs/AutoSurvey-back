@@ -2,12 +2,15 @@
 
 
 ## Project Description  
-> The Center of Excellence (CoE) was migrating from GSuites to Microsoft Teams and needed a web application to handle transforming weekly QC Survey Data from Google Sheets (.csv files) into a persitent RDBMS.  
-> The QC Data Survey Application is just that - a cloud hosted application through which internal Revature employees can access the aggregated data from QC Surveys, and Revature Associates can submit weekly surveys. Together with our entire batch, we designed, built, and tested the Auto Survey App. 
+> Revature's Center of Excellence needed an automated way to handle transforming weekly QC Survey Data from Google Sheets (.csv files) into a persitent RDBMS for managing their system migration process from GSuites to Microsoft Teams.   
+> 
+> Together with our entire batch, we designed, built, and tested the Auto Survey App - a cloud hosted application through which internal Revature employees can access aggregated data from the weekly QC Surveys submitted by Revature Associates.    
+> Using the ETL Process, we extracted and transformed data from a flat .csv file and loaded it into a remote Relational Database.
+> Secondly, we built an interactive web application to persist new data and provide users with the ability to visualize the existing data.  
 
 
 ## Technologies Used  
-Java, Spring Boot, PostgreSQL, Talend, Spring Test, JUnit, Selenium, Cucumber, Jenkins, AWS RDS, AWS EC2, JavaScript, HTML, CSS, Bootstrap   
+Java, Spring Boot, PostgreSQL, Talend, Spring Test, JUnit, Selenium, Cucumber, Jenkins, AWS RDS, AWS EC2, JavaScript, AJAX, Chart.JS, JQuery, HTML, CSS, Bootstrap   
 
 
 ## Features
