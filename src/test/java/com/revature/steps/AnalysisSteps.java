@@ -105,7 +105,7 @@ public class AnalysisSteps {
 	@When("^the User Clicks on the Batch Tab$")
 	public void the_User_Clicks_on_the_Batch_Tab() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
-		analysispages.batchTab.click();
+		//analysispages.batchTab.click();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
@@ -117,8 +117,8 @@ public class AnalysisSteps {
 	@When("^the user Selects a Location$")
 	public void the_user_Selects_a_Location() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
-		Select location = new Select(analysispages.location);
-		location.selectByIndex(0);
+//		Select location = new Select(analysispages.location);
+//		location.selectByIndex(0);
 
 		try {
 			Thread.sleep(1000);
@@ -130,9 +130,9 @@ public class AnalysisSteps {
 	@When("^the user Selects a Batch$")
 	public void the_user_Selects_a_Batch() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
-		Select batch = new Select(analysispages.batch);
-
-		batch.selectByIndex(0);
+//		Select batch = new Select(analysispages.batch);
+//
+//		batch.selectByIndex(0);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
@@ -143,15 +143,15 @@ public class AnalysisSteps {
 	@When("^the user Selects a Week$")
 	public void the_user_Selects_a_Week() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
-		Select week = new Select(analysispages.week);
-		week.selectByIndex(0);
+//		Select week = new Select(analysispages.week);
+//		week.selectByIndex(0);
 
 	}
 
 	@When("^the user clicks on the Search Button$")
 	public void the_user_clicks_on_the_Search_Button() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
-		analysispages.searchBtn.click();
+//		analysispages.searchBtn.click();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e1) {
