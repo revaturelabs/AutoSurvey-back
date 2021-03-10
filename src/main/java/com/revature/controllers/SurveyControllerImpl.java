@@ -61,11 +61,21 @@ public class SurveyControllerImpl implements SurveyController {
 	@GetMapping(value = "/surveys/{id}")
 	public Survey getSurvey(@PathVariable("id") int id) {
 		try {
-			return ss.getSurvey(id);
-		} catch (NoSuchElementException e) {
-			System.out.println("Error, no such survey exists with that id: " + e.getMessage());
-		}
-		return null;
+            Survey out =  ss.getSurvey(id);
+            for(int i = 0; i < out.getQuestions().size(); i++) {
+                if(out.getQuestions().get(i).getId() == 30704 ||
+                        out.getQuestions().get(i).getId() == 30704 ||
+                        out.getQuestions().get(i).getId() == 30705 ||
+                        out.getQuestions().get(i).getId() == 30706 ||
+                        out.getQuestions().get(i).getId() == 30704 ) {
+                    out.getQuestions().remove(i);
+                    i--;
+                }                
+            }
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
+        return null;
 	}
 	
 	@GetMapping(value = "/getAllSurveysWithinWeekGivenTimestamp/{timestamp}", produces = "application/json")

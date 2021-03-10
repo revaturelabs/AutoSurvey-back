@@ -6,11 +6,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -28,6 +30,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.revature.beans.Answer;
 import com.revature.beans.Response;
@@ -49,6 +52,22 @@ public class ResponseControllerTest {
 	
 	public static Gson gson = new Gson();
 	
+	
+	@Test void addResponseForSurvey() throws Exception
+	{
+		Response obj = new Response();
+		obj.setId(1);
+		Response badObj = new Response();
+		ObjectMapper om = new ObjectMapper();
+		String jsonRequest = om.writeValueAsString(obj);
+		
+		Mockito.when(serv.addResponse(ArgumentMatchers.eq(obj))).thenReturn(obj);
+		Mockito.when(serv.addResponse(ArgumentMatchers.eq(badObj))).thenThrow(NullPointerException.class);
+		
+		
+		ResultActions ra = mvc.perform(post("/responseSurvey").contentType(MediaType.APPLICATION_JSON).content(jsonRequest));
+		ra.andExpect(status().isOk());
+	}
 	/**
 	 * Tests addResponse() controller method
 	 *
@@ -97,6 +116,11 @@ public class ResponseControllerTest {
 		ResultActions ra = mvc.perform(get("/response"));
 		ra.andExpect(status().isOk());
 		ra.andExpect(jsonPath("$.length()", is(2)));
+		
+		Mockito.when(serv.getAllResponse()).thenThrow(NoSuchElementException.class); //leaving null just throws "Exception"
+		ResultActions r = mvc.perform(get("/response"));
+		r.andExpect(status().isOk());
+		r.andExpect(content().string(""));	
 	}
 
 
@@ -131,7 +155,10 @@ public class ResponseControllerTest {
 		
 		Mockito.when(serv.deleteResponse(1)).thenReturn(true);
 		mvc.perform(delete("/response/1")).andExpect(status().isOk());
-
+		
+		Mockito.when(serv.deleteResponse(2)).thenThrow(NoSuchElementException.class); //leaving null just throws "Exception"
+		ResultActions ra = mvc.perform(delete("/response/2"));
+		ra.andExpect(status().isOk());
 	}
 	
 	@Test

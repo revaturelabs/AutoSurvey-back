@@ -39,3 +39,13 @@ function checkUser() {
     window.location.href = "redirect.html";
   }
 }
+
+function redirectIfNotAdmin(){
+  var admin = getCookie("admin");
+  if(admin == false || admin == "false"){
+    window.alert("You are not an admin! Sending you to the analysis page...")
+    window.location.href = "analysis.html"
+  }else{
+    return;
+  }
+}
