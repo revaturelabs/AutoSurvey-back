@@ -16,12 +16,14 @@ Java, Spring Boot, PostgreSQL, Talend, Spring Test, JUnit, Selenium, Cucumber, J
     -  Upload a .csv file of survey data to be persisted to the Database  
     -  View overall analyses of all batches for all time  
     -  View analyses of all batches by week  
-- Administrators have the ability to register an internal employee to have access to the Analyses  
+- Administrators have the ability to register an internal employee to have access to the QC Survey Data Analysis Page    
 - Revature Associates can submit weekly QC Surveys  
 
 
 ## Further Development  
 - Structure to be able to view aggregated survey data for an individual batch by week has been created, but not yet implemented.  
+- Automate the Registration process by implementing Spring Boot Mail (like Spring Web for SMTP) to send registration links via email.  
+- Add more or varied visualizations to the Analysis Page.  
 
 ## Required Dependencies  
 - Spring Data JPA  
@@ -31,7 +33,9 @@ Java, Spring Boot, PostgreSQL, Talend, Spring Test, JUnit, Selenium, Cucumber, J
 - GSON  
 - Selenium  
 - Cucumber  
-- chart.js (JavaScript)
+- chart.js (JavaScript)  
+
+#### Insert into pom.xml the below dependencies:  
 
 ```
 <dependencies>
