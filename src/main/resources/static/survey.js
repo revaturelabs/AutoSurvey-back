@@ -13,20 +13,22 @@ function submitSurveyToServer() {
       var answers = [
         document.getElementById("name").value,
         document.getElementById("email").value,
-        document.getElementById("location").value,
-        document.getElementById("batch").value,
         document.getElementById("week").value,
         document.querySelector('input[name="satisfaction"]:checked').value,
-        document.querySelector('input[name="one-on-one"]:checked').value,
+        document.getElementById("feedback").value,
+        document.getElementById("issues").value,
+        document.getElementById("location").value,
+        document.getElementById("batch").value,
+        "", "", "", "", "", // in order: Project requirements, training prep for project, project feedback, background coming into program, programming experience before training
         document.querySelector('input[name="understanding"]:checked').value,
+        document.getElementById("batch").value,
         document.querySelector('input[name="pace"]:checked').value,
         document.querySelector('input[name="helpfulMaterials"]:checked').value,
         document.querySelector('input[name="wellOrganized"]:checked').value,
-        document.querySelector('input[name="questionsEncouraged"]:checked')
-          .value,
+        document.querySelector('input[name="questionsEncouraged"]:checked').value,
         document.querySelector('input[name="metExpectations"]:checked').value,
-        document.getElementById("issues").value,
-        document.getElementById("week").value,
+        "", // Spark question goes here
+        document.querySelector('input[name="one-on-one"]:checked').value
       ];
 
       //Formatting Response object answers
