@@ -99,4 +99,29 @@ public class IndexPageSteps {
 	    Assertions.assertEquals("Revature | QC Analysis", driver.getTitle());
 	}
 	
+	@Given("^The user is on the landing page again$")
+	public void the_user_is_on_the_landing_page_again() throws Throwable {
+		driver.get(url);
+	    try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@When("^The user clicks the survey button$")
+	public void the_user_clicks_the_survey_button() throws Throwable {
+	    indexpage.surveyButton.click();
+	    try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Then("^The user is redirected to the survey page$")
+	public void the_user_is_redirected_to_the_survey_page() throws Throwable {
+		Assertions.assertEquals("Revature | QC Survey", driver.getTitle());
+	}
+	
 }

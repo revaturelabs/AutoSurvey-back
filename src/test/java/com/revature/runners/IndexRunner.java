@@ -29,6 +29,7 @@ public class IndexRunner {
 		driver = new ChromeDriver();
 		indexPage = new IndexPage(driver);
 
+		driver.manage().window().maximize();
 	}
 	
 	@AfterClass

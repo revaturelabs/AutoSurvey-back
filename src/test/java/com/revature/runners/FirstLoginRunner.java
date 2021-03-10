@@ -27,6 +27,8 @@ public class FirstLoginRunner {
 		
 		driver = new ChromeDriver();
 		firstPage = new FirstLoginPage(driver);
+		
+		driver.manage().window().maximize();
 	}
 	
 	@AfterClass
