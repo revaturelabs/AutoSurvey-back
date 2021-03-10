@@ -1,8 +1,12 @@
 package com.revature.controllers;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -12,16 +16,23 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.revature.beans.Question;
 import com.revature.services.QuestionService;
 
+@AutoConfigureMockMvc
+@SpringBootTest(classes = com.example.demo.QcDataReportAppApplication.class)
 public class QuestionControllerTest {
 
 	@MockBean
@@ -31,6 +42,31 @@ public class QuestionControllerTest {
 	MockMvc mvc;
 
 	public static Gson gson = new Gson();
+	
+	
+	
+	@Test
+	void addQuestionTest() throws Exception
+	{
+		Question obj = new Question();
+		obj.setId(1);
+		Question badObj = new Question();
+		
+		ObjectMapper om = new ObjectMapper();
+		String jsonRequest = om.writeValueAsString(obj);
+		
+		Mockito.when(serv.addQuestion(ArgumentMatchers.eq(obj))).thenReturn(obj);
+		Mockito.when(serv.addQuestion(ArgumentMatchers.eq(badObj))).thenThrow(NullPointerException.class);
+		
+		ResultActions ra = mvc.perform(post("/question").contentType(MediaType.APPLICATION_JSON).content(jsonRequest));
+		ra.andExpect(status().isOk());
+		ra.andExpect(jsonPath("$.id", is(1)));
+		
+		//Trying to use gson.toJson method
+		ra = mvc.perform(post("/question").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(badObj)));
+		ra.andExpect(status().isOk());
+		ra.andExpect(content().string(""));
+	}
 	/**
 	 * (Write a succinct description of this method here.  If necessary,
 	 * additional paragraphs should be preceded by <p>, the html tag for
@@ -116,7 +152,15 @@ public class QuestionControllerTest {
 		questionTwo.setContent("Test content 2");
 		Mockito.when(serv.updateQuestion(questionTwo)).thenReturn(questionTwo);
 		mvc.perform(put("/question/1").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(questionOne))).andExpect(status().isOk());
-
+		
+	
+		Question testObj = new Question();
+		testObj.setId(3);
+		Mockito.when(serv.updateQuestion(ArgumentMatchers.eq(testObj))).thenThrow(NullPointerException.class);
+		ResultActions ra = mvc.perform(put("/question/1").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(testObj)));
+		ra = mvc.perform(put("/question/1").contentType(MediaType.APPLICATION_JSON).content(gson.toJson(testObj)));
+		ra.andExpect(status().isOk());
+		ra.andExpect(content().string(""));	
 	}
 
 	/**

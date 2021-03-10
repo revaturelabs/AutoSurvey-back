@@ -16,7 +16,7 @@ function submitSurveyToServer() {
         document.getElementById("location").value,
         document.getElementById("batch").value,
         document.getElementById("week").value,
-        document.querySelector('input[name="understanding"]:checked').value,
+        document.querySelector('input[name="satisfaction"]:checked').value,
         document.querySelector('input[name="one-on-one"]:checked').value,
         document.querySelector('input[name="understanding"]:checked').value,
         document.querySelector('input[name="pace"]:checked').value,
@@ -84,7 +84,7 @@ function submitSurveyToServer() {
     }
   };
   // This is the ID = 27748 retrieve survey
-  let surveyId = 28050;
+  let surveyId = 30695;
   xhttp.open(
     "GET",
     `http://ec2-54-173-212-237.compute-1.amazonaws.com:8080/AutoSurvey/surveys/${surveyId}`,
